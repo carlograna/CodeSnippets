@@ -10,6 +10,7 @@ git fetch https://github.com/carlograna/git_demo	<-- download updates into a bra
 git merge FETCH_HEAD	<-- update what just got downloaded with the fetch
 
 git pull	<-- download changes and merges
+git pull origin <remotebranch>
 
 git status
 
@@ -32,6 +33,11 @@ git checkout master
 git merge branchName master  						<-- merge the branch into master or viceversa
 git branch -d branch_name  							<-- Delete branch locally
 git push <remote_name> --delete <branch_name>		<-- Delete branch remotely
+
+------CAREFUL----------------------------
+git branch --delete --force <branch_name>
+git branch -D <branch_name>
+-----------------------------------------
 
 touch filename.ext  		<-- creates file in the currenty directory/
 touch .gitignore			<-- contains a list of files to ignore
