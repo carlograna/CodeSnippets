@@ -29,9 +29,9 @@ git checkout branchName
 git checkout -b branchName	<-- creates and checkout branch
 git checkout master
 
-git merge branchName master  				<-- merge the branch into master or viceversa
-git branch -d branch_name  				<-- Delete branch locally
-git push <remote_name> --delete <branch_name>		<-- Delete branch remotely
+git merge branchName master						<-- merge the branch into master or viceversa
+git branch -d branch_name						<-- Delete branch locally
+git push <remote_name> --delete <branch_name>	<-- Delete branch remotely
 
 ------CAREFUL----------------------------
 git branch --delete --force <branch_name>
