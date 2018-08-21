@@ -1,0 +1,7 @@
+ping 127.0.0.1 -n 6 > nul
+
+
+
+127.0.0.1 is the localhost IP address.
+-n 6 There is a 1s delay between each ping, so for a 5s delay you need to do 6 pings.
+nul gobble the output. 

@@ -1,0 +1,295 @@
+
+
+/* 
+---------------------------
+  BACKUP
+---------------------------
+*/
+backup database Mirror
+to disk = 'c:\temp\mirror_full.bak'
+with noinit,
+name = 'First Backup Media'
+
+
+go
+
+/* 
+---------------------------
+  BACKUP TRANSACTION LOG
+---------------------------
+*/
+backup log Mirror
+to disk = 'c:\temp\mirror_log.bak'
+with noinit
+--NAME = N'Mirror-Log Database Backup'
+--NO_TRUNCATE --> to backup log with db offline and lost mdf file. (Specifies that the log not be truncated)
+-- INIT --> Overwrite current file
+-- NOINIT --> Append to current file
+go
+
+
+
+
+/*
+--------------------------
+	RESTORE
+--------------------------
+*/
+RESTORE HEADERONLY
+FROM DISK = N'C:\TEMP\Mirror_full.bak'
+WITH NOUNLOAD;
+Go
+/* 
+---------------------------------------------------------------------------------
+  FIND OUT FILE NAMES
+  - Use to find out the logical name of the file for a restore
+  - in case you don't have it and you need to restore the mdf
+  - and ldf to a new location  
+---------------------------------------------------------------------------------
+*/
+restore filelistonly
+from disk = 'c:\file.bak'
+
+
+/* 
+---------------------------
+  RESTORE
+---------------------------
+*/
+RESTORE DATABASE Mirror 
+from disk = N'c:\temp\mirror_full.bak' 
+WITH file = 1,
+move N'Mirror_dat'
+to N'G:\mssql\data\Mirror_dat.mdf',
+move N'Mirror_log'
+to N'G:\mssql\data\Mirror_log.ldf',
+norecovery, nounload, stats = 10
+--, standby = N'C:\Program Files\Microsoft SQL Server\MSSQL10.MSSQLSERVER\MSSQL\Backup\ROLLBACK_UNDO_Mirror.BAK'
+go
+
+RESTORE LOG Mirror
+from disk = N'c:\temp\mirror_log.bak'
+with file = 1,
+norecovery, nounload, stats = 10
+go
+
+
+/* 
+---------------------------
+  RESTORE/BACKUP %  
+---------------------------
+*/
+SELECT percent_complete, *
+FROM sys.dm_exec_requests
+WHERE command In ( 'RESTORE log', 'BACKUP DATABASE' )
+
+
+/*
+---------------------------
+	PROPERTIES
+---------------------------
+*/
+select SERVERPROPERTY('productversion') As [version]
+		, SERVERPROPERTY('edition') edition
+		, SERVERPROPERTY('Productlevel') [level]
+
+
+
+
+/* 
+---------------------------
+  CREATE DATABASE
+---------------------------
+*/
+create database Mirror
+on
+(
+	name = Mirror_dat,
+	filename = 'g:\mssql\data\mirror.mdf',
+	size = 10,
+	maxsize = 50, --MAXSIZE cannot be specified when the os_file_name is specified as a UNC path. 
+	filegrowth = 5
+)
+log on
+(
+	name = Mirror_log,
+	filename = 'g:\mssql\data\mirror.ldf',
+	size = 5mb,
+	maxsize = 25mb,
+	filegrowth = 5mb
+);
+go
+
+
+use Mirror
+go
+
+/* 
+-------------------------------------------------------
+  CREATE DATABASE ON EXISTING DATA FILE
+-------------------------------------------------------
+*/
+-- WITH NEW LOG FILE
+CREATE DATABASE AdventureWorks2012
+ON (FILENAME = 'D:\AdventureWorks2012_Data.mdf')
+FOR ATTACH_REBUILD_LOG ;
+
+--WITH EXISTING LOG FILE
+CREATE DATABASE AdventureWorks2012
+ON (FILENAME = 'D:\AdventureWorks2012_Data.mdf')
+  ,(FILENAME = 'D:\AdventureWorks2012_Log.ldf')
+FOR ATTACH;
+
+
+/* 
+-------------------------------------------------------
+  CREATE DATABASE WITH MULTIPLE FILES
+-------------------------------------------------------
+*/
+CREATE DATABASE [AdventurePark] ON  PRIMARY 
+( NAME = N'AdventureParkPrimary', FILENAME = N'D:\DATA\AdventurePark.mdf' , SIZE = 5120KB , MAXSIZE = UNLIMITED, FILEGROWTH = 10%), 
+ FILEGROUP [Data]  DEFAULT 
+( NAME = N'AdventureParkData', FILENAME = N'D:\DATA\AdventurePark_1.ndf' , SIZE = 4896KB , MAXSIZE = UNLIMITED, FILEGROWTH = 10%), 
+ FILEGROUP [Files2008] 
+( NAME = N'AdventureParkFiles2008_1', FILENAME = N'E:\DATA\AdventurePark_2.ndf' , SIZE = 4896KB , MAXSIZE = UNLIMITED, FILEGROWTH = 10%), 
+( NAME = N'AdventureParkFiles2008_2', FILENAME = N'E:\DATA\AdventurePark_3.ndf' , SIZE = 4896KB , MAXSIZE = UNLIMITED, FILEGROWTH = 10%)
+ LOG ON 
+( NAME = N'AdventurePark_log', FILENAME = N'L:\LOGS\AdventurePark_16.ldf' , SIZE = 4896KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
+GO
+
+-- RESTORE DATABASE WITH MULTIPLE FILES
+RESTORE DATABASE [AdventurePark] FROM  DISK = N'\\Teletraan\sqlbackup$\AdventurePark\FULL_BU20150101_000001.bak' WITH  FILE = 1,  
+MOVE N'AdventureParkPrimary'     TO N'F:\SQL AdventurePark\AdventurePark.mdf',  
+MOVE N'AdventureParkData'        TO N'D:\ARCHIVEDATA\AdventurePark_1.ndf',  
+MOVE N'AdventureParkFiles2008_1' TO N'D:\ARCHIVEDATA\AdventurePark_2.ndf',  
+MOVE N'AdventureParkFiles2008_2' TO N'D:\ARCHIVEDATA\AdventurePark_3.ndf',    
+MOVE N'AdventurePark_log' TO N'F:\SQL LOGS\AdventurePark_1.ldf',  
+NOUNLOAD,  REPLACE,  STATS = 10
+GO
+
+/* 
+---------------------------
+  ALTER DB FILE SIZES
+---------------------------
+*/
+ALTER DATABASE [NewDatabase]
+MODIFY FILE
+(NAME = 'NewDatabase_log',
+SIZE = 200MB,
+FILEGROWTH = 1MB)
+
+/* 
+---------------------------
+  CREATE SCHEMA
+---------------------------
+*/
+CREATE SCHEMA Person AUTHORIZATION db_owner;
+
+
+/* 
+---------------------------
+  CREATE TABLE AND POPULATE
+---------------------------
+*/
+create table Person.Customer
+(
+	ID int identity,
+	FirstName nvarchar(50),
+	MiddleName nvarchar(50),
+	LastName nvarchar(50),
+	DateOfBirth datetime,
+	PRIMARY KEY (ID)
+)
+	
+use mirror	
+insert into Person.Customer
+select 'Isabella', 'Jane', 'Spader', '01/30/2009'
+
+/* 
+---------------------------
+  SELECT
+---------------------------
+*/
+use mirror
+select *
+from Person.Customer
+
+update Person.Customer
+set MiddleName = 'Arturo'
+
+
+
+
+
+/* 
+---------------------------
+  RENAME DATABASE
+---------------------------
+*/
+alter database Itemprocessing
+set single_user
+with rollback immediate
+
+alter database itemprocessing
+modify name = itemprocessing_new;
+go
+
+alter database itemprocessing_new
+set multi_user
+with rollback immediate
+
+
+
+/* 
+---------------------------
+ RENAME DATABASE PHYSICAL FILES
+---------------------------
+*/
+alter database itemprocessing_new
+set offline
+go
+
+alter database itemprocessing_new
+modify file(
+	name = itemprocessing_data
+	,filename = 'J:\MSSQL\Data\ItemProcessing.mdf'
+)
+go
+
+alter database itemprocessing_new
+modify file(
+	name = itemprocessing_log
+	,filename = 'D:\MSSQL\Data\Itemprocessing.ldf'
+)
+go
+
+alter database itemprocessing_new
+set online
+go
+
+/*
+----------------------------------------
+Rename Logical File Names
+----------------------------------------
+*/
+
+ALTER DATABASE [SqlAndMe]
+
+            MODIFY FILE (NAME=N'MyDatabase', NEWNAME=N'SqlAndMe')
+
+ALTER DATABASE [SqlAndMe]
+
+            MODIFY FILE (NAME=N'MyDatabase_log', NEWNAME=N'SqlAndMe_log')
+
+
+/*
+----------------------------------------
+Change Size
+----------------------------------------
+*/
+ALTER DATABASE item
+MODIFY FILE
+(
+	name = 'item_data'
+	,maxsize = 5gb
+)

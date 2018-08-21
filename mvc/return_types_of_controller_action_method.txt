@@ -1,0 +1,9 @@
+ViewResult (View): This return type is used to return a webpage from an action method.
+PartialviewResult (Partialview): This return type is used to send a part of a view which will be rendered in another view.
+RedirectResult (Redirect): This return type is used to redirect to any other controller and action method depending on the URL.
+RedirectToRouteResult (RedirectToAction, RedirectToRoute): This return type is used when we want to redirect to any other action method.
+ContentResult (Content): This return type is used to return HTTP content type like text/plain as the result of the action.
+jsonResult (json): This return type is used when we want to return a JSON message.
+javascriptResult (javascript): This return type is used to return JavaScript code that will run in browser.
+FileResult (File): This return type is used to send binary output in response.
+EmptyResult: This return type is used to return nothing (void) in the result.

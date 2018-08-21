@@ -1,0 +1,77 @@
+/*
+ If you plan on using this code, I would suggest commenting out the xp_cmdshell line and adding PRINT @SQL before you run it.  
+ If you want to copy over other backup files besides the full backups, then change the WHERE clause so that bs.type equals what type of file you want: 
+
+ D = Database.
+ I = Database Differential.
+ L = Log.
+ F = File or Filegroup. 
+*/
+
+USE MASTER;
+
+SET NOCOUNT ON
+
+DECLARE @SQL VARCHAR(7000)
+DECLARE @DBName SYSNAME
+DECLARE @BackupFilePath NVARCHAR(260)
+DECLARE @RowCnt INT
+DECLARE @ServerName sysname
+DECLARE @BkpShare nvarchar(260);
+SET @BkpShare = '\\nstfs01\Backups\';
+
+
+DECLARE Backup_CSR CURSOR 
+FOR
+
+WITH Backup_CTE AS
+(
+ SELECT bs.Server_Name
+ ,bs.database_name
+ ,rank() over(partition by bs.database_name order by backup_set_id desc) as BackupRank
+ ,bms.physical_device_name
+ ,backup_finish_date
+ 
+ FROM msdb.dbo.backupset bs
+ INNER JOIN msdb.dbo.backupmediafamily bms 
+ ON bs.media_set_id = bms.media_set_id
+ INNER JOIN sysdatabases s 
+ ON bs.database_name = s.name 
+ WHERE backup_finish_date > dateadd(yyyy, -1, getdate())
+ and bs.type = 'D'
+)
+SELECT server_name
+ ,database_name
+ ,physical_device_name
+FROM Backup_CTE
+WHERE BackupRank = 1
+ORDER BY database_name, BackupRank
+
+OPEN Backup_CSR
+
+FETCH NEXT FROM Backup_CSR
+INTO @ServerName
+ ,@DBName
+ ,@BackupFilePath
+
+--SET @RowCnt = @@ROWCOUNT 
+
+WHILE(@@FETCH_STATUS = 0)
+BEGIN
+
+ SET @SQL = 'xcopy ' + @BackupFilePath + ' ' + @BkpShare + @ServerName + '\' + @DbName + '\'
+  
+ EXEC master.dbo.xp_cmdshell @SQL
+ --Print @SQL
+ 
+ FETCH NEXT FROM Backup_CSR
+ INTO @ServerName
+  ,@DBName
+  ,@BackupFilePath
+END
+
+
+CLOSE Backup_CSR
+DEALLOCATE Backup_CSR
+
+SET NOCOUNT OFF

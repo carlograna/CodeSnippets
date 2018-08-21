@@ -1,0 +1,19 @@
+^([1-2][0-5][0-5]|[1-9][0-9]|[0-9])$	0-9 or 10-99 or 100-255
+^(9[6-9]|10[0-9]|11[01])$	96-99 or 100-109 110-111
+
+ ^(64\.39\.(9[6-9]|10[0-9]|11[01])\.([1-2][0-5][0-5]|[1-9][0-9]|[0-9]))$ -->NetRange:       64.39.96.0 - 64.39.111.255
+
+
+
+
+ Protected Function QualysScans(ByVal ex As Exception) As Boolean
+        Dim m As Match
+        'NetRange:       64.39.96.0 - 64.39.111.255
+        Dim hostPattern As String = "\bREMOTE_HOST=64\.39\.(9[6-9]|10[0-9]|11[01])\.([1-2][0-5][0-5]|[1-9][0-9]|[0-9])\b"
+        'Dim strMyInput As String = "INSTANCE_META_PATH=/LM/W3SVC/3 REMOTE_ADDR=64.39.111.39 REMOTE_HOST=64.39.111.39 REMOTE_PORT = 58818"
+
+        m = Regex.Match(ex.StackTrace, hostPattern, _
+                        RegexOptions.IgnoreCase Or RegexOptions.Compiled)
+
+        Return m.Success 'success can be true or false
+    End Function

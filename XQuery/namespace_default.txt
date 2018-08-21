@@ -1,0 +1,6 @@
+SELECT Instructions.query('  
+     declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/ProductModelManuInstructions";  
+        /root/Location[1]/step  
+    ') as x  
+FROM Production.ProductModel  
+where ProductModelID=7  

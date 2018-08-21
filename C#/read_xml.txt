@@ -1,0 +1,42 @@
+using (XmlReader reader = XmlReader.Create(msXml))
+            {
+                // parse the file and display value of the selected nodes.
+                while (!reader.EOF)
+                {
+                    if (reader.IsStartElement())
+                    {
+                        switch (reader.Name.ToString())
+                        {
+                            case "RtarRequest":
+                                UsBankRequest.RequestXmlns = reader.NamespaceURI.ToString();
+                                reader.Read();
+                                //output.Append(requestXmlns + " - ");
+                                break;
+                            case "requestID":
+                                UsBankRequest.RequestID = reader.ReadElementContentAsString();
+                                //output.Append(requestID + " - ");
+                                break;
+                            case "epayToken":
+                                UsBankRequest.EpayToken = reader.ReadElementContentAsString();
+                                //output.Append(epayToken + " - ");
+                                break;
+                            case "userID":
+                                UsBankRequest.UserID = reader.ReadElementContentAsString();
+                                //output.Append(userID + " - ");
+                                break;
+                            case "password":
+                                UsBankRequest.Password = reader.ReadElementContentAsString();
+                                //output.Append(password + " - ");
+                                break;
+                            case "existingUser":
+                                UsBankRequest.ExistingUser = reader.ReadElementContentAsString();
+                                //output.Append(USBankExistingUser + " - ");
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        reader.Read();
+                    }
+                }
+            }

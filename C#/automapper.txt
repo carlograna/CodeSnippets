@@ -1,0 +1,66 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AutoMapper
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+                //make a copy with automapper
+                //var config = new MapperConfiguration(cfg => { cfg.CreateMap<Foo, Foo>(); });
+
+                //IMapper mapper = config.CreateMapper();
+
+                //var foo = new Foo { A = "carlo", B = 1 };
+                //var foo_copy = mapper.Map<Foo, Foo>(foo);
+
+                //Console.WriteLine("foo.A = {0}", foo.A);
+                //Console.WriteLine("foo.B = {0}", foo.B);
+                //Console.WriteLine("foo_copy.A = {0}", foo_copy.A);
+                //Console.WriteLine("foo_copy.B = {0}", foo_copy.B);
+                //Console.Read();
+
+                //copy to a different type object
+                var config = new MapperConfiguration(cfg => {
+                    cfg.CreateMap<Foo, Foofy>()
+                    .ForMember(
+                        d => d.X,
+                        opt => opt.MapFrom(s => s.A)
+                    )
+                    .ForMember(
+                        d => d.Y, opt => opt.MapFrom(s => s.B)
+                    );
+                });
+
+                IMapper mapper = config.CreateMapper();
+
+                var foo = new Foo { A = "carlo", B = 1 };
+
+                var foofy = mapper.Map<Foo, Foofy>(foo);
+
+                Console.WriteLine("foo.A = {0}", foo.A);
+                Console.WriteLine("foo.B = {0}", foo.B);
+                Console.WriteLine("foofy.X = {0}", foofy.X);
+                Console.WriteLine("foofy.Y = {0}", foofy.Y);
+
+                Console.Read();
+        }
+    }
+
+
+    class Foo
+    {
+        public string A { get; set; }
+        public int B { get; set; }
+    }
+
+    class Foofy
+    {
+        public string X { get; set; }
+        public string Y { get; set; }
+    }
+}

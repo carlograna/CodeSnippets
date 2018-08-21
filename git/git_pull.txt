@@ -1,0 +1,5 @@
+git fetch origin		<-- fetches branch but doesn't merge
+
+git diff <origin>/<branch	<-- shows differences before merging
+
+git pull <origin> <branch>	<-- merges remote branch with local

@@ -1,0 +1,3 @@
+/* how to make windows authentication work with websites with local host names */
+
+http://stackoverflow.com/questions/7387156/unable-to-get-windows-authentication-to-work-through-local-iis

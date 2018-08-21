@@ -1,0 +1,7 @@
+//Write to an specific position in the file
+
+using (Stream stream = new FileStream(fileName, FileMode.OpenOrCreate))
+{
+    stream.Seek(1000, SeekOrigin.Begin);
+    stream.Write(Data, 0, Data.Length);
+}

@@ -1,0 +1,22 @@
+/*
+Display a list of application pools
+*/
+
+C:\windows\system32\inetsrv\>  appcmd list apppools
+
+
+
+
+To Export the Application Pools on IIS 7
+%windir%\system32\inetsrv\appcmd list apppool /config /xml > C:\apppools.xml
+ 
+To import the Application Pools
+%windir%\system32\inetsrv\appcmd add apppool /in < C:\apppools.xml
+
+ 
+
+To Export the Websites on IIS 7
+%windir%\system32\inetsrv\appcmd list site /config /xml > C:\sites.xml
+
+To Import the Websites
+%windir%\system32\inetsrv\appcmd add site /in < C:\sites.xml

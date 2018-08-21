@@ -1,0 +1,7 @@
+DECLARE @DBNAME VARCHAR(500) = 'tempdb'
+
+SELECT TOP 1 
+   mf.physical_name
+FROM sys.master_files mf
+WHERE mf.[type] = 0
+    AND mf.database_id = DB_ID(@DB_NAME)

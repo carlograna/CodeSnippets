@@ -1,0 +1,4 @@
+CONNECTION STRING
+<add name="OLEDB_Itemprocessing" connectionString="Provider=SQLOLEDB;Persist Security Info=False;User ID=cswebuser;Password=slemn#fmsl#48*s3$kLk3L;Initial Catalog=itemprocessing;Data Source=testsql;Workstation ID=workstation;User Id=cswebuser;" providerName="System.Data.SQLOLEDB"/>
+
+OleDBCommand command = new OLedbCommand();

@@ -1,0 +1,19 @@
+Lock types
+
+RID  	row id
+key
+Page
+Extent
+Table
+DB
+
+
+LOck Modes:
+
+Shared (S)
+Update (U)
+Exclusive (X)
+Intent
+Schema	Sch-M (Modification) With DML Sch-S (Stability) when compiling queries
+Bulk Update
+Key Range

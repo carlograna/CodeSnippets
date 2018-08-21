@@ -1,0 +1,15 @@
+    <script type="text/javascript">
+        function toggleDisplay(elementId, divId, src1, src2) {            
+            var obj = document.getElementById(elementId);
+            var div = document.getElementById(divId);
+            //alert("img:" + obj.src + " div:" + div.style.position);
+            if (obj.src == "http://" + document.domain + src1) {
+                obj.src = src2;
+                div.style.position = "absolute";                
+            }
+            else {
+                obj.src = src1;
+                div.style.position = "static";
+            }
+        }
+    </script>

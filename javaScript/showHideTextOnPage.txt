@@ -1,0 +1,38 @@
+
+
+
+//TOGGLE SHOW AND HIDE
+        function showhide(id){
+  
+          if (document.getElementById){ 
+            obj = document.getElementById(id); 
+            if (obj.style.display == "none"){ 
+              obj.style.display = ""; 
+            }
+            else {
+              obj.style.display = "none"; 
+            } 
+          } 
+        }
+
+//IF RADIO VALUE IS "YES" SHOW OTHERWISE HIDE. 
+        function showhide2(id){
+          obj = document.getElementById(id);
+
+
+            oRadio = document.forms[0].elements["ReportRadioList"];       
+                    
+            for (i = 0; i < oRadio.length; i++) {
+                if (oRadio[i].checked) {
+                    //alert("radio value= " + oRadio[i].value)
+                    chosen = oRadio[i].value
+                    if(chosen == "yes"){
+                       obj.style.display = "";  
+                    }
+                    else {
+                          obj.style.display = "none"; 
+                    }        
+                }
+            }
+           
+        }

@@ -1,0 +1,9 @@
+use msdb;
+select * from 
+sysmail_mailitems;
+
+--more tables:
+
+--sysmail_sentitems
+--sysmail_unsentitems
+--sysmail_faileditems

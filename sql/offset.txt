@@ -1,0 +1,3 @@
+select BatchID
+from Batch
+offset 27 rows fetch next 10 rows only;

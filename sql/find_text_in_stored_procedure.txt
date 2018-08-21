@@ -1,0 +1,6 @@
+SELECT OBJECT_NAME(id) , text
+    FROM syscomments 
+    WHERE [text] LIKE '%kidcare%' 
+    AND OBJECTPROPERTY(id, 'IsProcedure') = 1 
+    --and OBJECT_NAME(id) = 'sp_test'
+    --GROUP BY OBJECT_NAME(id)

@@ -1,0 +1,77 @@
+<html>
+<head>
+<title>test page</title>
+<style>
+.bright
+{
+    color:Yellow;
+}
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+<script type="text/javascript">
+	function writeData(){
+		//alert("test");
+		//alert(document.getElementById("textarea1").value);
+		//document.write(document.getElementById("textarea1").value);
+		document.getElementById("myDiv").innerHTML = document.getElementById("textarea1").value;
+	}
+
+    $(document).ready(function(){
+
+         $('#container').css('color', 'red');
+
+
+         $("button").click(function () {
+             $("div").addClass("bright");
+         });
+
+
+         console.log('button: ' + $("button").text());
+    });
+
+	</script>
+</head>
+<body>
+<p>hello</p>
+<textarea id="textarea1"  col="100" rows="20" >
+	Insert HTML here
+</textarea>
+<input type="button" value="Display" id="myButton" onclick="writeData()"/>
+
+<!--<iframe id="myFrame"></iframe>-->
+<div id="myDiv"></div>
+
+<div>Hello hi</div>
+<div id="example-one" contenteditable="true">
+<style scoped>
+  #example-one { margin-bottom: 10px; }
+  [contenteditable="true"] { padding: 10px; outline: 2px dashed #CCC; }
+  [contenteditable="true"]:hover { outline: 2px dashed #0090D2; }
+  
+  #mypadding{width:100px;outline:red solid 1px;line-height:16px;}
+  #mypadding2{width:100px;outline:red solid 1px;padding:0 20px;line-height:16px;}
+</style>
+<p>Everything contained within this div is editable in browsers that support <code>HTML5</code>. Go on, give it a try: click it and start typing.</p>
+</div>
+
+<div id="mypadding">no padding</div>
+<div id="mypadding2">padding</div>
+
+<div style="border:solid 1px red;margin-top:10px;">
+    <img src="printer.png" />
+</div>
+
+<div id="container">
+    I am red, am i not?
+</div>
+
+<button>Click me</button>
+
+
+<h1>triangle</h1>
+<div style="border:50px solid red;width:200px;"></div>
+<div style=" border:20px solid red; border-color:red transparent transparent; width:0px;margin-left:130px"></div>
+</body>
+</html>
+

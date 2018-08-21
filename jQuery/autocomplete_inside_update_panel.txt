@@ -1,0 +1,34 @@
+he update panel replaces the content of update panel on its update this means you have new content in the update panel. So the solution is to rebind the jQuery events like this:
+
+<script type="text/javascript">
+        $(function () {
+            initializer();
+        });
+
+
+        var prmInstance = Sys.WebForms.PageRequestManager.getInstance();
+
+
+        prmInstance.add_endRequest(function () {
+            //you need to re-bind your jquery events here
+            initializer();
+        });
+
+        function initializer() {
+            $("#<%=txtrefmastguage.ClientID%>").autocomplete('Handlerold.ashx', { minChars: 1, extraParams: { "param1": "1"} })
+            .result(function (event, data, formatted) {
+                if (data) {
+
+
+                    $("#<%= hidrefguagecode.ClientID %>").val(data[1]);
+                }
+                else {
+                    $("#<%= hidrefguagecode.ClientID %>").val('-1');
+                }
+            });
+
+
+        }
+  
+
+    </script>

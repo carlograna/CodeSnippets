@@ -1,0 +1,172 @@
+Decomposing all the parts
+
+Zen of Architecture.
+Beginner Architect -> Multiple ways
+Master -> Only a few
+
+IDesign -> Mechanized approach to design.
+
+Decomposing the system.
+A, B, C service
+
+
+
+Basic abstractions:
+Clients: Website, WebAPI, UI
+Managers: Manages sequence of actions
+Engines: Applies algorithms and business rules
+Accessors: Access Data and resources
+Resources: Data storage or data retrieval points
+Utilities: Span all
+
+
+Can only call down except for utilities
+
+
+CLIENT
+1. Presentation
+2. user or another system
+3. client applications
+
+BUSINESS
+1. Managers -> sequence of use cases and workflows. Collection of related use cases.
+	a. zero or more engines
+2.  Engines - business rules - maybe shared beetween managers
+
+RESOURCE Access
+1. Resource access
+2. Resource
+3. Utilities
+
+Vertical Slicing
+
+
+If your system could do one thing what would it be?
+
+1. Clients
+2. Business Logic
+3. Resource Access
+4. Resource
+
+
+TYPICAL LAYERS
+In between layeres should only pass
+1. primitives
+2. arrays of primitives
+3. data contracts
+4. arrays of data contracts
+
+Logic behing data contracts should NOT cross layers
+1. Entities can break encapsulations
+2. Behaviour should be encapulated not shared
+
+ARCHITECTURE VALIDATION
+Manager -> change contain inside manager
+Start with top distinct 4-6 use cases
+
+OPEN ARCHITECUTURE
+1. can call any other layer
+2. most flexible
+3. 
+
+CLOSE Architecture
+1. Can only call one layer down.
+2. least flexible
+most encapsulated
+promotes decoupling
+
+Semi close/open
+
+Sharing Engines and Resource access across Managers is permitted
+Manager -> Engines & Resource Access
+
+Clients and Managers do not share identities
+
+CAN I MAKE A CALL TO:
+	Client to Client? No
+
+	Manager to Manager? Yes
+
+	Engine to Engine? No
+
+	Accessor to Accessor? No
+
+	Sharing engines & Accessors across managers is encouraged
+
+***
+Clients can call Manager A & B but not in the same use case
+
+
+Do not queue calls to engines
+Engines do not publish events
+Engines do not subscribe to events
+Engines never call each other
+
+Do not queue calls to resource access
+Resource access never call each other
+Resource access never publish events
+
+
+Validate the Design
+
+In General, these are always services
+1. Managers
+2. Engines
+3. Resource access
+4.Logbook
+Optional Services:
+1. Clients
+2. Every other class
+
+
+
+YOu have to have a view of what are the processes running in your system.
+
+
+Authentication
+1. every logical layer is authenticated
+2. every cross-process call is authenticated.
+
+Authorization
+1. every logical layer is authorized
+2. every cross process call is authorized
+3. No point in authorizing calls to in-proc services
+
+***Transactions.
+1. Start transactions as up-stream as possible
+2. engulf as much as possible
+3. Keep transactions short (under 1 sec)
+
+Group all services and resources in same transaction with a box
+Typically
+Managers are Client/service mode
+engines resources access are client mode utilities are service mode
+
+*** Synchronization
+1. id logical thread of execution
+2. any reentrans cyclick path implies
+	a. deadlock
+	b. poor design and reentrancy
+	c. need for queuing
+	d. for async event publishing
+
+	
+	
+	*** power point links
+	Website
+http://www.idesign.net/
+
+Mark's powerpoint example
+sphome:33399/DCTeam/Shared Documents/IDESIGN.pptx
+
+Inteview: Juval explains the IDesign method
+https://www.youtube.com/watch?v=5PAoNUvR9ls
+
+Zen of Architecture
+https://channel9.msdn.com/Events/TechEd/NorthAmerica/2010/ARC206
+
+Modular Approach to the Development process
+https://channel9.msdn.com/Events/TechEd/NorthAmerica/2010/ARC201
+
+Youtube channel
+https://www.youtube.com/user/IDesignIncTV

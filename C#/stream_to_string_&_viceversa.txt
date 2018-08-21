@@ -1,0 +1,23 @@
+            // convert string to stream
+            byte[] byteArray = Encoding.ASCII.GetBytes( test );
+            MemoryStream stream = new MemoryStream( byteArray ); 
+ 
+            // convert stream to string
+            StreamReader reader = new StreamReader( stream );
+            string text = reader.ReadToEnd();
+ 
+            Console.WriteLine( text );
+            Console.ReadLine();
+
+
+                //String to STream Method 2
+                using(MemoryStream stream = new MemoryStream())
+                {
+                    using (StreamWriter sw = new StreamWriter(stream))
+                    {
+                        sw.Write(string);
+                        sw.Flush();
+                        msXml.Position = 0;
+                        ReadUsBankRequest(stream);
+                    }
+                }

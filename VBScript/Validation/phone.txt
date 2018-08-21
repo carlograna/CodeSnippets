@@ -1,0 +1,17 @@
+Dim regPhone
+Set regPhone = New RegExp
+
+'Two different patterns
+'regPhone.Pattern = "^\d{3}\.\d{3}.\d{4}$"
+'regPhone.Pattern = "^\([0-9]{3}\)[0-9]{3}\-?[0-9]{4}$" ' matches (402)362-1351
+'regPhone.Pattern = "^(\([0-9]{3}\)|[0-9]{3}\-)[0-9]{3}\-[0-9]{4}$"       '*** matches (402)363-1351 402-135-1122
+
+
+
+Function isValidPhone(phone)  
+  isValidPhone = False
+  if phone <> "" Then  
+    regPhone.IgnoreCase = False 
+    isValidPhone = regPhone.Test(phone)  
+  End If
+End Function

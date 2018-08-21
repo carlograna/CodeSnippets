@@ -1,0 +1,13 @@
+	set FSO = Createobject("Scripting.FileSystemObject")
+
+	'Find the FLG file and rename it
+	set Folder = FSO.GetFolder(Path)
+	for each File in Folder.Files
+		Extension = FSO.GetExtensionName(File.Name)
+		if UCase(Extension) = "FLG" then
+			oldFile = Path & "\" & File.Name
+			newFile = Path & "\" & left(File.Name, len( File.Name)-4) & ".WFG"
+			'MsgBox"oldFIle = " & oldFile & VBCRLF & "newFile = " & newFile & VBCRLF
+			set createFile = FSO.CreateTextFile(newFile)
+		end if
+	next

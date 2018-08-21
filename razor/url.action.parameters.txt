@@ -1,0 +1,11 @@
+$.ajax({
+        url: "@Url.Action("MyAction", "MyController")",
+        data: { 
+                parent: @Html.Raw(Json.Encode(Model)),
+                some_value_from_the_DOM: $('#SomeID').val()
+        },
+        success: function (result) {
+            $("#detailsDiv").html(result); // update your div here
+        },
+        cache: false
+    });

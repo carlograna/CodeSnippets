@@ -1,0 +1,3 @@
+ALTER TABLE TrackedChecksList
+add ID int identity  not null
+primary key (ID)

@@ -1,0 +1,66 @@
+/*If you plan on using this code, I would suggest commenting out the xp_cmdshell line and adding PRINT @SQL before you run it.  If you want to copy over other backup files besides the full backups, then change the WHERE clause so that bs.type equals what type of file you want: 
+
+D = Database.
+I = Database Differential.
+L = Log.
+F = File or Filegroup. 
+*/
+ 
+SET NOCOUNT ON
+
+DECLARE @SQL VARCHAR(7000)
+DECLARE @DBName SYSNAME
+DECLARE @BkpFileName NVARCHAR(260)
+DECLARE @RowCnt INT
+declare @ServerName sysname
+Declare @FileName NVarchar(260)
+Declare @FileNameStartPosition int
+declare @BkpShare nvarchar(260)
+set @DBName = 'master'
+select @BkpShare = BackupShare from msdb.dbo.BackupConfig
+
+--This retrieves the most recent backup for the backup type specified and puts it into the temporary table #Backups
+SELECT top 1 bs.Server_Name as ServerName, bs.database_name AS DatabaseName, bms.physical_device_name AS FullBackupName 
+INTO #Backups
+FROM msdb.dbo.backupset bs
+INNER JOIN msdb.dbo.backupmediafamily bms 
+ON bs.media_set_id = bms.media_set_id
+INNER JOIN master.dbo.sysdatabases s 
+ON bs.database_name = s.name
+WHERE bs.database_name = @DBName and
+	bs.type = 'D'
+order by backup_set_id desc
+
+SET @RowCnt = @@ROWCOUNT 
+
+select * from #Backups
+
+WHILE @RowCnt <> 0
+BEGIN
+
+	SELECT  @BkpFileName = FullBackupName, @ServerName = ServerName
+	FROM #Backups
+
+	SET @RowCnt = @@ROWCOUNT
+
+	IF @RowCnt <> 0
+	BEGIN
+
+		--Build the xcopy command to run
+		set @FileNameStartPosition = PATINDEX('%' + @DBName + '_db' + '%', @BkpFileName) 
+		set @FileName = substring(@BkpFileName, @FileNameStartPosition, Len(@BkpFileName) - @FileNameStartPosition + 1) 
+		Set @SQL = 'xcopy ' + @BkpFileName + ' ' + @BkpShare + @ServerName + '\' + @DbName + '\'
+
+		Print @SQL	
+		EXEC master.dbo.xp_cmdshell @SQL
+
+		DELETE FROM #Backups
+		WHERE DatabaseName = @DBName
+
+      END
+
+END
+
+DROP TABLE #Backups
+
+SET NOCOUNT OFF

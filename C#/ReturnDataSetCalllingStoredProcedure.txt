@@ -1,0 +1,46 @@
+//CS ============================================================================
+                if (strFilter != String.Empty || strFilter != "")
+                {
+                    //string conn = System.Configuration.ConfigurationManager.AppSettings["Survey"];
+                    string conn = ConfigurationManager.ConnectionStrings["Survey"].ConnectionString;
+                    SqlConnection scn = new SqlConnection(conn);
+                    //string sp = "usp_GetQuestionList";
+
+                    SqlCommand spcmd = new SqlCommand("usp_GetQuestionList", scn);
+                    spcmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlParameter surveyID = new SqlParameter("@SurveyID", nSurveyID);
+                    SqlParameter companyID = new SqlParameter("@CompanyId", nCompanyID);
+
+                    string[] filterValues = strFilter.Split('|');
+                    strFilter = " and " + filterValues[0] + " " + filterValues[1] + " " + filterValues[2];
+                    SqlParameter filter = new SqlParameter("@Filter", strFilter);
+                    SqlDataReader dr;
+
+                    spcmd.Parameters.Add(surveyID);
+                    spcmd.Parameters.Add(companyID);
+                    spcmd.Parameters.Add(filter);
+
+                    scn.Open();
+                    dr = spcmd.ExecuteReader();
+
+                    bool firstTime = true;
+
+                    while (dr.Read())
+                    {
+                        if (firstTime)
+                        {
+                            strSQL += " and QuestionNo in (";
+                            firstTime = false;
+                        }
+                        else strSQL += ", ";
+                        strSQL += "'" + dr["QuestionNo"] + "'";
+                    }
+
+                    strSQL += ")";
+
+                    scn.Close();
+                    dr.Close();
+                }
+
+                //end============================================================================

@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>jquery Day 3</title>
+<style>
+    .container{color:Blue;}
+    .emphasis {color:Red;}
+    .container{color:Orange;}
+    .bright{color:Yellow;}
+</style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
+
+</head>
+<body>
+<div class="container">
+    Top container
+    <div class="container">
+        Hi welcome to my website!
+
+        <ul class="emphasis">
+            <li>hello</li>
+            <li>hello 2</li>
+            <li>hello 3</li>
+            <li>hello 4</li>
+            <li>hello 5</li>
+            <li>hello last
+                <ul>
+                    <li>first li inside last li</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script type="text/javascript">
+    //    $('ul.emphasis').children('li').eq(3).next().text('added with jQuery');
+    //$('li').closest('.emphasis2').text('Welcome to my website from jQuery');
+    //$('ul.emphasis').find('li').css('color', 'green');
+    //$('ul.emphasis').children('li:first').addClass('emphasis');
+    //$('ul.emphasis').children('li').first().addClass('emphasis');
+    //$('ul.emphasis').children('li:nth-child(2)').text('added with jQuery'); //nth-child starts at 1
+    //$('ul.emphasis').children('li').eq(2).text('added with jQuery');
+    //$('ul.emphasis').children('li').eq(3).next().text('added with jQuery');
+    //$('ul.emphasis').children('li').eq(3).prev().text('added with jQuery'); //eq index Starts at 0
+
+    //Parent and Parents
+    //$('li').parents('.container').removeClass('container');
+    //$('ul.emphasis').children('li').last().addClass('bright');
+
+    // This:
+    //$('ul.emphasis').children('li:nth-child(6)').addClass('bright').children('ul:nth-child(1)').css('color', 'blue');
+    // is the same as this:
+    $('ul.emphasis').children('li').last().addClass('bright').children('ul').first().css('color', 'blue');
+
+</script>
+</body>
+</html>
+

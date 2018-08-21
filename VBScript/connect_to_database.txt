@@ -1,0 +1,38 @@
+This is an example of how to connect to a database using vbscript
+    
+
+<% 
+        Dim conn
+        Dim rs
+        Dim sql
+       
+        Set conn = CreateObject("ADODB.Connection")
+        Set rs = CreateObject("ADODB.Recordset")
+        
+        conn.Open "Provider=SQLOLEDB;Data Source=my_server;Initial Catalog=database;User ID=username;Password=pass;"
+
+        sql = "select  c.CaseNumber, c.AltCaseNumber" & _
+                    " from KCCases c" & _
+                    " join KCPerson p on c.KCPersonID = p.KCPersonID" & _
+                    " where PersonID = '" & strARP & "'"
+
+
+        rs.Open sql, conn, adOpenStatic, adLOckOptimistic%>
+
+        <br />
+
+        <table>
+            <tr>
+                <th class="qc_label">Known Case Numbers:</th>
+            </tr>
+
+            <%While not rs.EOF%>
+                <tr>
+                    <td><%=rs("CaseNumber")%></td>
+                </tr>
+                <%rs.MoveNext
+            WEnd%>
+        </table>
+
+        <%rs.Close
+        conn.Close%>

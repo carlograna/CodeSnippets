@@ -1,0 +1,31 @@
+http://www.youtube.com/watch?v=zVCmzBfx3BE
+http://technet.microsoft.com/en-us/library/cc753195(v=ws.10).
+
+
+-----------------------------------------
+HOST HEADER WITH SSL
+-----------------------------------------
+
+You have to be in directory %windir%\system32\inetsrv\
+
+	appcmd set site /site.name:websitename /bindings.[protocol='https',bindingInformation='*:443:'].bindingInformation:*:443:local.childsupport.org
+
+For example, to configure a site named contoso with an existing HTTPS binding for all IP addresses, on port 443, without a host header to have a host header named marketing, type the previous command at the command prompt, and then press ENTER:
+
+
+
+Things to remember:
+
+1. One certificate per IP address
+
+2. One certificate for multiple sites is possible with a wildcard certificate
+
+3. If you change the certificate for one site it will automatically change all the other ones that are using that same IP address/PORT
+
+4. The appcmd helps you add host names to SSL bindings.
+
+5. If you have ip and host header in IIS both need to macth in order to get to the right site not either or.
+
+
+
+

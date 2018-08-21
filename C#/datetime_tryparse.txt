@@ -1,0 +1,23 @@
+if (DateTime.TryParseExact(
+		my_date.ToString()
+		, "dd-MM-yyyy"
+		, System.Globalization.CultureInfo.InvariantCulture
+		,System.Globalization.DateTimeStyles.None
+		, out d))
+
+
+if (DateTime.TryParse(
+		my_date.ToString()
+		,out d))
+		
+		
+
+		
+	//Handle null without DateTime Nullable 1900-01-01 00:00:00:00.
+	using System.Data.SqlTypes;
+	DateTime date = (DateTime)SqlDateTime.Null; //It will not be null in the database but it will be 1900-01-01 00:00:00:00.
+	
+	//Datetime? to short date
+	if (yourDate.HasValue) {
+		var shortString = yourDate.Value.ToShortDateString();
+}

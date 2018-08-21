@@ -1,0 +1,15 @@
+<%
+Response.write("<script>alert('hola mundo');</script>")
+%>
+
+andrés says: claro que esto funciona sólo con asp puro... con .Net eso se hace de otra manera
+
+I say: ok bacan entonces cuando ya este utilizando Visual Studio ya es de otra maner.
+
+andrés says: simón 
+
+andrés says: hay hay que usar un objecto que se llama ScriptManager
+
+andrés says: ese tiene un método que se llama RegisterClientScriptBlock
+
+andrés says: con eso mandas a mostrar alerts al usuario

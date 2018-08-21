@@ -1,0 +1,6 @@
+USE CHILDSUPPORT
+SELECT 
+SCHEMA_NAME(schema_id) AS SchemaName,
+name AS TableName
+FROM sys.tables
+WHERE name LIKE '%hhs%'

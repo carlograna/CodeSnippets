@@ -1,0 +1,5 @@
+$V$Q  -> Redirects all subdirectories and query string.
+
+You have to redirect to exact destination and the $V$Q will handle subdirectories and querystring.
+
+https://childsupport.nebraska.gov$V$Q

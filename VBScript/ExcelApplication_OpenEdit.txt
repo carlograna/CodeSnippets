@@ -1,0 +1,51 @@
+	Dim Excel_Application
+	Dim Excel_Workbook
+	Dim Excel_Worksheet
+	Dim objResults
+
+	Dim SheetName
+	Dim FileName
+	
+	Set Excel_Application = CreateObject("Excel.Application")
+	'Excel_Application.Visible = True
+
+	Set Excel_WorkBook = Excel_Application.Workbooks.Open("\\10.2.22.43\common\TREASMGT\Counties\NISAccounts.xls")
+	Excel_WorkBook.Worksheets("NISAccounts").Cells.Clear
+
+	Set Excel_Worksheet = Excel_WorkBook.Worksheets("NISAccounts")
+	Excel_Worksheet.Activate
+
+
+	'Format headers
+	Excel_Worksheet.Range("A1:F1").Merge
+	Excel_Worksheet.Cells(1,1).HorizontalAlignment = -4108 'xl center constant
+	Excel_Worksheet.Range("A1:F2").Font.Bold = TRUE
+
+	'Column headers
+	Excel_Worksheet.Cells(1,1).Value = "County Documents"
+	Excel_Worksheet.Cells(2,1).Value = "Document Type"
+	Excel_Worksheet.Cells(2,2).Value = "Line Number"
+	Excel_Worksheet.Cells(2,3).Value = "Description"
+	Excel_Worksheet.Cells(2,4).Value = "NIS Account"
+	Excel_Worksheet.Cells(2,5).Value = "Start Date"
+	Excel_Worksheet.Cells(2,6).Value = "End Date"
+
+	iRowIndex = 3
+	set objResults = DTSGlobalVariables("RS_NISAccounts").Value
+	while not objResults.EOF
+		Excel_Worksheet.Cells(iRowIndex,1).Value = objResults.Fields("DocumentType").value
+		Excel_Worksheet.Cells(iRowIndex,2).Value = objResults.Fields("LineNbr").value
+		Excel_Worksheet.Cells(iRowIndex,3).Value = objResults.Fields("Description").value
+		Excel_Worksheet.Cells(iRowIndex,4).Value = objResults.Fields("NISAccount").value
+		Excel_Worksheet.Cells(iRowIndex,5).Value = objResults.Fields("StartDate").value
+		Excel_Worksheet.Cells(iRowIndex,6).Value = objResults.Fields("EndDate").value
+		iRowIndex = iRowIndex + 1
+		objResults.MoveNext
+	wend
+
+	Excel_WorkBook.Save
+
+	Excel_WorkBook.Close
+	Set Excel_WorkBook = Nothing
+	Excel_Application.Quit
+	Set Excel_Application = Nothing

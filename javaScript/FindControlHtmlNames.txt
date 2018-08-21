@@ -1,0 +1,26 @@
+function asp$(id, tagName) {
+    var idRegexp = new RegExp(id, 'i');
+    var tags = new Array();
+    if (tagName) {
+        tags = document.getElementsByTagName(tagName);
+    }
+    else {
+        tags = document.getElementsByName(id);
+    }
+    var control = null;
+    for (var i = 0; i < tags.length; ++i) {
+        var ctl = tags[i];
+        if (idRegexp.test(ctl.id)) {
+            control = ctl;
+            break;
+        }
+    }
+
+    if (control) {
+        return $('#' + control.id);
+    }
+    else {
+        alert(id + ' not found');
+        return null;
+    }
+}

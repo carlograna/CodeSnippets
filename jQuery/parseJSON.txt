@@ -1,0 +1,17 @@
+<script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+
+<button id="button" name="button" type="button">Click Me</button>
+<div id="Result"></div>
+
+ <script type="text/javascript">
+            var obj = $.parseJSON('{ "employees" : [{"fname": "carlo", "lname":"spader"}, {"fname": "juan", "lname":"spader"}] }');
+                    
+            $("#button").click(function () {
+                var employees = "";
+                for (var i = 0; i < obj.employees.length; i++) {
+                    employees += obj.employees[i].fname + " " + obj.employees[i].lname + "<br/>";
+                }
+
+                $("#Result").html(employees);
+            });
+</script>

@@ -1,0 +1,10 @@
+<script language="javascript">
+ function setFocus(){
+  document.getElementById("textboxName").focus();
+ }
+</script>
+
+
+<--!in  the body tag add the function like this -->
+
+<BODY bgcolor="#ffffff" topmargin=0 onload="setFocus();">

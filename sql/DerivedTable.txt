@@ -1,0 +1,22 @@
+;WITH ClientEvals AS
+(
+    SELECT 
+       c.ID_CLIENT ,
+       e.ID_EVAL ,
+       e.Date AS ClientDATE,
+       ROW_NUMBER() OVER(PARTITION BY c.ID_CLIENT ORDER BY e.Date DESC) AS 'RowNo'
+    FROM    
+        dbo.EVALUATION_CLIENT e
+    INNER JOIN 
+        dbo.CLIENT c ON c.ID_CLIENT = e.FK_IDClient
+    WHERE   
+        e.Date BETWEEN @START_DATE_LOCAL AND @END_DATE_LOCAL
+)
+SELECT       
+   ID_CLIENT ,
+   ID_EVAL ,
+   ClientDATE
+FROM
+   ClientEvals
+WHERE
+   RowNo = 1

@@ -1,0 +1,1 @@
+SQLCMD -S YourSQLServer -d YourDatabase -U YourUserName -P YourPassword -Q “Your Query” -s “,” -o “C:\Yourfilename.csv”

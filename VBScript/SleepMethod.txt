@@ -1,0 +1,10 @@
+Sub Sleep(intSecs)
+    Dim dtStart, boolDone
+    dtStart = now()
+    boolDone = False
+    While Not boolDone
+    If DateDiff("s",dtStart,now()) >= cint(intSecs) Then
+    boolDone = True
+    End If
+    Wend
+End Sub

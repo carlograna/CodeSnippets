@@ -1,0 +1,40 @@
+@echo off
+if not .%1==. goto show
+
+:createtemp
+set tempfile="%temp%\temp-%random%-%time:~6,5%.bat"
+if exist %tempfile% goto :createtemp
+
+reg query HKEY_CLASSES_ROOT\mp3file\shell\play\command\ > %tempfile%
+
+for /F "skip=4 delims=> tokens=2 usebackq" %%e in (`type %tempfile%`) do call %0 %%e
+
+del %tempfile% > nul
+set tempfile=
+set handler=
+set teststring=
+set offset=
+set cmd=
+goto end
+
+:show
+set handler=%2
+set handler=%handler:~1,-1%
+set /A offset=-1
+
+:loop
+set cmd=set teststring=%%handler:~%offset%%%
+echo %cmd% > %tempfile%
+call %tempfile%
+if %teststring:~0,1%==\ goto complete
+set /A offset=offset-1
+goto loop
+
+:complete
+set /A offset=offset+1
+set cmd=set handler=%%handler:~%offset%%%
+echo %cmd% > %tempfile%
+call %tempfile%
+taskkill /IM %handler% > nul
+
+:end

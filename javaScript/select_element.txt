@@ -1,0 +1,7 @@
+
+
+
+if(sel.options[i].innerHTML === val) {
+           sel.selectedIndex = i;
+           break;
+        }

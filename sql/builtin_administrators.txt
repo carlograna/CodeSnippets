@@ -1,0 +1,9 @@
+
+-- Use this to create the built in administrator account in sql 2008 and forward
+EXEC sp_grantlogin 'BUILTIN\Administrators'
+EXEC sp_addsrvrolemember 'BUILTIN\Administrators','sysadmin'
+
+-- Show members
+EXEC master..xp_logininfo 
+  @acctname = 'Builtin\Administrators',
+  @option = 'members' 

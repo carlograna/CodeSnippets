@@ -1,0 +1,31 @@
+@echo off
+cls
+
+REM /p <-- Use the "/p" switch to turn on user input
+REM set /p SName=Server Name :
+REM set /p UName=User Name :
+REM set /p Pwd=Password :
+REM set /p DbName=Database Name :
+
+REM If you want to set the variable directly remove the /p
+REM set SName=KIDDBSERVERX
+REM etc, etc,
+
+set /p choice=ARE YOU SURE TO EXECUTE SCRIPTS in %DbName% (y/n) ?
+
+if '%choice%'=='y' goto begin
+goto end
+
+:begin
+if exist _Deploy.txt del _Deploy.txt
+
+@echo on
+
+sqlcmd -S %SName% -U %UName% -P %Pwd% -d %DbName% -I -i "UDDs"\UDDs.sql >> _Deploy.txt 2>&1
+
+
+
+@notepad _Deploy.txt
+
+
+:end

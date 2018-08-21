@@ -1,0 +1,22 @@
+Create a User-Defined TableType in your database
+
+CREATE TYPE [dbo].[MyTableType] AS TABLE(
+    [Id] int NOT NULL,
+    [Name] [nvarchar](128) NULL
+)
+and define a parameter in your Stored Ptocedure
+
+CREATE PROCEDURE [dbo].[InsertTable]
+    @myTableType MyTableType readonly
+AS
+BEGIN
+    insert into [dbo].Records select  from @myTableType 
+END
+and send your DataTable directly to sql server
+
+using (var command = new SqlCommand(InsertTable) {CommandType = CommandType.StoredProcedure})
+{
+    var dt = new DataTable(); create your own data table
+    command.Parameters.Add(new SqlParameter(@myTableType, dt));
+    SqlHelper.Exec(command);
+}

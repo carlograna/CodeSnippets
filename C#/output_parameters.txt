@@ -1,0 +1,7 @@
+SqlParameter bankCardIdParam = new SqlParameter("@BankCardID", SqlDbType.Int);
+                        bankCardIdParam.Direction = ParameterDirection.Output;
+                        comm.Parameters.Add(bankCardIdParam);
+
+comm.ExecuteNonQuery();
+
+string value = comm.Parameters["@BankCardID"].Value.ToString()

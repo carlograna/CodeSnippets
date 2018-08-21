@@ -1,0 +1,8 @@
+var numbers = new [] { 1, 2, 3, 4 };
+var words = new [] { "one", "two", "three", "four" };
+
+var numbersAndWords = numbers.Zip(words, (n, w) => new { Number = n, Word = w });
+foreach(var nw in numbersAndWords)
+{
+    Console.WriteLine(nw.Number + nw.Word);
+}

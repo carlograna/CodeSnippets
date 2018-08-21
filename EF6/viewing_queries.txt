@@ -1,0 +1,14 @@
+create a contructor in the context class to view actuall SQL QUERIES
+
+	public MyContext()
+	{
+		context.Database.Log = s => Console.WriteLine(s);
+	}
+
+
+You can also install glimpse using Nuget
+	install -package glimpse.mvc5
+	install -package glimpse.ef6
+
+You can do interceptors
+	YOu can specify and output file with this.

@@ -1,0 +1,22 @@
+'--------------------- Data Sanitization Code ---------------------------
+Dim regEx
+Set regEx = New RegExp
+regEx.Global = true
+regEx.Pattern = "[^0-9a-zA-Z.@+\- ]"  ' List of allowed characters 
+
+'Dim regAlpha
+'Set reAlpha = New RegExp
+'RegEx.Global = true
+'regEx.Pattern = "[^a-zA-Z\.\-]"
+
+Dim regNum
+Set regNum = New RegExp
+regNum.Global = true
+regNum.Pattern = "[^0-9]"  ' List of allowed characters
+
+Email Pattern
+  regEx.Pattern = "^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$"
+
+'Phone Pattern. Ex: 402.333.4444
+regEx.Pattern =  "^\d{3}\.\d{3}.\d{4}$"  
+'------------------------------------------------------------------------

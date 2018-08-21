@@ -1,0 +1,9 @@
+dim myFile
+dim oFSO
+
+Set oFSO = Createobject("Scripting.FileSystemObject")
+Set myFile = oFSO.CreateTextFile("C:\temp", true)
+
+
+myFile.Write("I found a flag file")
+myFile.Close

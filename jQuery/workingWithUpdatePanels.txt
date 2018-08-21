@@ -1,0 +1,10 @@
+This is the solution I found for the working with jquery and update panels.  
+Got it from http://stackoverflow.com/questions/256195/jquery-document-ready-and-updatepanels
+
+
+       $(function() {
+            var prm = Sys.WebForms.PageRequestManager.getInstance();
+            prm.add_endRequest(function(){
+                ***JQUERY CODE HERE
+            });
+        });

@@ -1,0 +1,10 @@
+	Friend Function StripCharsNotInBag(ByRef strCheck As String, ByRef strBag As String) As String
+		Dim strReturn As String = ""
+		Dim i As Integer
+		For i = 1 To strCheck.Length
+			If InStr(strBag, Mid(strCheck, i, 1)) > 0 Then
+				strReturn &= Mid(strCheck, i, 1)
+			End If
+		Next
+		Return strReturn
+	End Function

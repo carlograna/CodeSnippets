@@ -1,0 +1,8 @@
+User-Agent: Fiddler
+Host: local.childsupport.org
+Content-Length: 14
+Content-Type: application/x-www-form-urlencoded: <-- this is very important to do a Request.Form on the server side
+
+
+//On the Request Body
+term1=hello&term2=hola

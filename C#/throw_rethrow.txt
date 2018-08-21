@@ -1,0 +1,54 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+	try
+	{
+	    X();
+	}
+	catch (Exception ex)
+	{
+	    Console.WriteLine(ex.TargetSite);
+	}
+
+	try
+	{
+	    Y();
+	}
+	catch (Exception ex)
+	{
+	    Console.WriteLine(ex.TargetSite);
+	}
+    }
+
+    static void X()
+    {
+	try
+	{
+	    int.Parse("?");
+	}
+	catch (Exception)
+	{
+	    throw; // [Rethrow construct]
+	}
+    }
+
+    static void Y()
+    {
+	try
+	{
+	    int.Parse("?");
+	}
+	catch (Exception ex)
+	{
+	    throw ex; // [Throw captured ex variable]
+	}
+    }
+}
+
+Output
+
+Void StringToNumber(System.String, ...)
+Void Y()

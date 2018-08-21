@@ -1,0 +1,30 @@
+use kidcare
+declare @arp char(13)
+
+declare email_csr cursor
+for
+	select arp
+	from arp
+	where ltrim(rtrim(email)) = ''
+	and arp not like ('al%')
+	and IsActive = 1
+	order by arp
+
+open email_csr
+
+fetch next from email_csr
+into @arp
+
+
+while(@@fetch_status = 0)
+begin
+	update arp
+	set email = null
+	where arp = @arp
+	
+	fetch next from email_csr
+	into @arp
+end
+
+close email_csr
+deallocate email_csr

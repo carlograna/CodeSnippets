@@ -1,0 +1,96 @@
+   public static void FTPFile( string _ftpFilePath)
+    {
+        //Only FTP the file if the FTP parameter was "YES"
+        //if (paramFTP != "YES")
+        //{
+        //    logWriter.WriteLine("FTP parameter: " + paramFTP);
+        //    logWriter.WriteLine("File Source: " + _ftpFilePath);
+        //    logWriter.WriteLine("");
+        //    return;
+        //}
+
+        string ftphost = "sftp.worldmarkinc.com";
+        const string userid = "statene3";
+        const string password = "ST8T3!!!";
+
+        ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(myCertificateValidation);
+       
+        string ftpfullpath = "ftp://" + ftphost + "/" + Path.GetFileName(_ftpFilePath);
+        FtpWebRequest ftp = (FtpWebRequest)FtpWebRequest.Create(ftpfullpath);
+
+        ftp.EnableSsl = true;
+        ftp.Credentials = new NetworkCredential(userid, password);
+        ftp.KeepAlive = true;
+        ftp.UseBinary = true;
+        ftp.Method = WebRequestMethods.Ftp.UploadFile;
+
+        // The buffer size is set to 2kb
+        int buffLength = 2048;
+        byte[] buff = new byte[buffLength];
+        int contentLen;
+
+        // Opens a file stream (System.IO.FileStream) to read the file to be uploaded
+        FileStream fs = File.OpenRead(_ftpFilePath);
+
+        try
+        {
+
+            // Stream to which the file to be upload is written
+            Stream strm = ftp.GetRequestStream();
+
+            // Read from the file stream 2kb at a time
+            contentLen = fs.Read(buff, 0, buffLength);
+
+            // Till Stream content ends
+            while (contentLen != 0)
+            {
+                // Write Content from the file stream to the FTP Upload Stream
+                strm.Write(buff, 0, contentLen);
+                contentLen = fs.Read(buff, 0, buffLength);
+            }
+
+            // Close the file stream and the Request Stream
+            strm.Close();
+            fs.Close();
+
+            //Check response
+            FtpWebResponse response = (FtpWebResponse)ftp.GetResponse();
+
+            logWriter.WriteLine("FTP host: " + ftphost);
+            logWriter.WriteLine("FTP path: " + ftpfullpath);
+            logWriter.WriteLine("FTP file: " + _ftpFilePath);
+            logWriter.WriteLine("FTP status: " + response.StatusDescription);
+        }
+
+        catch (Exception ex)
+        {
+            errMsg = "FTP Paper File Error: " + CRLF + ex;
+            exitCode = ExitCode.UnknownError;
+            LogError(errMsg, (int)exitCode);
+        }
+    }
+
+    public static bool myCertificateValidation(Object sender, 
+        X509Certificate cert, 
+        X509Chain chain, 
+        SslPolicyErrors Errors)
+    {
+        /*
+         * cert.Subject returns the value of the Subject string from the currently installed certificate.  
+         * When the certificate is re-issued you will need to get the new value by doing the following: 
+         * 1. Run this program in debug mode
+         * 2. Set break point on the "return" statement below
+         * 3. Place the Mouse on the cert.Subject and Right click on its value and  select "Copy the value" 
+         * 4. Paste this value into the string WorldMarketingCert=" "
+         * 
+         * Note: on 1/1/2011 World Marketing issued a new certificate with a "," in the Common Name and Organization elements of the Subject.
+         * The cert.Subject handles this by place the double quote around the whole value and using the \ escape character to escape the double quote.
+         * 
+        */
+       
+        //string WorldMarketingCert = "CN=WMI SSL, E=rberry@worldmarkinc.com, OU=IT, L=La Vista, O=World Marketing Inc., S=NE, C=US";
+        //string WorldMarketingCert = "CN=\"World Marketing, Inc.\", E=rberry@worldmarkinc.com, OU=IT, L=Omaha, O=\"World Marketing, Inc.\", S=NE, C=US";
+        string WorldMarketingCert = "CN=\"World Marketing\", E=\"\", OU=IT, L=Omaha, O=\"World Marketing, Inc.\", S=NE, C=US";
+        //lWriter.WriteLine("cert.Subject= " + cert.Subject);
+        return (cert.Subject == WorldMarketingCert);
+    } 

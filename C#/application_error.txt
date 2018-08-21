@@ -1,0 +1,22 @@
+        
+//Handles any error during application
+
+        protected void Session_Start(object sender, EventArgs e)
+        {
+            Session["Exception"] = null;
+            Session["PassExpired"] = false;
+        }
+
+	protected void Application_Error(object sender, EventArgs e)
+        {
+            Exception ex = Server.GetLastError().InnerException;
+            string stack = Server.GetLastError().StackTrace;
+
+            if (ex != null)
+            {
+                Session["Exception"] = ex;
+                Session["StackTrace"] = stack;
+                //Response.Redirect("errorpage.aspx"); //redirect was clearing my session.
+                Server.Transfer("your_error_page.aspx");
+            }
+        }

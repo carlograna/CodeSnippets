@@ -1,0 +1,2 @@
+anonymous authentication uses IIS APPPOOL\apppoolname
+impersonation uses NT AUTHORITY\IUSR

@@ -1,0 +1,4 @@
+Server.MapPath(".") returns the current physical directory of the file (e.g. aspx) being executed
+Server.MapPath("..") returns the parent directory
+Server.MapPath("~") returns the physical path to the root of the application
+Server.MapPath("/") returns the physical path to the root of the domain name (is not necessarily

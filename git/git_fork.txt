@@ -1,0 +1,12 @@
+https://help.github.com/articles/fork-a-repo/  --> Detailed explanation
+
+1. Fork a repo on Github to your account.
+
+
+2. Create a local clone of the forked repo.
+	git clone https://github.com/YOUR-USERNAME/Spoon-Knife
+
+
+3. Configure Git to sync your fork with the original repository
+	git remote add upstream https://github.com/octocat/Spoon-Knife.git
+

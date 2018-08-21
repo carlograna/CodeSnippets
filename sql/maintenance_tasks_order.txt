@@ -1,0 +1,23 @@
+//http://justgeeks.blogspot.com/2012/07/sql-server-maintenance-plan-best.html
+
+ORDER OF MAINTENANCE TASKS.
+
+If it was code this how the maintenance task order would work:
+
+if (Check Database Integrity succeeds)
+{
+    Rebuild Index OR (Reorganize Index and Update Statistics)
+   
+    Back Up Database (Full) or Back Up Database (Differential)
+    if (Back up Database (Full) succeeds)
+    {
+        Backup Database (Transaction Log)
+        Maintenance Cleanup Task
+    }
+
+    Shrink Database (never)
+}
+
+Run these anytime:
+    Execute SQL Server Agent Job
+    History Cleanup

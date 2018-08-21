@@ -1,0 +1,7 @@
+    #eventNav
+    {
+        background-color:#EBF2FA;/*Yellow*/
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#EBF2FA', endColorstr='#FFFFFF'); /* for IE */
+        background: -webkit-gradient(linear, left top, left bottom, from(#EBF2FA), to(#FFFFFF)); /* for webkit browsers */
+        background: -moz-linear-gradient(top,  #EBF2FA,  #FFFFFF); /* for firefox 3.6+ */ 
+    }   

@@ -1,0 +1,16 @@
+-- set to simple recovery model
+alter database <dbname>
+set recovery simple with no_wait
+
+
+exec sp_helpdb msdb
+dbcc shrinkfile(msdbdata, 1024);
+exec sp_helpdb msdb
+
+dbcc updateusage ('msdb')
+
+
+
+wo thoughts come to mind when someone says "My log file is too big". First and simplest is that something is running against your database that requires that much space. Unless it happens to be a one off query someone wrote if you shrink your log file it's just going to grow right back. And slow your queries down while it's doing it. The solution here is to find out if there was a large ad-hoc query run that grew your log file. If you don't find any evidence of that then I would shrink the log to a reasonable size and see if it grows back. If it does grow back then leave it alone and add yourself some disk space. That's just how big it has to be. If you restrict it to a smaller size it's going to cause queries that need the extra space to fail.
+
+The second and scarier thought is that your database is in FULL or BULK LOGGED recovery mode and you haven't been taking regular transaction log backups. If this is the case then your log file will just grow and grow. The solution here is to set up regular transaction log backups. Once these are in place shrink the log file to a reasonable size. If it grows again (hopefully not as large), then again that is just the size it has to be.

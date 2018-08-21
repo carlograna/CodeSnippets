@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Untitled Page</title>
+    <script type="text/javascript">
+    
+        function show(obj){
+            document.getElementById(obj).style.visibility = "visible";
+            //return confirm("showCalendar!");
+        }
+        
+        function hide(obj){          
+            document.getElementById(obj).style.visibility = "hidden";
+            //return confirm("Hide Caldendar!");
+        }        
+            
+    
+    </script>    
+</head>
+<body>
+    
+    <div id="object">I'm visible</div>
+   
+    <input id="Button1" type="button" value="show me" onclick="show('object');"/>
+    <input id="Button2" type="button" value="hide me" onclick="hide('object');"/>   
+           
+
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,38 @@
+Function stateList()
+'*****************************************************************************************************************************************************************
+	Dim ORS1
+	'Dim SQLString
+	'Dim AdoObject
+	Set AdoObject = New AdoDataConnections
+
+	On Error Resume Next
+	SQLString = "EXEC stateAbbr "
+	Set ORS1 = AdoObject.RunSQLReturnRS(SQLString,"", "upweb")
+	
+	if Err.number <> 0 then
+		ORS1errorMsg = "Unable to build State Drop Down list"
+		 Response.Write(ORS1errorMsg)
+	else%>
+		<select name="state" id="state">
+        	<%if state > "" Then%>
+          		<option value="<%=state%>"><%=state%></option>     
+        	<%end if%>
+       		<option value=""></option>	  	
+
+        
+		<%While not ORS1.Eof%>			
+			<option value=<%=ORS1("abbr")%>><%=ORS1("abbr")%></option>            
+			<%ORS1.MoveNext
+		Wend%>
+		</select>
+	<%End if%> 	
+		
+ 
+     
+	
+<%	
+'   Closes and Sets Objects to Nothing
+	ORS1.Close
+	Set ORS1 = nothing	
+    Set AdoObject = Nothing
+End Function%>

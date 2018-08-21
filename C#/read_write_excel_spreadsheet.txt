@@ -1,0 +1,40 @@
+Code : Writing data to Excel sheet
+string connectionString = "Provider=Microsoft.Jet.OleDb.4.0; Data Source=D:\MySamplefile.xls; Extended Properties=Excel 8.0;"
+ 
+using(OleDbConnection Connection = new OleDbConnection(connectionString))
+{
+Connection.Open()
+using(OleDbCommand command = new OleDbCommand())
+{
+command.Connection = Connection;
+command.CommandText = "CREATE TABLE [EmpTable$](EmpFirstName Char(100), EmpLastName char(100), EmpDept char(250))";
+command.ExecuteNonQuery();
+}
+//Add values to the table (EMPTable) in the Worksheet
+using(OleDbCommand command = new OleDbCommand())
+{
+command.Connection = Connection;
+command.CommandText = "INSERT INTO TABLE [EmpTable$](EmpFirstName ,EmpLastName ,EmpDept ) VALUES('Karthik','Anbu','karthik.Anbu@xyz.com')";
+command.ExecuteNonQuery();
+command.CommandText = "INSERT INTO TABLE [EmpTable$](EmpFirstName ,EmpLastName ,EmpDept ) VALUES('Arun','Kumar','Arun.Kumar@xyz.com')";
+command.ExecuteNonQuery();
+}
+ 
+ 
+
+Code : Reading data from Excel sheet
+DataTable dt;
+string connectionString = "Provider=Microsoft.Jet.OleDb.4.0; Data Source=D:\MySamplefile.xls; Extended Properties=Excel 8.0;"
+using(OleDbConnection Connection = new OleDbConnection(connectionString))
+{
+Connection.Open()
+using(OleDbCommand command = new OleDbCommand())
+{
+command.Connection = Connection;
+command.CommandText = "SELECT * FROM [EmpTable]";
+using(OleDbDataAdapter adapter =new OleDbDataAdapter())
+{
+adapter.SelectCommand = command;
+adapter.Fill(dt);
+}
+} 

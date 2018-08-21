@@ -1,0 +1,29 @@
+//Process continuously with a time interval.  Needs to be stopped with ClearInterval(intervalName)
+
+<html>
+<head>
+</head>
+<body>
+ <p id="demo">0</p>
+ <p id="demo2">0</p>
+ <p id="demo3">0</p>
+ <p id="value"></p> 
+
+<button onclick="clearInterval(myVar)">Stop time</button>
+<script>
+var startDate = new Date();
+var myVar = setInterval(myTimer, 1000);
+
+
+
+function myTimer() {
+    var d = new Date();    
+	document.getElementById("demo").innerHTML = Math.round((d - startDate)/1000);
+	document.getElementById("demo2").innerHTML = (d - startDate)/1000;
+	document.getElementById("demo3").innerHTML = (d - startDate);	
+}
+
+</script>
+
+</body>
+</html>

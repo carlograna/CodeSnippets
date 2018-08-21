@@ -1,0 +1,14 @@
+    $(.selector).focus(function () {
+        if ($(this).val() == 'Routing Number') {
+            $(this).val('');
+            $(this).removeClass('defaultText');
+        }
+    });
+    $(.selector).blur(function () {
+        var strInput = $(this).val();
+        strInput = strInput.replace(/\s/g, "");
+        if (strInput == '') {
+            $(this).val('Routing Number');
+            $(this).addClass('defaultText');
+        }
+    });

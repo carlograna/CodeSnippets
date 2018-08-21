@@ -1,0 +1,5 @@
+ListItemCollection items = new ListItemCollection
+{
+    new ListItem("text 1", "value 1"),
+    new ListItem("text 2", "value 2"),
+};

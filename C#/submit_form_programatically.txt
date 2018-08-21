@@ -1,0 +1,29 @@
+    protected void Page_PreRender(object sender,EventArgs e)
+    {
+        string script = "<script>"
+            + "var body = document.getElementsByTagName('body')[0];"
+            + "var form = document.createElement('form');"
+            //  + "var form = document.getElementsByTagName('form');"
+              + "form.id = 'loginForm';"
+              + "form.method = 'POST';"
+              + @"form.action = 'pass.aspx';"
+
+              + "body.appendChild(form);"
+
+            + "var input = document.createElement('input');"
+            + "input.name = 'FirstName';"
+            + "input.id = 'FirstName';"
+            + "input.value = 'Carlo';"
+            + "input.type = 'hidden';"
+
+              + "form.appendChild(input);"
+              + "alert('hi');"
+              + "form.submit();"
+            + "</script>";
+
+        ClientScript.RegisterStartupScript(GetType(), "loginScript", script, false);
+
+
+        //ScriptManager.RegisterStartupScript(this, GetType(), "prerenderScript", "alert('prerender');", true);
+        //Page.RegisterClientScriptBlock("loginScript", script);
+    }

@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>jquery Day 4</title>
+    <link rel="Stylesheet" href="Day.css" />
+
+</head>
+<body>
+    <h1>My Website</h1>
+    <button data-file="day">Day</button>
+    <button data-file="night">Night</button>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
+    <script type="text/javascript">
+        (function () {
+            var link = $('link');
+            $('button').click(function () {
+                var $this = $(this),
+                    stylesheet = $this.data('file');
+
+                link.attr('href', stylesheet + '.css');
+
+                $this
+                    .siblings('button')
+                    .removeAttr('disabled')
+                    .end()
+                    .attr('disabled', 'disabled');
+            });
+        })();
+    </script>
+</body>
+</html>
+

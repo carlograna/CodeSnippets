@@ -1,0 +1,59 @@
+'**********************************************************************
+'  Visual Basic ActiveX Script
+'************************************************************************
+
+Function Main()
+
+dim iDate
+dim iYear
+dim iMonth
+dim iDay
+dim fPath
+dim sPath
+dim sDestPath
+dim oFSO
+dim oFolder
+dim folderName
+	
+	iYear = Year(Date)
+	iYear = iYear - 2
+	iMonth = Month(Date)
+	iDay = Day(Date)
+	MsgBox iYear & "/" & iMonth & "/" & iDay
+	set oFSO = Createobject("Scripting.FileSystemObject")
+	sPath = "\\sdufs\w$\Img\" 
+	sDestPath = "\\sdufs\w$\ImgArchive\"
+
+	For x = 1 To 5 
+'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+' Adding zero in front of Month or Day if required.
+		If iDay < 10 Then	
+			iDay = 0 & iDay
+			MsgBox "Day " & iDay
+		End If
+		If iMonth < 10 Then
+			iMonth = 0 & iMonth
+			MsgBox "Month " & iMonth
+		End If
+'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		folderName = iYear & iMonth & iDay
+		fPath = sPath & folderName	
+		if oFSO.FolderExists(fPath) then
+			set oFolder = oFSO.GetFolder(fPath)
+			oFSO.MoveFolder fPath, sDestPath & folderName
+			On Error Resume Next
+			Err.Clear								
+		end if
+'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+'Going back 1 day		
+		iDate = DateSerial(iYear, iMonth, iDay) - 1 
+		iYear = Year(iDate)
+		iMonth = Month(iDate)
+		iDay = Day(iDate)		
+		MsgBox fPath
+'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	Next
+	set oFSO = Nothing
+	Main = DTSTaskExecResult_Success
+End Function
+'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

@@ -1,0 +1,1058 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0098)http://www.codedigest.com/CodeDigest/88-A-Simple-CAPTCHA-Image-Verification-in-C--and-ASP-Net.aspx -->
+<HTML xmlns="http://www.w3.org/1999/xhtml" xmlns:o = 
+"urn:schemas-microsoft-com:office:office"><HEAD><TITLE>A Simple CAPTCHA Image Verification in C# and ASP.Net</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=utf-8"><LINK 
+media=print 
+href="CAPTCHA%20Image%20Verification%20in%20C%23%20and%20ASP_Net_files/CodeDigestPrint.css" 
+type=text/css rel=stylesheet><LINK 
+href="CAPTCHA%20Image%20Verification%20in%20C%23%20and%20ASP_Net_files/article.css" 
+type=text/css rel=stylesheet><LINK 
+href="CAPTCHA%20Image%20Verification%20in%20C%23%20and%20ASP_Net_files/article.css" 
+type=text/css rel=stylesheet><LINK 
+href="CAPTCHA%20Image%20Verification%20in%20C%23%20and%20ASP_Net_files/CodeDigest.css" 
+type=text/css rel=stylesheet>
+<META content="CodeDigest,Code Snippet,C#, asp.net" name=keywords>
+<META 
+content="A Simple CAPTCHA Image Verification in C# and ASP.Net.Develop or create a image verification text module to fight SPAM in ASP.Net using HttpHandler..Free Code Snippet from CodeDigest. Free .NET,ASP,ASP.NET,SQL,XML,HTML,ADO,ADO.NET,JavaScript,JScript,CSharp,VBScript and other technical articles, free Codes, tutorials from CodeDigest.Com" 
+name=description>
+<META content="MSHTML 6.00.6000.16890" name=GENERATOR></HEAD>
+<BODY>
+<FORM id=aspnetForm name=aspnetForm 
+action=88-A-Simple-CAPTCHA-Image-Verification-in-C--and-ASP-Net.aspx 
+method=post>
+<DIV><INPUT id=__EVENTTARGET type=hidden name=__EVENTTARGET> <INPUT 
+id=__EVENTARGUMENT type=hidden name=__EVENTARGUMENT> <INPUT id=__VIEWSTATE 
+type=hidden 
+value=/wEPDwULLTE4NTcwMzI2OTUPZBYCZg9kFgICAw9kFggCCQ9kFgJmD2QWBGYPZBYCAgEPZBYCZg8PFgIeBFRleHQFD1RlY2hub2xvZ3kgTmV3c2RkAgEPZBYCAgEPFgIeCWlubmVyaHRtbAUlTm8gTmV3cyBGZWVkcyBhdmFpbGFibGUgYXQgdGhpcyB0aW1lLmQCCw9kFgJmD2QWBGYPZBYCAgEPZBYCZg8PFgIfAAUOQ29tbXVuaXR5IE5ld3NkZAIBD2QWAgIBDxYCHwEFlwU8TWFycXVlZSBPbk1vdXNlT3Zlcj0ndGhpcy5zdG9wKCk7JyBPbk1vdXNlT3V0PSd0aGlzLnN0YXJ0KCk7JyBkaXJlY3Rpb249J3VwJyBzY3JvbGxhbW91bnQ9JzInICB3aWR0aD0nMTAwJSc+PGRpdiBjbGFzcz0nUG9zdFRpdGxlJz48YSBocmVmPWh0dHA6Ly93d3cuY29kZWRpZ2VzdC5jb20vUHJpemUuYXNweD9tb250aHllYXI9NC8yMDA5IHRhcmdldD0nX2JsYW5rJy8+QXByIDIwMDkgV2lubmVycyBBbm5vdW5jZWQhPC9hPjwvZGl2PjxkaXYgY2xhc3M9J1Bvc3RJbmZvJz5Db25ncmF0dWxhdGlvbnMgdG8gYWxsIHRoZSB3aW5uZXJzISEuPC9kaXY+PGEgaHJlZj1odHRwOi8vd3d3LmNvZGVkaWdlc3QuY29tL1ByaXplLmFzcHg/bW9udGh5ZWFyPTQvMjAwOT5SZWFkIG1vcmUuLjwvYT48YnI+PGJyPjxkaXYgY2xhc3M9J1Bvc3RUaXRsZSc+PGEgaHJlZj1odHRwOi8vd3d3LmNvZGVkaWdlc3QuY29tL1ByaXplLmFzcHggdGFyZ2V0PSdfYmxhbmsnLz5NYXkgMjAwOSBQcml6ZSBBbm5vdW5jZWQhPC9hPjwvZGl2PjxkaXYgY2xhc3M9J1Bvc3RJbmZvJz5XaW4gR2Vla3kgcHJpemVzIGJ5IHdyaXR0aW5nIGFydGljbGVzIS48L2Rpdj48YSBocmVmPWh0dHA6Ly93d3cuY29kZWRpZ2VzdC5jb20vUHJpemUuYXNweD5SZWFkIG1vcmUuLjwvYT48YnI+PGJyPjwvTWFycXVlZT5kAg0PDxYCHwAFNUEgU2ltcGxlIENBUFRDSEEgSW1hZ2UgVmVyaWZpY2F0aW9uIGluIEMjIGFuZCBBU1AuTmV0ZGQCFQ9kFgYCAQ8PFgQfAAUNU2F0aGVlc2ggQmFidR4LTmF2aWdhdGVVcmwFHi9BdXRob3JQcm9maWxlLmFzcHg/QXV0aG9ySUQ9NWRkAgMPDxYCHwAFFDIvMTYvMjAwOSA3OjQ4OjA1IEFNZGQCBQ8WAh8ABZQBPGEgaHJlZj0nL0NvZGVEaWdlc3QuYXNweD90YWc9YXNwLm5ldCc+YXNwLm5ldDwvYT4sPGEgaHJlZj0nL0NvZGVEaWdlc3QuYXNweD90YWc9QyMnPkMjPC9hPiw8YSBocmVmPScvQ29kZURpZ2VzdC5hc3B4P3RhZz1Db2RlRGlnZXN0Jz5Db2RlRGlnZXN0PC9hPmQYAQUeX19Db250cm9sc1JlcXVpcmVQb3N0QmFja0tleV9fFgIFGWN0bDAwJGxzTG9naW5TdGF0dXMkY3RsMDEFGWN0bDAwJGxzTG9naW5TdGF0dXMkY3RsMDMJUpGFzKsPFAwzVFRNiHfC55pBnw== 
+name=__VIEWSTATE> </DIV>
+<SCRIPT type=text/javascript>
+//<![CDATA[
+var theForm = document.forms['aspnetForm'];
+if (!theForm) {
+    theForm = document.aspnetForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</SCRIPT>
+
+<DIV><INPUT id=__EVENTVALIDATION type=hidden 
+value=/wEWAgKrrLnTBQKDyfqMDKsT9+CS9HUjunHZmxgCU9Hyr+Iq name=__EVENTVALIDATION> 
+</DIV>
+<DIV>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" align=center border=0>
+  <TBODY>
+  <TR>
+    <TD><IMG alt=CODEDIGEST 
+      src="CAPTCHA%20Image%20Verification%20in%20C%23%20and%20ASP_Net_files/codedigestminilogo.gif"> 
+    </TD>
+    <TD vAlign=center><!-- LakeQuincy Ad-->
+      <SCRIPT type=text/javascript> 
+            <!-- 
+            lqm_channel=1;
+            lqm_publisher=260;
+            lqm_zone=1;
+            lqm_format=8;
+            //-->
+            </SCRIPT>
+
+      <SCRIPT 
+      src="CAPTCHA%20Image%20Verification%20in%20C%23%20and%20ASP_Net_files/s.js" 
+      type=text/javascript></SCRIPT>
+<!-- End ad --></TD></TR>
+  <TR>
+    <TD colSpan=2>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD align=right colSpan=2><A title="CodeDigest Home" 
+            href="http://www.codedigest.com/Default.aspx"><IMG height=30 
+            alt=Home 
+            src="CAPTCHA%20Image%20Verification%20in%20C%23%20and%20ASP_Net_files/home.gif" 
+            width=93 border=0></A> <A title=Articles 
+            href="http://www.codedigest.com/Articles.aspx"><IMG height=30 
+            alt=Articles 
+            src="CAPTCHA%20Image%20Verification%20in%20C%23%20and%20ASP_Net_files/articles.gif" 
+            width=93 border=0></A> <A title=CodeDigest 
+            href="http://www.codedigest.com/CodeDigest.aspx"><IMG height=30 
+            alt=CodeDigest 
+            src="CAPTCHA%20Image%20Verification%20in%20C%23%20and%20ASP_Net_files/code.gif" 
+            width=122 border=0></A> <A title=Tutorials 
+            href="http://www.codedigest.com/Tutorials.aspx"><IMG height=30 
+            alt=Tutorials 
+            src="CAPTCHA%20Image%20Verification%20in%20C%23%20and%20ASP_Net_files/tutorials.gif" 
+            width=120 border=0></A> <A title=FAQs 
+            href="http://www.codedigest.com/FAQs.aspx"><IMG height=30 alt=FAQs 
+            src="CAPTCHA%20Image%20Verification%20in%20C%23%20and%20ASP_Net_files/faqs.gif" 
+            width=94 border=0></A> </TD></TR>
+        <TR>
+          <TD align=left><SPAN id=ctl00_BreadCrumps><A 
+            href="http://www.codedigest.com/CodeDigest/88-A-Simple-CAPTCHA-Image-Verification-in-C--and-ASP-Net.aspx#ctl00_BreadCrumps_SkipLink"><IMG 
+            style="BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px" 
+            height=0 alt="Skip Navigation Links" 
+            src="CAPTCHA%20Image%20Verification%20in%20C%23%20and%20ASP_Net_files/WebResource.gif" 
+            width=0></A><SPAN><A title="Home Page" 
+            href="http://www.codedigest.com/Default.aspx">Home</A></SPAN><SPAN>&nbsp;»&nbsp;</SPAN><SPAN><A 
+            title=CodeDigest 
+            href="http://www.codedigest.com/CodeDigest.aspx">CodeDigest</A></SPAN><SPAN>&nbsp;»&nbsp;</SPAN><SPAN 
+            class=HideCurrentNode>A Simple CAPTCHA Image Verification in C# and 
+            ASP.Net</SPAN><A id=ctl00_BreadCrumps_SkipLink></A></SPAN></TD>
+          <TD align=right>&nbsp; <A id=ctl00_lsLoginStatus 
+            href="javascript:__doPostBack('ctl00$lsLoginStatus$ctl02','')">You 
+            are not logged in.</A></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD colSpan=2>
+      <TABLE width="100%">
+        <TBODY>
+        <TR>
+          <TD class=NonPrintable vAlign=top width=200><!--Pagelet for Search Box -->
+            <TABLE cellSpacing=0 cellPadding=0 width=200 border=0>
+              <TBODY>
+              <TR>
+                <TD class=topleftBL align=right width=7 height=35></TD>
+                <TD class=topmidBL align=middle>Search</TD>
+                <TD class=toprightBL align=left width=11 height=35></TD></TR>
+              <TR>
+                <TD class=midleft></TD>
+                <TD vAlign=top align=left><!-- Search --><!-- SiteSearch Google --><IFRAME 
+                  style="MARGIN-LEFT: 0px" 
+                  src="CAPTCHA%20Image%20Verification%20in%20C%23%20and%20ASP_Net_files/search.htm" 
+                  frameBorder=0 width=183 height=100></IFRAME><!-- SiteSearch Google --><!-- End Search --></TD>
+                <TD class=midright></TD></TR>
+              <TR>
+                <TD class=bottomleft vAlign=top align=right width=7 
+                height=11></TD>
+                <TD class=botmidbg>&nbsp;</TD>
+                <TD class=bottomright vAlign=top 
+            align=left></TD></TR></TBODY></TABLE><BR><!--End Pagelet for Search Box --><!--Pagelet for Ad Box -->
+            <TABLE cellSpacing=0 cellPadding=0 width=200 border=0>
+              <TBODY>
+              <TR>
+                <TD class=topleftBL align=right width=7 height=35></TD>
+                <TD class=topmidBL align=middle>Sponsored Links</TD>
+                <TD class=toprightBL align=left width=11 height=35></TD></TR>
+              <TR>
+                <TD class=midleft></TD>
+                <TD vAlign=top align=left>
+                  <SCRIPT type=text/javascript><!--
+					google_ad_client = "pub-9162549217456745";
+					/* 180x90, created 7/17/09 */
+					google_ad_slot = "6390891384";
+					google_ad_width = 180;
+					google_ad_height = 90;
+					//-->
+					</SCRIPT>
+
+                  <SCRIPT 
+                  src="CAPTCHA%20Image%20Verification%20in%20C%23%20and%20ASP_Net_files/show_ads.js" 
+                  type=text/javascript>
+					</SCRIPT>
+                </TD>
+                <TD class=midright></TD></TR>
+              <TR>
+                <TD class=bottomleft vAlign=top align=right width=7 
+                height=11></TD>
+                <TD class=botmidbg>&nbsp;</TD>
+                <TD class=bottomright vAlign=top 
+            align=left></TD></TR></TBODY></TABLE><BR><!-- Left Pagelet 1 starts here -->
+            <TABLE cellSpacing=0 cellPadding=0 width=200 border=0>
+              <TBODY>
+              <TR>
+                <TD class=topleftGrey align=right width=7 height=35></TD>
+                <TD class=topmidGrey align=middle>Technologies</TD>
+                <TD class=toprightGrey align=left width=11 height=35></TD></TR>
+              <TR>
+                <TD class=midleft></TD>
+                <TD class=topmidBLCNT vAlign=top>
+                  <UL>
+                    <LI><A 
+                    href="http://www.codedigest.com/AllArticles.aspx?CatID=CAT1">ASP.Net</A> 
+
+                    <LI><A 
+                    href="http://www.codedigest.com/AllArticles.aspx?CatID=CAT2">C#</A> 
+
+                    <LI><A 
+                    href="http://www.codedigest.com/AllArticles.aspx?CatID=CAT11">ASP.Net 
+                    AJAX</A> 
+                    <LI><A 
+                    href="http://www.codedigest.com/AllArticles.aspx?CatID=CAT4">IIS</A> 
+
+                    <LI><A 
+                    href="http://www.codedigest.com/AllArticles.aspx?CatID=CAT5">.NetFramework</A> 
+
+                    <LI><A 
+                    href="http://www.codedigest.com/AllArticles.aspx?CatID=CAT12">Webservices</A> 
+
+                    <LI><A 
+                    href="http://www.codedigest.com/AllArticles.aspx?CatID=CAT10">ADO</A> 
+
+                    <LI><A 
+                    href="http://www.codedigest.com/AllArticles.aspx?CatID=CAT6">Sql 
+                    Server</A> 
+                    <LI><A 
+                    href="http://www.codedigest.com/AllArticles.aspx?CatID=CAT7">Reporting 
+                    Services</A> 
+                    <LI><A 
+                    href="http://www.codedigest.com/AllArticles.aspx?CatID=CAT8">Directory 
+                    Services</A> 
+                    <LI><A 
+                    href="http://www.codedigest.com/AllArticles.aspx?CatID=CAT9">Windows 
+                    Clustering</A> 
+                    <LI><A 
+                    href="http://www.codedigest.com/AllArticles.aspx?CatID=CAT13">Javascript</A> 
+
+                    <LI><A 
+                    href="http://www.codedigest.com/AllArticles.aspx?CatID=CAT14">Sharepoint 
+                    Services</A> 
+                    <LI><A 
+                    href="http://www.codedigest.com/AllArticles.aspx?CatID=CAT16&amp;Page=0">ASP.Net 
+                    MVC</A> 
+                    <LI><A 
+                    href="http://www.codedigest.com/AllArticles.aspx?CatID=CAT17&amp;Page=0">jQuery</A> 
+                    </LI></UL><A 
+                  href="http://www.codedigest.com/Articles/Rss.ashx"><IMG 
+                  style="BORDER-LEFT-COLOR: white; BORDER-BOTTOM-COLOR: white; BORDER-TOP-COLOR: white; BORDER-RIGHT-COLOR: white" 
+                  src="CAPTCHA%20Image%20Verification%20in%20C%23%20and%20ASP_Net_files/Rss.bmp"></A></TD>
+                <TD class=midright></TD></TR>
+              <TR>
+                <TD class=bottomleft vAlign=top align=right width=7 
+                height=11></TD>
+                <TD class=botmidbg>&nbsp;</TD>
+                <TD class=bottomright vAlign=top 
+            align=left></TD></TR></TBODY></TABLE><BR><!-- Left Pagelet 1 ends here --><!-- Left Pagelet 2 starts here -->
+            <TABLE cellSpacing=0 cellPadding=0 width=200 border=0>
+              <TBODY>
+              <TR>
+                <TD class=topleftGR align=right width=7 height=35></TD>
+                <TD class=topmidGR align=middle>CodeDigest Navigation</TD>
+                <TD class=toprightGR align=left width=11 height=35></TD></TR>
+              <TR>
+                <TD class=midleft></TD>
+                <TD class=topmidGRCNT vAlign=top>
+                  <UL>
+                    <LI><A 
+                    href="http://www.codedigest.com/Default.aspx">Home</A> 
+                    <LI><A 
+                    href="http://www.codedigest.com/Register.aspx">Register</A> 
+                    <LI><A href="http://www.codedigest.com/Login.aspx">Login</A> 
+
+                    <LI><A 
+                    href="http://www.codedigest.com/ArticleGuidelines.aspx">Article 
+                    Guidelines</A> 
+                    <LI><A 
+                    href="http://www.codedigest.com/Publish/ArticleUpload.aspx">Submit 
+                    Article</A> 
+                    <LI><A 
+                    href="http://www.codedigest.com/Publish/CodeUpload.aspx">Submit 
+                    Code</A> 
+                    <LI><A 
+                    href="http://www.codedigest.com/Publish/SubmitaFAQ.aspx">Submit 
+                    A FAQ</A> 
+                    <LI><A 
+                    href="http://www.codedigest.com/Publish/SubmitaNews.aspx">Submit 
+                    News</A> 
+                    <LI><A 
+                    href="http://www.codedigest.com/ContactUs.aspx">Advertise</A> 
+
+                    <LI><A 
+                    href="http://www.codedigest.com/SupportUs.aspx">Support 
+                    Us</A> 
+                    <LI><A href="http://www.codedigest.com/Links.aspx">Links</A> 
+
+                    <LI><A 
+                    href="http://www.codedigest.com/ContactUs.aspx">Contact 
+                    Us</A> </LI></UL></TD>
+                <TD class=midright></TD></TR>
+              <TR>
+                <TD class=bottomleft vAlign=top align=right width=7 
+                height=11></TD>
+                <TD class=botmidbg>&nbsp;</TD>
+                <TD class=bottomright vAlign=top 
+            align=left></TD></TR></TBODY></TABLE><!-- Left Pagelet 2 ends here --><BR><!-- Left Pagelet 3 starts here --><!-- Left Pagelet 3 ends here -->
+            <TABLE id=ctl00_UsrctrlNews1_tblTechNewsScrolling cellSpacing=0 
+            cellPadding=0 width=200 border=0>
+              <TBODY>
+              <TR>
+                <TD class=topleftBL2 align=right width=7 height=35></TD>
+                <TD class=topmidBL2 align=middle><SPAN 
+                  id=ctl00_UsrctrlNews1_lblNewsHeading>Technology News</SPAN></TD>
+                <TD class=toprightBL2 align=left width=11 height=35></TD></TR>
+              <TR>
+                <TD class=midleft></TD>
+                <TD id=ctl00_UsrctrlNews1_tdTechNewsCell vAlign=top>No News 
+                  Feeds available at this time.</TD>
+                <TD class=midright></TD></TR>
+              <TR>
+                <TD class=bottomleft vAlign=top align=right width=7 
+                height=11></TD>
+                <TD class=botmidbg>&nbsp;</TD>
+                <TD class=bottomright vAlign=top 
+            align=left></TD></TR></TBODY></TABLE><BR>
+            <TABLE id=ctl00_UsrctrlNews2_tblTechNewsScrolling cellSpacing=0 
+            cellPadding=0 width=200 border=0>
+              <TBODY>
+              <TR>
+                <TD class=topleftBL2 align=right width=7 height=35></TD>
+                <TD class=topmidBL2 align=middle><SPAN 
+                  id=ctl00_UsrctrlNews2_lblNewsHeading>Community News</SPAN></TD>
+                <TD class=toprightBL2 align=left width=11 height=35></TD></TR>
+              <TR>
+                <TD class=midleft></TD>
+                <TD id=ctl00_UsrctrlNews2_tdTechNewsCell vAlign=top>
+                  <MARQUEE onmouseover=this.stop(); onmouseout=this.start(); 
+                  scrollAmount=2 direction=up width="100%">
+                  <DIV class=PostTitle><A 
+                  href="http://www.codedigest.com/Prize.aspx?monthyear=4/2009" 
+                  target=_blank>Apr 2009 Winners Announced!</A></DIV>
+                  <DIV class=PostInfo>Congratulations to all the 
+                  winners!!.</DIV><A 
+                  href="http://www.codedigest.com/Prize.aspx?monthyear=4/2009">Read 
+                  more..</A><BR><BR>
+                  <DIV class=PostTitle><A 
+                  href="http://www.codedigest.com/Prize.aspx" target=_blank>May 
+                  2009 Prize Announced!</A></DIV>
+                  <DIV class=PostInfo>Win Geeky prizes by writting 
+                  articles!.</DIV><A 
+                  href="http://www.codedigest.com/Prize.aspx">Read 
+                  more..</A><BR><BR></MARQUEE></TD>
+                <TD class=midright></TD></TR>
+              <TR>
+                <TD class=bottomleft vAlign=top align=right width=7 
+                height=11></TD>
+                <TD class=botmidbg>&nbsp;</TD>
+                <TD class=bottomright vAlign=top 
+            align=left></TD></TR></TBODY></TABLE></TD>
+          <TD class=Printable vAlign=top>
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD class=topleftGrey align=right width=7 height=35></TD>
+                <TD class=topmidGrey align=middle><SPAN id=ctl00_lblPageHead>A 
+                  Simple CAPTCHA Image Verification in C# and ASP.Net</SPAN></TD>
+                <TD class=toprightGrey align=left width=11 height=35></TD></TR>
+              <TR>
+                <TD class=midleft></TD>
+                <TD vAlign=top><!-- Content page --><!-- LakeQuincy Ad -->
+                  <DIV class=AdTitle style="FONT-STYLE: normal">
+                  <SCRIPT type=text/javascript> 
+					<!-- 
+					lqm_channel=1;
+					lqm_publisher=260;
+					lqm_zone=1;
+					lqm_format=2;
+					//-->
+					</SCRIPT>
+
+                  <SCRIPT 
+                  src="CAPTCHA%20Image%20Verification%20in%20C%23%20and%20ASP_Net_files/s.js" 
+                  type=text/javascript></SCRIPT>
+                  </DIV><!-- End Ad -->
+                  <TABLE width="100%">
+                    <TBODY>
+                    <TR>
+                      <TD align=left colSpan=2></TD></TR>
+                    <TR>
+                      <TD vAlign=center width="50%"><SPAN class=ArticleTitle>A 
+                        Simple CAPTCHA Image Verification in C# and ASP.Net 
+                        </SPAN>
+                        <SCRIPT language=javascript>
+<!-- Kick it Code -->
+addLoadEvent(AddDotNetKicks);
+
+function addLoadEvent(fn)
+{
+    if (window.addEventListener)
+        window.addEventListener('load', fn, false)
+    else if (window.attachEvent)
+        window.attachEvent('onload', fn);
+}
+
+function AddDotNetKicks()
+{
+    var insertLocation = document.getElementById('postToolbar');
+    if(insertLocation)
+    {
+        var currentPageUrl = document.location.protocol + "//" + document.location.host + document.location.pathname;
+        var dotnetkicksLink = document.createElement('a');
+        dotnetkicksLink.href = 'http://www.dotnetkicks.com/kick/?url=' + currentPageUrl;
+        var dotnetkicksImg = document.createElement('IMG');
+        dotnetkicksImg.src = 'http://www.dotnetkicks.com/Services/Images/KickItImageGenerator.ashx?url=' + currentPageUrl +'&bgcolor=FF9900';
+        dotnetkicksImg.border = 0;
+        dotnetkicksLink.appendChild(dotnetkicksImg);
+        insertLocation.appendChild(dotnetkicksLink);
+    }
+}<!-- End Kick it Code -->
+</SCRIPT>
+
+                        <TABLE width="100%" bgColor=#f5f5f5>
+                          <TBODY>
+                          <TR>
+                            <TD>Submitted By <B><A 
+                              id=ctl00_CodeUtility1_hplAuthor 
+                              href="http://www.codedigest.com/AuthorProfile.aspx?AuthorID=5">Satheesh 
+                              Babu</A></B></TD></TR>
+                          <TR>
+                            <TD>On <SPAN 
+                              id=ctl00_CodeUtility1_lblSubmittedOn>2/16/2009 
+                              7:48:05 AM</SPAN> </TD></TR>
+                          <TR>
+                            <TD>Tags: <A 
+                              href="http://www.codedigest.com/CodeDigest.aspx?tag=asp.net">asp.net</A>,<A 
+                              href="http://www.codedigest.com/CodeDigest.aspx?tag=C#">C#</A>,<A 
+                              href="http://www.codedigest.com/CodeDigest.aspx?tag=CodeDigest">CodeDigest</A> 
+                              &nbsp; </TD></TR>
+                          <TR>
+                            <TD align=middle><!-- ADDTHIS BUTTON BEGIN -->
+                              <SCRIPT type=text/javascript>
+addthis_pub = 'satheeshbabu';
+</SCRIPT>
+                              <A 
+                              onmouseover="return addthis_open(this, '', '[URL]', '[TITLE]')" 
+                              onclick="return addthis_sendto()" 
+                              onmouseout=addthis_close() 
+                              href="http://www.addthis.com/bookmark.php" 
+                              rel=nofollow><IMG height=16 alt="" 
+                              src="CAPTCHA%20Image%20Verification%20in%20C%23%20and%20ASP_Net_files/button1-bm.gif" 
+                              width=125 border=0></A>
+                              <SCRIPT 
+                              src="CAPTCHA%20Image%20Verification%20in%20C%23%20and%20ASP_Net_files/addthis_widget.js" 
+                              type=text/javascript></SCRIPT>
+                               <!-- ADDTHIS BUTTON END --><SPAN 
+                              id=postToolbar></SPAN></TD></TR>
+                          <TR>
+                            <TD></TD></TR></TBODY></TABLE></TD>
+                      <TD class=NonPrintable width="50%"><!-- Ads go here -->
+                        <SCRIPT type=text/javascript><!--
+			google_ad_client = "pub-9162549217456745";
+			/* 200x200_CodeDigest Page, created 7/17/09 */
+			google_ad_slot = "7840181953";
+			google_ad_width = 200;
+			google_ad_height = 200;
+			//-->
+			</SCRIPT>
+
+                        <SCRIPT 
+                        src="CAPTCHA%20Image%20Verification%20in%20C%23%20and%20ASP_Net_files/show_ads.js" 
+                        type=text/javascript>
+			</SCRIPT>
+                      </TD></TR>
+                    <TR>
+                      <TD colSpan=2>
+                        <TABLE>
+                          <TBODY>
+                          <TR>
+                            <TD vAlign=top>
+                              <H3>A Simple CAPTCHA Image Verification in C# and 
+                              ASP.Net</H3>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><o:p>&nbsp;</o:p></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt">Websites(hosted in 
+                              internet domains)&nbsp;&nbsp;that offer users to 
+                              post contents will have a greater threat from 
+                              spammers and automated programs that can submit 
+                              spam contents. So, it is vital to have a mechanism 
+                              to verify the users if they are really humans who 
+                              are posting the contents.</P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><o:p>&nbsp;</o:p></P>
+                              <P class=MsoNormal style="MARGIN: 0in 0in 0pt">The 
+                              following little article will help fighting this 
+                              threat using a simple CAPTCHA image verification 
+                              developed using HttpHandler and Session variable. 
+                              </P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><o:p>&nbsp;</o:p></P>
+                              <P class=MsoNormal style="MARGIN: 0in 0in 0pt">To 
+                              develop this,</P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><o:p>&nbsp;</o:p></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt">Include a Generic 
+                              HttpHandler that can render the content of a 
+                              Session variable as an image. Refer the below code 
+                              snippet that generates an image from Session 
+                              variable.</P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><o:p>&nbsp;</o:p></P>
+                              <P class=MsoNormal style="MARGIN: 0in 0in 0pt"><B 
+                              style="mso-bidi-font-weight: normal">Captcha.ashx<o:p></o:p></B></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a>&lt;%@ WebHandler Language="C#" 
+                              Class="Captcha" %&gt;</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a>using System;</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a>using System.Web;</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a>using System.Drawing;</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a>using System.IO;</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a>using 
+                              System.Web.SessionState;</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><o:p><FONT 
+                              color=#a52a2a>&nbsp;</FONT></o:p></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a>public class Captcha : IHttpHandler, 
+                              IReadOnlySessionState</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a>{</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><SPAN 
+                              style="mso-spacerun: yes"><FONT 
+                              color=#a52a2a>&nbsp;&nbsp;&nbsp; 
+</FONT></SPAN></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; 
+                              </SPAN>public void ProcessRequest (HttpContext 
+                              context) {</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>Bitmap bmpOut = new Bitmap(200, 
+                              50);</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>Graphics g = 
+                              Graphics.FromImage(bmpOut);</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>g.InterpolationMode = 
+                              System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>g.FillRectangle(Brushes.Black, 0, 0, 200, 
+                              50);</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>g.DrawString(context.Session["Captcha"].ToString(), 
+                              new Font("Verdana", 18), new 
+                              SolidBrush(Color.White), 0, 0);</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN><SPAN 
+                              style="mso-spacerun: yes">&nbsp;</SPAN>MemoryStream 
+                              ms = new MemoryStream();</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>bmpOut.Save(ms, 
+                              System.Drawing.Imaging.ImageFormat.Png);</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>byte[] bmpBytes = 
+ms.GetBuffer();</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>bmpOut.Dispose();</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>ms.Close();</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>context.Response.BinaryWrite(bmpBytes);</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>context.Response.End();</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; 
+                              </SPAN>}</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><SPAN 
+                              style="mso-spacerun: yes"><FONT 
+                              color=#a52a2a></FONT></SPAN>&nbsp;</P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; 
+                              </SPAN>public bool IsReusable {</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>get {</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>return false;</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>}</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; 
+                              </SPAN>}</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><o:p><FONT 
+                              color=#a52a2a>&nbsp;</FONT></o:p></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a>}</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt">Read my previous code 
+                              snippet that explains <A 
+                              href="http://www.codedigest.com/CodeDigest/24-Generate-image-from-a-string-in-C---ASP-Net.aspx">how 
+                              to generate image from a string using C# and 
+                              ASP.NET</A>. The above HttpHandler uses the same 
+                              code discussed in the code snippet. Rendering the 
+                              contents as an image will prevent the automatic 
+                              software programs from reading its contents.</P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><SPAN 
+                              style="mso-spacerun: yes"></SPAN>&nbsp;</P>
+                              <P class=MsoNormal style="MARGIN: 0in 0in 0pt"><B 
+                              style="mso-bidi-font-weight: normal">How to use it 
+                              in our ASPX page?<o:p></o:p></B></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><o:p>&nbsp;</o:p></P>
+                              <P class=MsoNormal style="MARGIN: 0in 0in 0pt">It 
+                              is very simple. Include an ASPX page (Default.aspx 
+                              in our example). Drag an Image control and textbox 
+                              control to enter the displayed code. With the help 
+                              of custom validator control, we can validate the 
+                              user input with Session variable content. Refer 
+                              the below code that has the ASPX markup.</P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><o:p>&nbsp;</o:p></P>
+                              <P class=MsoNormal style="MARGIN: 0in 0in 0pt"><B 
+                              style="mso-bidi-font-weight: normal">Default.aspx<o:p></o:p></B></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a>&lt;div&gt;</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>&lt;asp:CustomValidator 
+                              ID="CustomValidator2" runat="server" 
+                              ControlToValidate="txtVerify"</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>ErrorMessage="You have Entered a Wrong 
+                              Verification Code!Please Re-enter!!!" 
+                              OnServerValidate="CAPTCHAValidate"&gt;&lt;/asp:CustomValidator&gt;<SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN></FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>&lt;asp:Image ID="imCaptcha" 
+                              ImageUrl="~/CAPTCHA/Captcha.ashx" runat="server" 
+                              /&gt;</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>&lt;asp:TextBox ID="txtVerify" 
+                              runat="server"&gt;&lt;/asp:TextBox&gt;</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>&lt;asp:Button ID="btnSave" runat="server" 
+                              OnClick="btnSave_Click" Text="Save" 
+                              /&gt;&lt;/div&gt;</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><o:p>&nbsp;</o:p></P>
+                              <P class=MsoNormal style="MARGIN: 0in 0in 0pt"><B 
+                              style="mso-bidi-font-weight: normal">Default.aspx.cs</B></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a>public partial class CAPTCHA_Default 
+                              : System.Web.UI.Page</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a>{</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; 
+                              </SPAN>protected void Page_Load(object sender, 
+                              EventArgs e)</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; 
+                              </SPAN>{</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>//ImageVerification</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>if (!IsPostBack)</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>{</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>SetVerificationText();<SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN></FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>}</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; 
+                              </SPAN>}</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; 
+                              </SPAN>public void 
+SetVerificationText()</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; 
+                              </SPAN>{</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>Random ran = new Random();</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>int no = ran.Next();</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>Session["Captcha"] = 
+                              no.ToString();</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; 
+                              </SPAN>}</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; 
+                              </SPAN>protected void CAPTCHAValidate(object 
+                              source, ServerValidateEventArgs args)</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; 
+                              </SPAN>{</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>if (Session["Captcha"] != null)</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>{</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>if (txtVerify.Text != 
+                              Session["Captcha"].ToString())</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>{<SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN></FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>SetVerificationText();</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>args.IsValid = false;</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>return;</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>}</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>}</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>else</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>{<SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN></FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>SetVerificationText();</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>args.IsValid = false;</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>return;</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>}</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><SPAN 
+                              style="mso-spacerun: yes"><FONT 
+                              color=#a52a2a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </FONT></SPAN></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; 
+                              </SPAN>}</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; 
+                              </SPAN>protected void btnSave_Click(object sender, 
+                              EventArgs e)</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; 
+                              </SPAN>{</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>if (!Page.IsValid)</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>{</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>return;</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>}</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-tab-count: 1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>//Save the content </FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>Response.Write("You are not a 
+                              SPAMMER!!!");</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                              </SPAN>SetVerificationText();</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a><SPAN 
+                              style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; 
+                              </SPAN>}</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><FONT 
+                              color=#a52a2a>}</FONT></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><o:p>&nbsp;</o:p></P>
+                              <P class=MsoNormal style="MARGIN: 0in 0in 0pt">The 
+                              above code initializes the Session variable 
+                              (Session["Captcha"]) with a random number which is 
+                              then rendered as a image by the HttpHandler on 
+                              execution of the page.</P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><o:p>&nbsp;</o:p></P>
+                              <P class=MsoNormal style="MARGIN: 0in 0in 0pt">The 
+                              page will be returned to the user with an error 
+                              message "You have Entered a Wrong Verification 
+                              Code!Please Re-enter!!!", if the user types a 
+                              wrong code in the verification textbox.</P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><o:p>&nbsp;</o:p></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt">Happy Coding!!!</P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><o:p>&nbsp;</o:p></P>
+                              <P class=MsoNormal 
+                              style="MARGIN: 0in 0in 0pt"><o:p>&nbsp;</o:p></P>
+                              <P>&nbsp;</P></TD>
+                            <TD class=NonPrintable vAlign=top align=right 
+                            width=135 rowSpan=3>
+                              <SCRIPT type=text/javascript> 
+                                            <!-- 
+                                            lqm_channel=1;
+                                            lqm_publisher=260;
+                                            lqm_zone=1;
+                                            lqm_format=4;
+                                            //-->
+                                            </SCRIPT>
+
+                              <SCRIPT 
+                              src="CAPTCHA%20Image%20Verification%20in%20C%23%20and%20ASP_Net_files/s.js" 
+                              type=text/javascript></SCRIPT>
+                            </TD></TR>
+                          <TR>
+                            <TD class=NonPrintable></TD></TR>
+                          <TR>
+                            <TD></TD></TR></TBODY></TABLE><!-- change --></TD></TR>
+                    <TR>
+                      <TD class=NonPrintable width="40%"><!-- Ads go here -->
+                        <SCRIPT type=text/javascript><!--
+		google_ad_client = "pub-9162549217456745";
+		/* 300x250, created 7/17/09 */
+		google_ad_slot = "8274394287";
+		google_ad_width = 300;
+		google_ad_height = 250;
+		//-->
+		</SCRIPT>
+
+                        <SCRIPT 
+                        src="CAPTCHA%20Image%20Verification%20in%20C%23%20and%20ASP_Net_files/show_ads.js" 
+                        type=text/javascript>
+		</SCRIPT>
+                      </TD>
+                      <TD class=AdTitle style="FONT-STYLE: normal" vAlign=center 
+                      width="60%">Do you have a working code that can be used 
+                        by anyone? Submit it <A 
+                        href="http://www.codedigest.com/Publish/CodeUpload.aspx">here.</A> 
+                        It may help someone in the community!!<BR><BR>
+                        <SCRIPT type=text/javascript> 
+        <!-- 
+        lqm_channel=1;
+        lqm_publisher=260;
+        lqm_zone=1;
+        lqm_format=2;
+        //-->
+        </SCRIPT>
+
+                        <SCRIPT 
+                        src="CAPTCHA%20Image%20Verification%20in%20C%23%20and%20ASP_Net_files/s.js" 
+                        type=text/javascript></SCRIPT>
+                      </TD></TR>
+                    <TR>
+                      <TD colSpan=2></TD></TR></TBODY></TABLE><!-- End Content page --></TD>
+                <TD class=midright></TD></TR>
+              <TR>
+                <TD class=bottomleft vAlign=top align=right width=7 
+                height=11></TD>
+                <TD class=botmidbg>&nbsp;</TD>
+                <TD class=bottomright vAlign=top 
+            align=left></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=bottom colSpan=2 height=60>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD class=footer vAlign=center align=middle 
+            height=30>www.codedigest.com. All articles are posted "AS IS" with 
+            no warranties. All articles are posted for educational purpose only 
+            and individual authors are responsible for their article. Please 
+            mail <STRONG>admin@codedigest.com</STRONG> for any queries or 
+            compliants. <BR><A 
+            href="http://www.codedigest.com/Disclaimer.aspx">Disclaimer</A>&nbsp;&nbsp;<A 
+            href="http://www.codedigest.com/TermsandCondition.aspx">Terms and 
+            Condition</A>&nbsp;&nbsp;<A 
+            href="http://www.codedigest.com/PrivacyPolicy.aspx">Privacy 
+            Policy</A>&nbsp;&nbsp;<A 
+            href="http://www.codedigest.com/ContactUs.aspx">Contact 
+        Us</A></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></DIV></FORM>
+<SCRIPT type=text/javascript>
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</SCRIPT>
+
+<SCRIPT type=text/javascript>
+var pageTracker = _gat._getTracker("UA-5802059-1");
+pageTracker._trackPageview();
+</SCRIPT>
+</BODY></HTML>

@@ -1,0 +1,25 @@
+
+<SCRIPT TYPE="text/javascript">
+
+
+
+function popup(mylink, windowname)
+{
+   var swsmPopUp = window.open(mylink, windowname, 'width=310,height=200,scrollbars=no');
+   if(swsmPopUp){
+       //var popUpsBlocked = false
+       var host = <%=Request.ServerVariables("HTTP_HOST")%>
+       alert("HOST = " + host)
+       //window.location="http://10.2.42.3/indexpopup.asp";
+   }      
+   else{ 
+       //var popUpsBlocked = true 
+       window.location="http://10.2.42.3/indexNOpopup.asp";
+   }
+}
+
+</SCRIPT>
+
+
+
+<%=Request.ServerVariables("HTTP_HOST")%>

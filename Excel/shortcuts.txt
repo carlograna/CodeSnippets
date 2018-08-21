@@ -1,0 +1,3 @@
+Ctrl+Shift+Enter -> make formula an array
+F4 -> Adds $ to lock the formula Ex. $D$4
+PowerPivot (look it up)

@@ -1,0 +1,64 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace List
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<int> listInts = new List<int>();
+            listInts.Add(1);
+            listInts.Add(2);
+            listInts.Add(3);
+            listInts.Add(4);            
+            listInts.Display();
+
+            List<string> listStrings = new List<string>();
+            listStrings.Add("Carlo");
+            listStrings.Add("Juan");
+            listStrings.Add("Oscar");
+            listStrings.Add("mom");
+            listStrings.Display();
+
+            Console.ReadLine();
+        }
+    }
+
+    class List<T>
+    {
+        T[] ints = new T[3];
+        int currentIndex;
+
+        public void Add(T i)
+        {
+            if (currentIndex == ints.Length)
+                Grow();
+
+            ints[currentIndex++] = i;
+
+        }
+
+        public void Grow()
+        {
+            T[] temp = new T[currentIndex * 2];
+            Array.Copy(ints, temp, ints.Length);
+            ints = temp;
+        }
+
+        public void Display()
+        {
+            foreach(T item in ints)
+            {
+                Console.WriteLine(item);
+            }
+        }
+        T Get(int i)
+        {
+            return ints[i];
+        }
+    }
+}

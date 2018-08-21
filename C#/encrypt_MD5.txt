@@ -1,0 +1,18 @@
+        public string MD5(string input)
+        {
+            System.Security.Cryptography.MD5CryptoServiceProvider encrypt = new System.Security.Cryptography.MD5CryptoServiceProvider();
+            byte[] data = Encoding.ASCII.GetBytes(input);
+
+
+            data = encrypt.ComputeHash(data);
+
+            StringBuilder sb = new StringBuilder();
+
+            for (int i=0; i < input.Length; i++)
+            {
+                sb.Append(data[i].ToString("x2").ToLower());
+            }
+
+            return sb.ToString();
+
+        }

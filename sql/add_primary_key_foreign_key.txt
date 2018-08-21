@@ -1,0 +1,17 @@
+use kidcare
+create table ArpDocs
+(
+	ARP char(13) not null,
+	DocNum int not null,
+	FullPath nvarchar(800)not null,
+	ModifiedOn datetime not null,
+	ModifiedBy varchar(25) not null
+	
+	CONSTRAINT PK_ARP_DocNum PRIMARY KEY (ARP, DocNum),
+	CONSTRAINT FK_ArpDocs_ARP FOREIGN KEY(ARP) REFERENCES ARP(arp)
+)
+
+ALTER TABLE Orders
+ADD CONSTRAINT fk_PerOrders
+FOREIGN KEY (P_Id)
+REFERENCES Persons(P_Id)

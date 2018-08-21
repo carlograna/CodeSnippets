@@ -1,0 +1,18 @@
+<%'*********************************************************************************%>
+<% SQLString = "EXEC STPEMFIN '" & Session("CSWID") & "'"
+Dim ORS1
+Set ORS1 = AdoObject.RunSQLReturnRS(SQLString, "", "childsupport")
+%>       
+
+<SELECT Name = "AcctNumList" Id="AcctNumList">
+<!-- <OPTION>Select Account</OPTION> -->
+<% ORS1.MoveFirst
+	Do While NOT ORS1.EOF %>
+		<OPTION Value = "<%=ORS1.Fields("ABA") & " - " & ORS1.Fields("Account")%>"><%=ORS1.Fields("ABA") & " - " & right(trim(ORS1.Fields("Account")),4)%></OPTION>
+		<% ORS1.MoveNext
+	Loop %>
+</SELECT><p>
+<%'*********************************************************************************%>
+
+
+You need the connection file where AdoObject.runSQLReturnRS function is located.

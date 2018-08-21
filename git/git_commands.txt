@@ -1,0 +1,76 @@
+git clone https://site/user/folder_name			<-- download files from hub
+git clone --mirror https://site/user/folder_name	<--download exact git repo(hooks, obj)
+
+
+git init   <-- START TRACKING current folder
+
+
+git fetch https://github.com/carlograna/git_demo	<-- download updates into a branch
+
+git merge FETCH_HEAD	<-- update what just got downloaded with the fetch
+
+git pull	<-- download changes and merges
+
+git status
+
+git add <filename>  <-- 'stages' a change
+git add .  <-- adds all the files in the directory
+
+git diff <filename>
+git diff --color-words		<-- view word differences
+git diff --word-diff		<-- view word differences
+git diff --stat				<-- file that have changed
+git diff --staged			<-- staged changes
+
+git commit	<-- then type I + ESC + :wq
+git commit -m 'new update'
+
+git checkout branchName
+git checkout -b branchName	<-- creates and checkout branch
+git checkout master
+
+git merge branchName master  						<-- merge the branch into master or viceversa
+git branch -d branch_name  							<-- Delete branch locally
+git push <remote_name> --delete <branch_name>		<-- Delete branch remotely
+
+touch filename.ext  		<-- creates file in the currenty directory/
+touch .gitignore			<-- contains a list of files to ignore
+
+cd c/temp/git_demo			<-- change directory
+
+git ls-tree -r master --name-only  											<-- files currently being tracked under the branch master
+If you want a list of  (i.e. including deleted files):
+
+
+git log --pretty=format: --name-only --diff-filter=A | sort - | sed '/^$/d'	<-- files that ever existed
+git log --pretty=oneline | tail -n 10		<-- first 10 logs
+git log --pretty=oneline | head -n 10		<-- last 10 logs
+
+
+
+				ADD REMOTE LOCATION
+git remote add origin https://github.com/carlograna/JsonWebService.git
+
+git push -u origin master			<-- pushes the master copy to the remote on github
+
+git remote set-url origin https://github.com/carlograna/
+
+git remote -v 						<-- find out the current value of origin
+
+git reset <file>					<-- undo git add
+
+
+			UNDO CHANGES
+git reset									<-- Unstage changes
+git checkout <file> or . (All files)		<-- Removes changes from file/s
+
+				MOVE BRANCH TO MASTER (no merge)
+git checkout master
+git checkout mybranch . (with period)		<-- This will make full copy of mybranch to current (master)
+#Then stage the changes if you need to and commit
+
+
+cat .git/config  			<-- Edit/view what is in the config file in the .git folder
+
+REMOVE CACHE CREDENTIALS
+git config --global --unset credential.helper

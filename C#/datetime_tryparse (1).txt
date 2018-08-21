@@ -1,0 +1,11 @@
+if (DateTime.TryParseExact(
+		my_date.ToString()
+		, "dd-MM-yyyy"
+		, System.Globalization.CultureInfo.InvariantCulture
+		,System.Globalization.DateTimeStyles.None
+		, out d))
+
+
+if (DateTime.TryParse(
+		my_date.ToString()
+		,out d))

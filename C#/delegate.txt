@@ -1,0 +1,31 @@
+    class Delegate
+    {
+
+        static bool lessThanFive(int num) { return num < 5; }
+        static bool lessThanTen(int num) { return num < 10; }
+        static bool greaterThanTen(int num) { return num > 10; }
+
+        delegate bool MiDelegate(int n);
+
+        public static void Entry()
+        {
+
+            //IEnumerable<int> numbers = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 };
+            int[] numbers = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 };
+
+
+            IEnumerable<int> result = FilterNumbers(numbers, lessThanTen);
+
+            foreach (int num in result)
+                Console.WriteLine(num);
+            Console.Read();
+        }
+
+        static IEnumerable<int> FilterNumbers(IEnumerable<int> numbers, MiDelegate myDelegate)
+        {
+            foreach (int number in numbers)
+                if (myDelegate(number))
+                    yield return number;
+        }
+
+    }

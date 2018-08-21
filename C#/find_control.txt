@@ -1,0 +1,3 @@
+//Find contorl from User Control (ascx) in the parent (aspx)
+
+ListView lvParentControl = (ListView)this.Parent.FindControl(ListViewId);

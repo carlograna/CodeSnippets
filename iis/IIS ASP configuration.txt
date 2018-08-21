@@ -1,0 +1,5 @@
+Windows 7 64.bit? Enable 32 bit application in App pool
+ASP ICON:
+enable parent paths 
+Send errors to browser
+web folder permissions(iis_usrs or computer user)

@@ -1,0 +1,5 @@
+TEXT FROM DATABASE
+http://www.youtube.com/watch?v=DaqZTROltEg
+
+DRAW TEMPLATE
+http://www.youtube.com/watch?v=b-ghDXsoz1U

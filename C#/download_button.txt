@@ -1,0 +1,24 @@
+//Example of a download button or link to directly download a file when clicking on a button
+
+        protected void btnDownload_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string strURL = txtFileName.Text;
+                WebClient req = new WebClient();
+                HttpResponse response = HttpContext.Current.Response;
+                response.Clear();
+                response.ClearContent();
+                response.ClearHeaders();
+                response.Buffer = true;
+                response.AddHeader("Content-Disposition", "attachment;filename=\"" + Server.MapPath(strURL) + "\"");  // Cnage the here...
+                byte[] data = req.DownloadData(Server.MapPath(strURL));
+                response.BinaryWrite(data);
+                //response.End();
+
+            }
+            catch (Exception ex)
+            {
+                string error = ex.Message;
+            }
+        }

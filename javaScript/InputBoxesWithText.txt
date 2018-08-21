@@ -1,0 +1,173 @@
+/*
+	Displays text inside text box to used instead of a label outside the input box.
+	Use with jquery.
+
+*/
+
+
+function asp$(id, tagName) {
+    var idRegexp = new RegExp(id, 'i');
+    var tags = new Array();
+    if (tagName) {
+        tags = document.getElementsByTagName(tagName);
+    }
+    else {
+        tags = document.getElementsByName(id);
+    }
+    var control = null;
+    for (var i = 0; i < tags.length; ++i) {
+        var ctl = tags[i];
+        if (idRegexp.test(ctl.id)) {
+            control = ctl;
+            break;
+        }
+    }
+
+    if (control) {
+        return $('#' + control.id);
+    }
+    else {
+        alert(id + ' not found');
+        return null;
+    }
+}
+
+//************************************************************************************
+
+$(document).ready(function () {
+    //onload
+    var objRouting = asp$('txtRoutingSearch', 'input');
+    var objAccount = asp$('txtAccountSearch', 'input');
+    var objSerial = asp$('txtSerialSearch', 'input');
+
+    // On Empty input fields set default text and css
+
+    if ($(objRouting).val() == '') {
+        $(objRouting).val('Routing Number');
+        $(objRouting).addClass('defaultText');
+    }
+    if ($(objAccount).val() == '') {
+        $(objAccount).val('Account Number');
+        $(objAccount).addClass('defaultText');
+    }
+    if ($(objSerial).val() == '') {
+        $(objSerial).val('Serial Number');
+        $(objSerial).addClass('defaultText');
+    }
+
+
+    // Set css on post back when input values are not empty
+
+    if ($(objRouting).val() == 'Routing Number') {
+        $(objRouting).addClass('defaultText');
+    }
+
+
+
+    /*   Toggle hide/show default text inside textboxes
+    /*---------------------------------------------------*/
+
+    //Routing
+    $(objRouting).focus(function () {
+        if ($(this).val() == 'Routing Number') {
+            $(this).val('');
+            $(this).removeClass('defaultText');
+        }
+    });
+    $(objRouting).blur(function () {
+        var strInput = $(this).val();
+        strInput = strInput.replace(/\s/g, "");
+        if (strInput == '') {
+            $(this).val('Routing Number');
+            $(this).addClass('defaultText');
+        }
+    });
+
+
+});$(document).ready(function () {
+    //onload
+    var objRouting = asp$('txtRoutingSearch', 'input');
+    var objAccount = asp$('txtAccountSearch', 'input');
+    var objSerial = asp$('txtSerialSearch', 'input');
+
+    // On Empty input fields set default text and css
+
+    if ($(objRouting).val() == '') {
+        $(objRouting).val('Routing Number');
+        $(objRouting).addClass('defaultText');
+    }
+    if ($(objAccount).val() == '') {
+        $(objAccount).val('Account Number');
+        $(objAccount).addClass('defaultText');
+    }
+    if ($(objSerial).val() == '') {
+        $(objSerial).val('Serial Number');
+        $(objSerial).addClass('defaultText');
+    }
+
+
+    // Set css on post back when input values are not empty
+
+    if ($(objRouting).val() == 'Routing Number') {
+        $(objRouting).addClass('defaultText');
+    }
+    if ($(objAccount).val() == 'Account Number') {
+        $(objAccount).addClass('defaultText');
+    }
+    if ($(objSerial).val() == 'Serial Number') {
+        $(objSerial).addClass('defaultText');
+    }
+
+
+    /*   Toggle hide/show default text inside textboxes
+    /*---------------------------------------------------*/
+
+    //Routing
+    $(objRouting).focus(function () {
+        if ($(this).val() == 'Routing Number') {
+            $(this).val('');
+            $(this).removeClass('defaultText');
+        }
+    });
+    $(objRouting).blur(function () {
+        var strInput = $(this).val();
+        strInput = strInput.replace(/\s/g, "");
+        if (strInput == '') {
+            $(this).val('Routing Number');
+            $(this).addClass('defaultText');
+        }
+    });
+    //Account
+    $(objAccount).focus(function () {
+        if ($(this).val() == 'Account Number') {
+            $(this).val('');
+            $(this).removeClass('defaultText');
+        }
+    });
+    $(objAccount).blur(function () {
+        var strInput = $(this).val();
+        strInput = strInput.replace(/\s/g, "");
+        if (strInput == '') {
+            $(this).val('Account Number');
+            $(this).addClass('defaultText');
+        }
+    });
+    //Serial
+    $(objSerial).focus(function () {
+        if ($(this).val() == 'Serial Number') {
+            $(this).val('');
+            $(this).removeClass('defaultText');
+        }
+    });
+
+    $(objSerial).blur(function () {
+        var strInput = $(this).val();
+        strInput = strInput.replace(/\s/g, "");
+        if (strInput == '') {
+            $(this).val('Serial Number');
+            $(this).addClass('defaultText');
+        }
+        console.log("val: " + $(this).val());
+    });
+
+});

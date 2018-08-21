@@ -1,0 +1,41 @@
+        Dim oShell, oFolder, oFile, strDimensions, strWidth, strHeigth
+
+        'windows 7 Constants
+        Const DIMENSIONS = 31
+        CONST WIDTH  = 162
+        CONST HEIGTH = 164
+
+        Set oShell  = CreateObject ("Shell.Application")
+        Set oFolder = oShell.Namespace ("c:\intranet\querycentral\query\tempimg\")
+        Set oFile   = oFolder.ParseName(filename)
+
+        strDimensions = oFolder.GetDetailsOf(oFile, DIMENSIONS)    
+        strWidth  = oFolder.GetDetailsOf(oFile, WIDTH)
+        strHeigth = oFolder.GetDetailsOf(oFile, HEIGTH)    
+
+        Response.Write( "<br/>Dimensions: " & strDimensions)
+        Response.Write( "<br/>Width: " & strWidth)
+        Response.Write( "<br/>Height: "  & strHeigth)
+
+        Response.Write("<br/> regex: " & RegExReplace(strWidth, "[^0-9]", ""))
+        Response.Write("<br/> regex: " & RegExReplace(strHeigth, "[^0-9]", ""))
+
+        Dim intWidth, intHeigth, ratio
+        intWidth = CInt(RegExReplace(strWidth, "[^0-9]", ""))
+        intHeigth = CInt(RegExReplace(strHeigth, "[^0-9]", ""))
+
+        Response.Write("<br/>intWidth: " & intWidth)
+        Response.Write("<br/>intHeigth: " & intHeigth)
+
+        ratio = intWidth / intHeigth
+
+        Dim newWidth, newHeigth
+
+        newWidth = 734
+
+        newHeigth = (newWidth / ratio)
+
+        response.write("<br/>ratio: " & ratio)
+        Response.Write("<br/>newHeigth: " & newHeigth)
+        Response.Write("<br/>newWidth: " & newWidth)
+        Response.Write("<br/>")

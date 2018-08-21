@@ -1,0 +1,229 @@
+<%@ Page Title="" Language="C#" MasterPageFile="~/site_Login.master" AutoEventWireup="true" CodeFile="contact.aspx.cs" Inherits="contact" %>
+
+<%@ Register Src="~/controls/NcspcPageTitle.ascx" TagPrefix="cs" TagName="NcspcPageTitle" %>
+<%@ Register Src="~/controls/NcpCpLinksBlock.ascx" TagPrefix="cs" TagName="NcpCpLinksBlock" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+
+    <title>Contact Us<cs:NcspcPageTitle runat="server" ID="NcspcPageTitle" /></title>
+
+    <style>
+
+        .row { margin-top: 12px; }
+        .lblLt, .lblRt { float: left; padding-top: 7px; }
+        .lblLt { text-align: right; font-size: 16px; width: 160px; }
+        .lblRt { font-size: 14px; }
+        
+        textarea { float: left; width: 600px; height: 204px; resize: none; }
+
+        .divEmailSubmitted { position: absolute; width: 600px; height: 214px; top: 606px; left: 180px; background-color: #fff; box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.4); z-index: 1600; }
+
+        .homeBtn, .homeBtnTitle, .popupBoxButton { transition: all 0.21s ease-in-out 0s; }
+
+        .homeBtn { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; float: left; width: 50%; padding: 20px 0 26px; }
+        .homeBtn:hover { background-color: #009fbc; }
+
+        .homeBtnTitle { font-size: 16px; color: #0072bc; }
+
+        .homeBtn, .homeBtn:link, .homeBtn:visited { color: #959595; }
+        .homeBtn:link:hover, .homeBtn:visited:hover, .homeBtn:link:active, .homeBtn:visited:active { color: #fff; }
+
+        .homeBtn:link:hover .homeBtnTitle, .homeBtn:visited:hover .homeBtnTitle, .homeBtn:link:active .homeBtnTitle, .homeBtn:visited:active .homeBtnTitle { color: #fff; }
+
+        .popupBoxButton { width: 600px; height: 42px; line-height: 42px; display: block; position: absolute; bottom: 0; font-size: 15px; color: #777; text-align: center; background-color: #f2f2f2; }
+        .popupBoxButton:hover { background-color: #009fbc; color: #fff; }
+
+        .greyoutDiv { cursor: default; }
+
+        #ctl00_ContentPlaceHolder1_ddlEmailSubject { padding: 3px 17px 3px 8px; }
+
+    </style>
+
+</asp:Content>
+
+<asp:Content ID="breadcrumbs" ContentPlaceHolderID="breadcrumbs" runat="server">
+
+    <div class="greyBar"></div>
+
+	<div class="breadcrumbsBack">
+
+	    <div class="breadcrumbs960">
+				
+		    <ul class="breadcrumbsLeft">
+					
+				<li class="first"><a href="/">Home</a></li>
+                <li>Contact Us</li>
+					
+			</ul>
+			
+		</div><!--/breadcrumbs1007-->
+
+    </div><!--/breadcrumbsBack-->
+
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
+
+            <%--<div id="divGreyout" runat="server" class="greyoutDiv" visible="true"></div>--%>
+
+            <asp:LinkButton ID="lnkGreyout" runat="server" class="greyoutDiv" visible="false" OnClick="lnkGreyout_Click" />
+
+            <div class="wrap960 p3020 rel">
+
+                <div class="f22 ht22 mb20">Contact Us</div>
+
+                <%--<asp:LinqDataSource ID="EmailUsLinqDataSource" runat="server" ContextTypeName="EmailUs.ChildSupportDataContext" OrderBy="SubjectOrder" TableName="EmailUs">
+                    </asp:LinqDataSource>--%>
+
+                <div class="mt20 f15" style="max-height: 20px">NCSPC Customer Support (Toll-free):<span class="f18 blue" style="margin-left: 6px">1-877-631-9973</span></div>
+
+                <div class="lh14 mt20">For questions regarding any of the following subjects, contact customer support at <span class="f15 blue">1-877-631-9973</span>, Option 1 (for English), <span class="attention">then Option 2 (for Enforcement)</span>:</div>
+
+                <div class="clearfix" style="margin-top: 8px">
+
+                    <ul class="chevs left mr40" style="margin-left: 70px">
+                        <li class="first">Balance Request</li>
+                        <li>Case Information</li>
+                        <li>Contact Case Worker</li>
+                    </ul>
+
+                    <ul class="chevs left mr40">
+                        <li class="first">Drivers License suspension</li>
+                        <li>Employer Income Withholding</li>
+                        <li>Payment History</li>
+                    </ul>
+
+                    <ul class="chevs left">
+                        <li class="first">Provide information to Enforcement</li>
+                    </ul>
+
+                </div>
+
+                <div class="f15 ht15" style="margin: 24px 0 34px">Or submit an email to NCSPC Customer Service via the following form:</div>
+
+                <div class="row clearfix">
+                    <div class="lblLt">
+                        <asp:Label ID="Label1" runat="server" Text="Subject:" />
+                    </div>
+                    <asp:DropDownList ID="ddlEmailSubject" runat="server" CssClass="left" Width="360">
+                        <asp:ListItem>Select Subject...</asp:ListItem>
+                        <asp:ListItem>Automatic Withdrawal from your bank account</asp:ListItem>
+                        <asp:ListItem>Bank Returned Item (NSF Check)</asp:ListItem>
+                        <asp:ListItem>Billing Statement Options</asp:ListItem>
+                        <asp:ListItem>Direct Deposit Options</asp:ListItem>
+                        <asp:ListItem>Employer Making Payment</asp:ListItem>
+                        <asp:ListItem>Employer Website</asp:ListItem>
+                        <asp:ListItem>Lost Child Support Check</asp:ListItem>
+                        <asp:ListItem>Other</asp:ListItem>
+                        <asp:ListItem>Payment Inquiry</asp:ListItem>
+                        <asp:ListItem>ReliaCard</asp:ListItem>
+                        <asp:ListItem>Website Account Locked</asp:ListItem>
+                        <asp:ListItem>Website Account Password</asp:ListItem>
+                    </asp:DropDownList>
+                    <asp:RequiredFieldValidator ID="rfvEmailSubject" runat="server" CssClass="lblRt attention" ControlToValidate="ddlEmailSubject" ErrorMessage="Subject is required" InitialValue="Select Subject..." ForeColor="#A71A1D" Display="Dynamic" />
+                </div>
+
+                <div class="row clearfix">
+                    <div class="lblLt">Name:</div>
+                    <asp:TextBox ID="txtName" runat="server" CssClass="left" Width="360" MaxLength="50"/>
+                    <asp:RequiredFieldValidator ID="rfvName" runat="server" CssClass="lblRt attention" ErrorMessage="Name is required" ControlToValidate="txtName" ForeColor="#A71A1D" Display="Dynamic" />
+                    <asp:RegularExpressionValidator ID="revName" runat="server" CssClass="lblRt attention" ErrorMessage="Invalid Characters" ControlToValidate="txtName" ValidationExpression="^[\sa-zA-Z'-]+$" ForeColor="#A71A1D" Display="Dynamic" />
+                </div>
+
+                <div class="row clearfix">
+                    <div class="lblLt">SSN (last 4):</div>
+                    <asp:TextBox ID="txtSSN4" runat="server" CssClass="left" MaxLength="4" Width="60" onblur="modifyDisplay('rfvSSN4')" />
+                    <asp:RequiredFieldValidator ID="rfvSSN4" runat="server" CssClass="lblRt attention" ErrorMessage="Last 4 of SSN is required" ControlToValidate="txtSSN4" ForeColor="#A71A1D" Display="Dynamic" />
+                    <asp:RegularExpressionValidator ID="revSSN4" runat="server" CssClass="lblRt attention" ErrorMessage="Invalid (Must be 4 digits)" ControlToValidate="txtSSN4" ValidationExpression="^[\d]{4}$" ForeColor="#A71A1D" Display="Dynamic" />
+                </div>
+
+                <div class="row clearfix">
+                    <div class="lblLt">Email:</div>
+                    <asp:TextBox ID="txtEmail" runat="server" CssClass="left" Width="360" onblur="modifyDisplay('rfvEmail')" />
+                    <asp:RequiredFieldValidator ID="rfvEmail" runat="server" CssClass="lblRt attention" ErrorMessage="Email is required" ControlToValidate="txtEmail" ForeColor="#A71A1D" Display="Dynamic" />
+                    <asp:RegularExpressionValidator ID="revEmail" runat="server" CssClass="lblRt attention" ErrorMessage="Invalid Email" ControlToValidate="txtEmail" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ForeColor="#A71A1D" Display="Dynamic" />
+                </div>
+
+                <div class="row clearfix">
+                    <div class="lblLt">Case #:</div>
+                    <asp:TextBox ID="txtCase" runat="server" CssClass="left" Width="360" MaxLength="20" />
+                    <span class="lblRt g95">(Optional)</span>
+                    <asp:RegularExpressionValidator ID="revCase" runat="server" CssClass="lblRt attention" ErrorMessage="Invalid Characters" ControlToValidate="txtCase" ValidationExpression="^[\w\d]*$" ForeColor="#A71A1D" Display="Dynamic" />
+                </div>
+
+                <div class="row clearfix">
+                    <div class="lblLt">ARP:</div>
+                    <asp:TextBox ID="txtARP" runat="server" CssClass="left" Width="150" MaxLength="13" />
+                    <span class="lblRt g95">(Optional)</span>
+                    <asp:RegularExpressionValidator ID="revARP" runat="server" CssClass="lblRt attention" ErrorMessage="Must be 13 characters (i.e ARCH01234ABCD)" ControlToValidate="txtARP" ValidationExpression="^([\w\d]){13}$" ForeColor="#A71A1D" Display="Dynamic" />
+                </div>
+
+                <div class="row clearfix">
+                    <div class="lblLt">Phone:</div>
+                    <asp:TextBox ID="txtPhone" runat="server" CssClass="left" Width="150" />
+                    <span class="lblRt g95">(Optional)</span>
+                    <asp:RegularExpressionValidator ID="revPhone" runat="server" CssClass="lblRt attention" ErrorMessage="Invalid e.g. (402)123-0000" ControlToValidate="txtPhone" ValidationExpression="((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}" ForeColor="#A71A1D" Display="Dynamic" />
+                </div>
+
+                <div class="clearfix" style="margin: 20px 0">
+
+                    <div class="lblLt">Comments/questions:</div>
+
+                    <asp:TextBox ID="txtComments" runat="server" TextMode="MultiLine" />
+
+                    <asp:RequiredFieldValidator ID="rfvComments" runat="server" CssClass="lblRt attention" ErrorMessage="Required" ControlToValidate="txtComments" ForeColor="#A71A1D" Display="Dynamic" />
+                    <asp:RegularExpressionValidator ID="revCommentsLength" runat="server" CssClass="lblRt attention" ErrorMessage="1000 characters Max" ControlToValidate="txtComments" ValidationExpression="^[^~]{1,1000}$" ForeColor="#A71A1D" Display="Dynamic" />
+
+                </div>
+
+                <div class="tc" style="width: 600px; margin-left: 160px">
+                    <asp:Button ID="buttonSubmit" runat="server" CssClass="button30" OnClick="btnSubmit_Click" Text="Submit" CausesValidation="true" />
+                </div>
+
+                <div class="tc">
+                    <asp:Label ID="lblMessage" runat="server" />
+                </div>
+
+                <div id="divEmailSubmitted" runat="server" class="divEmailSubmitted" visible="false">
+
+                    <div class="tc mt30">
+
+                        <div class="success bold" style="margin: 0 0 20px">Your message has been submitted.</div>
+
+                        <div style="margin: 0 0 10px">A customer service representative will get back to you within 48 hours.</div>
+
+                        <div class="clearfix">
+
+                            <a href="/ncp/default.aspx" class="homeBtn" style="padding-left: 20px">
+                                <div class="homeBtnTitle">NCP Home</div>
+                                <div style="margin-top: 8px">Non-Custodial Parents Paying Child Support</div>
+                            </a>
+                    
+                            <a href="/cp/default.aspx" class="homeBtn" style="padding-right: 20px">
+                                <div class="homeBtnTitle">CP Home</div>
+                                <div style="margin-top: 8px">Custodial Parents Receiving Child Support</div>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    <asp:LinkButton ID="lnkbtnPopupClose" runat="server" CssClass="popupBoxButton" Text="Close" OnClick="lnkbtnPopupClose_Click" />
+
+                </div><!--/divEmailSubmitted-->
+          
+
+                <div class="mt40 mb20">
+                    <cs:NcpCpLinksBlock runat="server" ID="NcpCpLinksBlock" />
+                </div>
+
+            </div><!--/wrap960 p3020 rel-->
+
+        </ContentTemplate>
+    </asp:UpdatePanel>
+
+</asp:Content>
+

@@ -1,0 +1,19 @@
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#charitableGivingPoster").hover(
+                function () {
+                    $("#charitableGivingPoster").css('background-image', 'url("/images/CharitableGivingPoster_2012_large.jpg")');
+                    $("#charitableGivingPoster").css('width', '699px');
+                    $("#charitableGivingPoster").css('height', '801px');
+                    $("#charitableGivingPoster").css('position', 'absolute');
+                },
+                function () {
+                    $("#charitableGivingPoster").css('background-image', 'url("/images/CharitableGivingPoster_2012.jpg")');
+                    $("#charitableGivingPoster").css('width', '230px');
+                    $("#charitableGivingPoster").css('height', '264px');
+                    $("#charitableGivingPoster").css('float', 'right');
+                }
+            );
+        });
+    </script>

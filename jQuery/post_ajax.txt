@@ -1,0 +1,72 @@
+                    $.post("/login/refreshSession.aspx", null,
+                        function(results) { 
+                            var data = $.parseJSON(results);
+                            if (data.session_refreshed != "true")
+                                alert("logout error occurred");
+                            else{
+                                alert("data" + data.session_refreshed);
+                            }
+                              
+                    });
+                    
+                    $.ajax({
+                        type: "POST",
+                        url: "/login/refreshSession.aspx",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "text",
+                        success: function (response) {
+                            var response = $.parseJSON(response);
+                            alert(response.session_refreshed);
+                        },
+                        error: function (response) {
+                            alert("Logging out.  Error occurred");
+                            __doPostBack('ctl00$loginbox$EndSessionLnkBtn', '');
+
+                        }
+                    });
+
+
+
+// POST - PASSING DATA
+            $("#txtCityStateCountry").autocomplete({
+                source: function (request, response) {
+                    term = $("#txtCityStateCountry").val();
+                    alert(term);
+                    $.post("/apps/CitiesStatesCountries.aspx", { term : term } ,
+                                function (results) {
+                                    var data = $.parseJSON(results);
+                                    alert(data[0].CountryName);
+                                    if (data == null)
+                                        alert("error data: " + data[0].CountryName);
+                                    else {
+                                        response($.map(data, function (item) {
+                                            return {
+                                                label: item.CountryName,
+                                                id: item.CountryCode
+                                            };
+                                        }));
+                                    }//return data;//alert(data[0] + " " + data[1] + " " + data[2]);
+                                }
+                    );
+                }
+            });
+
+// AJAX - PASSING DATA
+            $("#txtCityStateCountry").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/apps/CitiesStatesCountries.aspx",
+                        dataType: "json",
+                        data: { term: request.term },
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return {
+                                    label: item.countryName,
+                                    id: item.countryCode
+                                    //abbrev: item.abbrev
+                                };
+                            }));
+                        }
+                    });
+                }
+            });

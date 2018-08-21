@@ -1,0 +1,16 @@
+
+
+select field1.query('/document/header') from #demo
+
+-- output
+	<header>Alphabet</header>
+
+--input
+
+<document>
+  <header>Alphabet</header>
+  <items>
+    <item id="a">a is for apple</item>
+    <item id="b">b is for balloon</item>
+  </items>
+</document>

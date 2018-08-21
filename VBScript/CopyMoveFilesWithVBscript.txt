@@ -1,0 +1,95 @@
+'**********************************************************************
+'  Visual Basic ActiveX Script
+'************************************************************************
+Option Explicit
+	dim folderPath
+	dim flagFileName
+	dim dataFilePath
+	dim importFilePath
+	dim source
+	dim destination
+	dim oFSO
+	dim Folder
+	dim File
+	dim flagFileFound
+	
+
+	
+Function Main()
+	Const vbBinaryCompare = 0
+	Const vbTextCompare = 1
+
+	set oFSO = Createobject("Scripting.FileSystemObject")
+
+	folderPath = "\\kidfile\kidbatches\UndefinedReceipts\"
+	importFilePath = folderPath & "import.txt"
+
+	Set Folder = oFSO.GetFolder(folderPath)
+
+	dim log
+	Set log = oFSO.CreateTextFile(folderPath & "log.txt", true)
+	log.Write(Date & vbCrLf)
+
+	flagFileFound = "N"
+    For Each File in Folder.Files
+	    
+		'If StrComp(oFSO.GetExtensionName(File), "flg", vbTextCompare) =  0 Then
+		If LCase(oFSO.GetExtensionName(File)) = "flg" Then
+		
+			flagFileFound = "Y"
+			flagFileName = oFSO.GetFileName(File)
+			dataFilePath = folderPath & replace(flagFileName, "flg", "dat",1, -1,  1)
+		 
+			If oFSO.FileExists(dataFilePath) Then
+
+				'load import file
+				source = dataFilePath
+				destination = importFilePath	
+				oFSO.CopyFile source, destination, true
+				log.Write("Import File loaded with new Input" & vbCrLf)
+				
+				
+				'if file already exists in archive directory show an  error
+				dim archiveFlagFileDest
+				dim archiveDataFileDest
+				
+				archiveFlagFileDest = folderPath & "old\" & flagFileName
+				archiveDataFileDest = folderPath & "old\" & oFSO.GetFileName(dataFilePath)
+				
+				If oFSO.FileExists(archiveFlagFileDest) and oFSO.FileExists(archiveDataFileDest) Then
+					log.Write("Flag file already exists in archive folder. Path: " & archiveFlagFileDest & vbCrLf)
+					log.Write("Data file already exists in archive folder. Path: " & archiveDataFileDest & vbCrLf)
+				ElseIf oFSO.FileExists(archiveFlagFileDest) Then
+					log.Write("Flag file already exists in archive folder. Path: " & archiveFlagFileDest & vbCrLf)
+				ElseIf oFSO.FileExists(archiveDataFileDest) Then
+					log.Write("Data file already exists in archive folder. Path: " & archiveDataFileDest & vbCrLf)
+				Else
+					' *** move input files to OLD folder ***
+					source = folderPath & "WEMP????????.???"
+					destination = folderPath & "old\"
+					oFSO.MoveFile source, destination					
+					log.Write("Input Files archived" & vbCrLf)
+				End If
+				
+								
+			End If
+			
+			Exit For
+		End If
+		
+		
+		
+			
+    Next
+	
+	If flagFileFound = "N" Then
+		log.Write("*** No flag file found ***" & vbCrLf)
+	End If
+	
+	log.Write("DONE!" & vbCrLf)
+	log.Close
+	
+	Set oFSO = Nothing
+	Main = DTSTaskExecResult_Success
+	    
+End Function

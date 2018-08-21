@@ -1,0 +1,45 @@
+ASPX PAGE    
+
+<form id="form1" runat="server">
+		<script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+		
+        
+
+            <button id="button" name="button" type="button">Click Me</button>
+            <div id="Result"></div>
+
+                <script type="text/javascript">
+
+                    $(document).ready(function () {
+                        // Add the page method call as an onclick handler for the div.
+                        $("#button").click(function () {
+                            $.ajax({
+                                type: "POST",
+                                url: "Employees.asp", // I don't know how to make it work with aspx page or a JSON response
+                                data: "",
+                                //contentType: "json; charset=utf-8",
+                                dataType: "text",
+                                success: function (res) {
+                                    var obj = $.parseJSON(res);                                    
+                                    var employees = "";
+                                    for (var i = 0; i < obj.employees.length; i++) {
+                                        employees += obj.employees[i].fname + " " + obj.employees[i].lname + "<br/>";
+                                    }
+                                    $("#Result").html(employees); //$("#Result").text(msg.d);
+                                },
+                                failure: function () {
+                                    alert("failure in ajax request");
+                                }
+                            });
+                        });
+                    });
+
+		</script>
+    </form>
+
+CLASSIC ASP PAGE THAT GETS CALLED BY AJAX ABOVE
+
+<%Option Explicit%>
+<%
+Response.Write("{ ""employees"" : [{""fname"": ""carlo"", ""lname"":""spader""}, {""fname"": ""oscar"", ""lname"":""spader""}] }")
+%>

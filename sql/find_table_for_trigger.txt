@@ -1,0 +1,10 @@
+select so.name, text
+from sysobjects so, syscomments sc
+where type = 'TR'
+and so.id = sc.id
+and text like '%YoutTableName%'
+
+
+-- LIST OF TRIGGERS WITH TABLES NAMES
+select object_name(parent_obj) as table_name, name as trigger_name 
+from sysobjects where xtype = 'tr'

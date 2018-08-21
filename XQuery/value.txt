@@ -1,0 +1,19 @@
+
+
+select field1.value('(/document/items/item)[1]', 'nvarchar(max)') from #demo
+
+
+output
+
+a is for apple
+
+--input
+
+<document>
+  <header>Alphabet</header>
+  <items>
+    <item id="a">a is for apple</item>
+    <item id="b">b is for balloon</item>
+  </items>
+</document>
+

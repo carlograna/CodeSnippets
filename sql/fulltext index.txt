@@ -1,0 +1,5 @@
+create fulltext catalog ChildSupportFT;
+
+create fulltext index on CityStateCountry_vw(citystatecountry) -- TABLE OR VIEW
+key index PK__CityStat__3214EC277E62A77F on ChildSupportFT -- REFERS TO INDEX NAME ON THE NEWLY CREATED FULLTEXT CATALOG
+with change_tracking auto;  -- AUTO UPDATING OF THE CATALOG WHEN THE ORIGIN TABLE IS CHANGED

@@ -1,0 +1,28 @@
+RabbitMQ
+Advanced Message Queueing Protocol (AMQP)
+Message broker that implements AMQP
+
+Publisher -> Exchange ->
+						Queue 1 -> Consumer
+						Queue 2 -> Consumer
+
+
+Core Concepts
+Producer emits messages to exchange
+Consumer receives messages from a queue
+Binding connects an exchange with a queue using binding key
+Exchange compares the routing key with the binding key
+Messages distribution depends on exchange type
+Exchange types: fanout, direct, topic and headers
+Default (nameles)exchange
+Special exchange created by RabbitMQ
+Compares routing key with queue name
+Indirectly allows sending directly to queues
+
+
+ConnectionFactory
+
+
+//Create a project named Send
+dotnet new console --name Send
+

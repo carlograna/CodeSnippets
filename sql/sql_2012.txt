@@ -1,0 +1,41 @@
+create sequence seq_name
+	start with 1
+	increment by 1
+min	1
+max 10
+
+SELECT NEXT VALUE FROM seq_name
+
+
+alter sequence seq_name
+restart with 2
+increment by 2
+minvalue 2
+maxvalue 10
+cycle
+
+
+/********************************************
+	Logical Functions: CHOOSE & IFF
+********************************************/
+SELECT CHOOSE (2, 'Peter', 'Paul', Mary') 
+	-- returns Peter
+
+SELECT IFF(1=2, 'Apples', 'Oranges')
+	-- returns Oranges
+	
+	
+/********************************************
+	Date and Time Functions: CHOOSE & IFF
+********************************************/
+
+SELECT DATEFROMPARTS(2012, 8, 4)
+SELECT DATETIMEFROMPARTS(2012, 2, 20, 14, 30, 5, 10)
+
+SELECT EOMONTH(@startDate)
+SELECT EOMONTH(@startDate, -1)
+SELECT EOMONTH(@startDate, 2)
+
+/********************************************
+	OFFSET AND FETCH
+********************************************/

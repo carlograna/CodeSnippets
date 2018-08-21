@@ -1,0 +1,5 @@
+//remove commas
+parseFloat(yournumber.replace(/,/g, ''))
+
+//parse 2 decimals
+parseFloat(Math.round(rowTotal* 100) / 100).toFixed(2))

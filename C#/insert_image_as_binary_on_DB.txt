@@ -1,0 +1,24 @@
+// INSERT BINARY DATA TO SAVE AN IMAGE FROM AN INPUT FILE CONTROL
+
+                    //fileImage is name of asp:FileUpload control
+
+
+                    System.IO.Stream fs = fileImage.PostedFile.InputStream;
+                    System.IO.BinaryReader br = new System.IO.BinaryReader(fs);
+                    fs.Position = 0;
+                    Byte[] bytes = br.ReadBytes((Int32)fs.Length);
+
+                    //insert the file into database
+                    string strQuery = "insert into SupportTickets(Ticket_ID, Date_Init, Staff_Init, Notes_Init, Closed, Image_Name, Image_Type, Image_Data)" + " values (@Ticket_ID, @Date_Init, @Staff_Init, @Notes_Init, @Closed, @Image_Name, @Image_Type, @Image_Data)";
+                    SqlCommand cmd = new SqlCommand(strQuery);
+                    cmd.Parameters.Add("@Ticket_ID", System.Data.SqlDbType.BigInt).Value = ticketNumber;
+                    cmd.Parameters.Add("@Date_Init", System.Data.SqlDbType.DateTime).Value = DateTime.Now;
+                    cmd.Parameters.Add("@Staff_Init", System.Data.SqlDbType.VarChar).Value = user;
+                    cmd.Parameters.Add("@Notes_Init", System.Data.SqlDbType.VarChar).Value = comments.Text;
+                    cmd.Parameters.Add("@Closed", System.Data.SqlDbType.Bit).Value = 0;
+                    cmd.Parameters.Add("@Image_Name", System.Data.SqlDbType.VarChar).Value = filename;
+                    cmd.Parameters.Add("@Image_Type", System.Data.SqlDbType.VarChar).Value = contenttype;
+                    cmd.Parameters.Add("@Image_Data", System.Data.SqlDbType.Binary).Value = bytes;
+                    InsertUpdateData(cmd);
+                    lblMessage.ForeColor = System.Drawing.Color.Green;
+                    lblMessage.Text = "Success";

@@ -1,0 +1,9 @@
+CBool() - Convert to Boolean Type
+CByte() - Convert to Byte Value
+CCur() - Convert to Currency Type
+CDate() - Convert to Date Value
+CDbl() - Convert to a Double Value
+CInt() - Convert to Integer Value
+CLng() - Convert to Long Integer Value
+CSng() - Convert to a Single Value
+CStr() - Convert to String Value

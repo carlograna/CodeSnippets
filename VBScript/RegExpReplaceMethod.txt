@@ -1,0 +1,11 @@
+Function Replace(inputString, pattern, replaceString)
+  Dim regEx 
+
+  ' Create regular expression.
+  Set regEx = New RegExp
+  regEx.Pattern = pattern
+  regEx.IgnoreCase = True
+
+  ' Make replacement.
+  Replace = regEx.Replace(inputString, replaceString)
+End Function

@@ -1,0 +1,22 @@
+declare @data varchar(80) = 'DED*CS*CI09153*20120709*10247*529498490*Y*LOPEZSAMUE**N\'
+	,@delimiter char(1) =  '*'
+	,@position int = 5
+	
+	----------------------------
+
+	set @loopCnt=1
+	set @endPos = 1
+	while @loopCnt <= @position
+	begin
+		set @startPos = @endPos
+		set @endPos = charindex(@delimiter,@data,@startPos+1)
+		set @loopCnt = @loopCnt + 1
+		select @startPos
+	end 
+
+if @startPos > 1
+	begin
+	set @startPos = @startPos + 1
+	set @value=substring(@data,@startPos,@endPos-@startPos)
+	end
+else

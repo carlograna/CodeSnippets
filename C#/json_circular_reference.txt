@@ -1,0 +1,10 @@
+
+//Without JsonConvert.SerializeObject method I get a circular reference problem
+
+var objPerson = JsonConvert.SerializeObject(person, Formatting.None,
+                        new JsonSerializerSettings()
+                        {
+                            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                        });
+
+return Json(objPerson, JsonRequestBehavior.AllowGet);

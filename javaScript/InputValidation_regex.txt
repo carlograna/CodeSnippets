@@ -1,0 +1,66 @@
+var input = "hello222";
+var ok = false;
+
+var dob_regex = /^([0-9]){2}(\/){1}([0-9]){2}(\/)([0-9]){4}$/;   // DD/MM/YYYY
+var email_regex = /^[a-zA-Z0-9._-]+@([a-zA-Z0-9.-]+\.)+[a-zA-Z0-9.-]{2,4}$/;  // email address
+var username_regex = /^[\w.-]+$/;  // allowed characters: any word . -, ( \w ) represents any word character (letters, digits, and the underscore _ ), equivalent to [a-zA-Z0-9_]
+var num_regex = /^\d+$/; // numeric digits only
+var search_regex = "/hello/"; 
+var password_regex = /^[A-Za-z\d]{6,8}$/;  // any upper/lowercase characters and digits, between 6 to 8 characters in total
+var phone_regex = /^\(\d{3]\) \d{3}-\d{4}$/;  // (xxx) xxx-xxxx  
+var question_regex = /\?$/; // ends with a question mark
+
+1. Check that there are at least 3 numeric characters in input
+
+if ( input.match(/d/g) == null ) {
+	 ok = false;
+} else if ( input.match(/d/g).length < 3 )  {
+	 ok = false;	
+} else {
+	 ok = true;	
+}
+2. Check that the input has a minimum of 8 characters
+
+if ( input.length >= 8 ) {
+	 ok = true;	
+}
+3. Check that the input is in a correct date format (DD/MM/YYYY)
+
+if ( dob_regex.test(input) ) {
+	ok = true;	
+}
+4. Check that the input is in a correct email format (username@example.com)
+
+if ( email_regex.test(input) ) {
+	ok = true;	
+}
+5. Check that the input matches the specified username format
+
+if ( username_regex.test(input) ) {
+	ok = true;	
+}
+6. Check that the input contains only numeric characters
+
+if ( input.match(num_regex) ) {
+	ok = true;	
+}
+7. Search for a specific word in the input
+
+if ( input.search(search_regex) != -1 ) {
+	ok = true;	
+}
+8. Check that the input matches the specified password format
+
+if ( input.match(password_regex) ) {
+	ok = true;	
+}
+9. Check that the input matches the specified phone number format
+
+if ( input.match(phone_regex) ) {
+	ok = true;	
+}
+10. Check that the input is a question (ends with a question mark)
+
+if ( question_regex.test(input) ) {
+	ok = true;	
+}

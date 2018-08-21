@@ -1,0 +1,15 @@
+
+http://phrogz.net/css/vertical-align/index.html
+
+
+<style type="text/css">
+	#myoutercontainer { position:relative }
+	#myinnercontainer { position:absolute; top:50%; height:10em; margin-top:-5em }
+</style>
+...
+<div id="myoutercontainer">
+	<div id="myinnercontainer">
+		<p>Hey look! I'm vertically centered!</p>
+		<p>How sweet is this?!</p>
+	</div>
+</div>

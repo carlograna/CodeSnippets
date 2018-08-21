@@ -1,0 +1,51 @@
+    <script type="text/javascript">
+        function enlargeImage() {
+            window.open("images/CharitableGivingPoster_2012_large.jpg", "Charitable Giving Campaign 2012", "width=699, height=801");
+        }
+    </script>
+        #container
+        { 
+            float:right;
+            width:230px;
+            height:300px;
+        }
+        
+        #poster
+        {   
+            background-image:url('images/CharitableGivingPoster_2012.jpg');
+            width:230px;
+            height:264px;
+        }
+        
+        #container a
+        {
+            font-size:9px;
+            font-family:Verdana;
+            float:right;
+            color:#33689E;
+        }
+        
+        #container a:hover
+        {
+            text-decoration:underline;
+            
+        }
+
+        #enlargeContainer
+        {
+            padding:10px 5px;
+        }
+        
+        #container img
+        {
+            float:right;
+        }
+        
+
+        <div id="container">
+            <div id="poster"></div>
+            <div id="enlargeContainer">
+                <a onclick="enlargeImage()">Enlarge<br />Image</a>
+                <img alt="Enlarge Icon" src="images/enlargeIcon.jpg" />
+            </div>
+        </div>

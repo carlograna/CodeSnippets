@@ -1,0 +1,103 @@
+dbcc traceon(1222) 			-- session level	
+dbcc traceoff(1222)
+
+dbcc traceon(1222, -1)		-- global level
+dbcc traceoff(1222, -1)
+
+dbcc tracestatus(1222)		-- to check the status on/off
+
+exec sp_readerrorlog		-- after the deadlock has been created here where you find your error information
+
+
+HOW TO READ THE ERROR LOG:
+Look for "deadlock victim" that will contain the "process ID" of the process that wasn't executed.
+
+
+https://www.youtube.com/watch?v=sBRA4rIXRig -- video on sql server profiler
+
+
+EXAMPLE:
+
+
+CREATE TABLES --------------------------------------
+
+if object_id('TableA')is not null
+	drop table TableA
+	
+create table TableA
+(
+	ID int identity(1,1) primary key
+	,Name varchar(30)
+)
+
+
+insert into TableA
+select 'aaaaa'
+
+if OBJECT_ID('TableB') is not null
+	drop table TableB
+
+create table TableB
+(
+	ID int identity(1,1) primary key
+	,Name varchar(30)
+)
+
+insert into TableB
+select 'bbbbb'
+
+
+exec sp_helptext 'sp_readerrorlog'
+
+
+STORED PROCEDURES --------------------------------------
+
+USE itemprocessing;
+go
+create procedure sp_tran1
+as
+begin
+	begin tran
+		update TableA
+		set Name = 'Arturo'
+		where id = 1
+		
+		waitfor delay '00:00:05'
+		
+		update TableB
+		set Name = 'Carlo'
+		where id = 1 
+		
+	commit tran
+end
+go
+
+
+
+
+USE itemprocessing;
+go
+create procedure sp_tran2
+as
+begin
+	begin tran
+			update TableB
+		set Name = 'Carlo'
+		where id = 1 
+		
+		waitfor delay '00:00:05'
+		
+		update TableA
+		set Name = 'Arturo'
+		where id = 1
+		
+	commit tran
+end
+go
+
+
+
+
+execute sp_tran1
+
+execute sp_tran2;

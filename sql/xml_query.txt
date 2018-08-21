@@ -1,0 +1,32 @@
+create table #demo (field1 xml)
+insert into #demo (field1) 
+values ('
+
+<document>
+<header>Alphabet</header>
+<items>
+<item id="a">a is for apple</item>
+<item id="b">b is for baloon</item>
+<item id="a">a is for avion</item>
+<item id="b">b is for bebe</item>
+</items>
+</document>
+
+')
+
+-- QUERY
+select field1.query('(/document/items/item[@id="a"])[2]')
+from #demo
+
+ -- result: <item id="a">a is for avion</item>
+
+
+-- VALUE
+select field1.value('(/document/items/item)[3]', 'nvarchar(100)')
+from #demo
+ -- result: a is for avion
+
+-- For Xml with Namespaces use:
+select field1.value('(//*[local-name()="item"])[1]', 'nvarchar(100)')
+from #demo
+ -- result: a is for apple

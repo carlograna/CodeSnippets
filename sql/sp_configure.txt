@@ -1,0 +1,8 @@
+sp_configure 
+sp_configure 'max_server_memory'
+sp_configure 'max_server_memory', 'new run value'
+reconfigure -- run this to make the change
+
+Value for the max_server_memory setting is
+(Total Physical Memory * # SqlInstances) - OS Physical Memory  / # Sql Instances
+

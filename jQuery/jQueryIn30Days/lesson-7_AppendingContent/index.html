@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>jquery Day 5</title>
+    <link rel="Stylesheet" href="style.css" />
+
+</head>
+<body>
+    <dl>
+        <dt>What are your hours?</dt>
+        <dd>We are open 24/7</dd>
+        <dt>What are your hours?</dt>
+        <dd>We are open 24/7</dd>
+        <dt>What are your hours?</dt>
+        <dd>We are open 24/7</dd>
+        <dt>What are your hours?</dt>
+        <dd>We are open 24/7</dd>
+        <dt>What are your hours?</dt>
+        <dd>We are open 24/7</dd>
+    </dl>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
+    <script type="text/javascript">
+        (function () {
+            // I could get rid of the line below for dd only gets called once after declaration.
+            var dd = $('dd');
+
+            dd.filter(':nth-child(n+3)').addClass('hide');
+
+            // $('dt').on('mouseenter', function () { //The line below attaches one event lister to every posibled dt
+            // is better to attach it to the paretn dl, like so:
+            $('dl').on('mouseenter', 'dt', function () {
+                $(this)
+                    .next()
+                        .slideDown(200)
+                        .siblings('dd')
+                            .slideUp(200);
+
+//                this is the same as above just less efficient:
+//                $(this).next().siblings('dd').hide();
+//                $(this).next().show();
+            });
+
+
+        })();
+    </script>
+</body>
+</html>

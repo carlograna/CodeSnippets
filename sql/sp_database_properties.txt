@@ -1,0 +1,126 @@
+SE MASTER
+GO 
+CREATE PROCEDURE sp_list_database_properties @dbname nvarchar(128) 
+AS 
+IF NOT EXISTS (SELECT name FROM sysdatabases WHERE name = @dbname)
+   PRINT 'Database ' + UPPER(@dbname) + ' does not exist. Please supply correct database name !'
+ELSE
+    BEGIN
+   PRINT 'Database Properties SET For ' + @dbname + ' :
+   '
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsAnsiNullDefault')) = 1
+      PRINT 'IsAnsiNullDefault'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsAnsiNullsEnabled')) = 1
+      PRINT 'IsAnsiNullsEnabled'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsAnsiWarningsEnabled')) = 1
+      PRINT 'IsAnsiWarningsEnabled'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsAutoClose')) = 1
+      PRINT 'IsAutoClose'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsAutoShrink')) = 1
+      PRINT 'IsAutoShrink'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsAutoCreateStatistics')) = 1
+      PRINT 'IsAutoCreateStatistics'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsAutoUpdateStatistics')) = 1
+      PRINT 'IsAutoUpdateStatistics'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsBulkCopy')) = 1
+      PRINT 'IsBulkCopy'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsCloseCursorsOnCommitEnabled')) = 1
+      PRINT 'IsCloseCursorsOnCommitEnabled'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsDboOnly')) = 1
+      PRINT 'IsDboOnly'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsDetached')) = 1
+      PRINT 'IsDetached'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsEmergencyMode')) = 1
+      PRINT 'IsEmergencyMode'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsFulltextEnabled')) = 1
+      PRINT 'IsFulltextEnabled'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsInLoad')) = 1
+      PRINT 'IsInLoad'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsInRecovery')) = 1
+      PRINT 'IsInRecovery'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsInStandBy')) = 1
+      PRINT 'IsInStandBy'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsLocalCursorsDefault')) = 1
+      PRINT 'IsLocalCursorsDefault'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsNotRecovered')) = 1
+      PRINT 'IsNotRecovered'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsNullConcat')) = 1
+      PRINT 'IsNullConcat'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsOffline')) = 1
+      PRINT 'IsOffline'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsQuotedIdentifiersEnabled')) = 1
+      PRINT 'IsQuotedIdentifiersEnabled'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsReadOnly')) = 1
+      PRINT 'IsReadOnly'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsRecursiveTriggersEnabled')) = 1
+      PRINT 'IsRecursiveTriggersEnabled'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsShutDown')) = 1
+      PRINT 'IsShutDown'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsSingleUser')) = 1
+      PRINT 'IsSingleUser'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsSuspect')) = 1
+      PRINT 'IsSuspect'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsTruncLog')) = 1
+      PRINT 'IsTruncLog'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsPendingUpgrade')) = 1
+      PRINT 'IsPendingUpgrade'
+   PRINT ''
+   PRINT 'Database Properties NOT SET For ' + @dbname + ' :
+   '
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsAnsiNullDefault')) = 0
+      PRINT 'IsAnsiNullDefault'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsAnsiNullsEnabled')) = 0
+      PRINT 'IsAnsiNullsEnabled'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsAnsiWarningsEnabled')) = 0
+      PRINT 'IsAnsiWarningsEnabled'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsAutoClose')) = 0
+      PRINT 'IsAutoClose'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsAutoShrink')) = 0
+      PRINT 'IsAutoShrink'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsAutoCreateStatistics')) = 0
+      PRINT 'IsAutoCreateStatistics'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsAutoUpdateStatistics')) = 0
+      PRINT 'IsAutoUpdateStatistics'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsBulkCopy')) = 0
+      PRINT 'IsBulkCopy'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsCloseCursorsOnCommitEnabled')) = 0
+      PRINT 'IsCloseCursorsOnCommitEnabled'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsDboOnly')) = 0
+      PRINT 'IsDboOnly'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsDetached')) = 0
+      PRINT 'IsDetached'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsEmergencyMode')) = 0
+      PRINT 'IsEmergencyMode'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsFulltextEnabled')) = 0
+      PRINT 'IsFulltextEnabled'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsInLoad')) = 0
+      PRINT 'IsInLoad'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsInRecovery')) = 0
+      PRINT 'IsInRecovery'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsInStandBy')) = 0
+      PRINT 'IsInStandBy'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsLocalCursorsDefault')) = 0
+      PRINT 'IsLocalCursorsDefault'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsNotRecovered')) = 0
+      PRINT 'IsNotRecovered'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsNullConcat')) = 0
+      PRINT 'IsNullConcat'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsOffline')) = 0
+      PRINT 'IsOffline'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsQuotedIdentifiersEnabled')) = 0
+      PRINT 'IsQuotedIdentifiersEnabled'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsReadOnly')) = 0
+      PRINT 'IsReadOnly'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsRecursiveTriggersEnabled')) = 0
+      PRINT 'IsRecursiveTriggersEnabled'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsShutDown')) = 0
+      PRINT 'IsShutDown'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsSingleUser')) = 0
+      PRINT 'IsSingleUser'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsSuspect')) = 0
+      PRINT 'IsSuspect'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsTruncLog')) = 0
+      PRINT 'IsTruncLog'
+   IF (SELECT DATABASEPROPERTY(@dbname, 'IsPendingUpgrade')) = 0
+      PRINT 'IsPendingUpgrade'
+    END

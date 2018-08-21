@@ -1,0 +1,54 @@
+Moq
+
+//Arrange
+var mockRepository = new Mock<ICustomerRepository>();
+
+mockRepository.Setup(x => x.Save(It.IsAny<Customer>()));
+
+var customerService = new CustomerService(mockRepository.Object);
+
+//Act
+customerService.Create(new CustomerToCreateDto());
+
+//Assert
+mockRepository.VerifyAll();
+mockFullNameBuilder.Verify(x=>x.From(
+
+						It.Is<string>( fn => fn.Equals(CustomerToCreateDto.FirstName, StringComparison.InvariantCultureIgnoreCase)),
+						It.Is<string>( ln => ln.Equals(CustomerToCreateDto.LastName, StringComparison.InvariantCultureIgnoreCase))))
+						
+
+
+**Mocking	properties
+
+Setter: --> to see if a property has been set
+.VerifySet(x=>x.LocalTimeZone = It.IsAny<string>()); 
+
+Getter: --> to see if it has been called
+.VerifyGet(x-=>x.PropertyID);
+
+
+**Stubbing properties
+.SetupProperty(x => x.WorkStationId, 1234);
+.SetupAllProperties();
+
+**Mocking Events
+.Raise(x => x.NotifySalesTeam += null, new NotifySalesTeamEventArgs("jim"));
+
+**Strict / Loose Mocking
+var mockCustomerRepository = new Mock<ICustomerReposity>(MockBehavior.Strict);
+
+** Base class implementations
+
+**Recursive Mocking
+
+
+** Centralizing Mock Creation
+
+
+** Protected Members (no intellisense for protected members), Must use ItExpr
+using Mock.Protected;
+
+mock.Protected().Setup<string("ParseBadWordsFrom", ItExpr.IsAny<string>())
+.returns("asdf")
+.Verifiable();

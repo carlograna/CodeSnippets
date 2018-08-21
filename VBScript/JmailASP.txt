@@ -1,0 +1,281 @@
+<%Option Explicit%>
+
+<!--#include file="AllPages.inc"-->
+<!--#include file="ADODataConnections.asp"-->
+<!--#include file="CountyDocs.vbs"-->
+<!--#include file="login.vbs"-->
+<%'*********************************************************************************************************************************%>
+<%
+
+
+'if form submitted successfully
+	If Request.QueryString("mode")= "submitted"	Then
+		Response.write("<script>alert('hola mundo');</script>")
+		SendJmail
+	end if
+%>
+<%Function SendJMail()
+'Declare variables
+	Dim JMail
+	Dim strBody
+	Dim strName
+	Dim strPhone
+	Dim strEmail
+	Dim StrComments	
+	
+	'Set variable
+	strName=Request.Form("name")
+	strPhone=Request.Form("phone")
+	strEmail=Request.Form("email")
+	strComments=Request.Form("comments")
+	
+	'put variable value in Body of Email
+	strBody = "Name: " & strName & vbCrLf
+	strBody = strBody & "Phone: " & strPhone & vbCrLf
+	strBody = strBody & "Email: " & strEmail & vbCrLf & vbCrlf
+	strBody = strBody & "Comments: " & strComments
+	
+	'Creating Mail Object and setting properties
+	Set JMail = Server.CreateObject("JMail.Message") 
+	JMail.From = "NoReply"
+	JMail.ContentType = "text/plain"
+	JMail.AddHeader "Originating-IP", Request.ServerVariables("REMOTE_ADDR")
+		
+	JMail.Subject = "Contact Us"
+	JMail.AddRecipient "cspader@treasurer.org"	
+	JMail.Body = strBody
+	JMail.Send "pony.treasurer.org"	
+	JMail.ClearRecipients
+
+	JMail.Close()
+	set JMail = nothing
+End Function%>
+<%'*********************************************************************************************************************************%>
+<script type="text/javascript">
+<!--
+
+function validateForm ( )
+{
+    valid = true;
+
+    if ( document.contactUsForm.name.value == "" )
+    {
+        alert ( "Please fill in 'Your Name'." );
+        valid = false;   
+	}
+	else  if ( document.contactUsForm.phone.value == "" ) 
+	{
+		alert ( "Please fill in 'Your Phone Number'." );
+		valid = false;
+    }
+	else if ( document.contactUsForm.email.value == "" ) 
+	{
+		alert ( "Please fill in 'Your Email Address'." );
+		valid = false;
+	}
+ 
+    return valid;
+	
+}
+
+//-->
+</script>
+<%'*********************************************************************************************************************************%>
+
+<%
+Dim errorMsg
+errorMsg=""
+
+select case Request.querystring("mode")
+	case "VerifyLogin"
+		if trim(Session("LoginID")) <> "" then
+			BuildLoginSuccessPage
+		elseIf ValidateLogin(Request.Form("loginID"), Request.Form("password")) = "Valid" then
+			BuildLoginSuccessPage
+		else
+			errorMsg = "Invalid Login ID or Password"
+			'Do not cache the login page. 
+			BuildPage
+			Session.Abandon()
+			Response.CacheControl = "no-cache" 
+			Response.AddHeader "Pragma", "no-cache" 
+			Response.Expires = -1 
+		end if
+	case "Logoff"
+		Session.Abandon()
+		Response.Redirect("login.asp")
+	case "ChangePassword"
+		BuildChangePasswordPage
+	case "VerifyChangePassword"
+		VerifyChangePassword
+	case "ForgotPassword"
+		BuildForgotPasswordPage
+	case "ConfirmEmail"
+		BuildConfirmEmailPage
+	case "EmailPassword"
+		if Session("email") = "" then
+			Response.Redirect("login.asp?ForgotPassword")
+		else
+			BuildEmailPasswordPage
+		end if
+	case Else
+		'Do not cache the login page. 
+		BuildPage
+		Session.Abandon()
+		Response.CacheControl = "no-cache" 
+		Response.AddHeader "Pragma", "no-cache" 
+		Response.Expires = -1 
+End Select %>  
+
+<%Sub BuildPage
+	BuildHeader
+	BuildTopNav
+	BuildLeftNav
+	BuildContent
+	BuildFooter 
+End Sub%>
+
+<%Sub BuildLoginSuccessPage
+	BuildHeader
+	BuildTopNav
+	BuildLeftNav
+	BuildLoginSuccessContent
+	BuildFooter
+End Sub%>
+
+<%Sub BuildChangePasswordPage
+	BuildHeader
+	BuildTopNav
+	BuildLeftNav
+	BuildChangePasswordContent
+	BuildFooter
+End Sub%>
+
+<%Sub BuildChangePasswordSuccessPage
+	BuildHeader
+	BuildTopNav
+	BuildLeftNav
+	BuildChangePasswordSuccessContent
+	BuildFooter
+End Sub%>
+
+<%Sub BuildForgotPasswordPage
+	BuildHeader
+	BuildTopNav
+	BuildLeftNav
+	BuildForgotPasswordContent
+	BuildFooter
+End Sub%>
+
+<%Sub BuildConfirmEmailPage
+	BuildHeader
+	BuildTopNav
+	BuildLeftNav
+	BuildConfirmEmailContent
+	BuildFooter
+End Sub%>
+
+<%Sub BuildEmailPasswordPage
+	BuildHeader
+	BuildTopNav
+	BuildLeftNav
+	BuildEmailPasswordContent
+	BuildFooter
+End Sub%>
+
+<%Sub BuildContent%>
+<div class="mainContent">
+        <h1>Contact Us</h1>
+        <hr />
+        
+        <p align="left">You may contact Treasury Management staff at anytime vai email by submitting the form below.
+        If you need to speak directly to a member of the Treasuy Management Staff, please call (402) 471-1245 
+        and ask for Treasury Management.<br />
+        </p>
+        
+        <p>THANK YOU</p>
+       
+        <form id="contactUsForm" name="contactUsForm" method="post" action="contactUs.asp?mode=submitted" onSubmit="return validateForm();" >          
+          <table border=1 bordercolor="red" align="left">
+            <tr>
+              <td class="right">Name:</td>
+              <td><input name="name" type="text" id="name" autocomplet="off"></td>
+            </tr>
+            <tr>
+              <td class="right">Phone:</td>
+              <td><input name="phone" type="text" id="phone" autocomplet="off"></td>
+            </tr>
+            <tr>
+              <td class="right">Email:</td>
+               <td><input name="email" type="text" id="email" autocomplet="off"></td>
+            </tr> 
+            <tr><td>&nbsp;</td></tr>
+            <tr>
+              <td>Comments:</td>               
+            </tr>
+            <tr>
+              <td colspan="2"><textarea name="comments" cols="70" rows="10" id="comments" autocomplet="off"></textarea></td>
+            </tr>
+            <tr><td>&nbsp;</td></tr>
+            <tr>             
+              <td><input autocomplete="off" name="submit2" type="submit" value="Submit"></td>
+            </tr>           
+          </table>           
+        </form>
+        
+        <%
+		if errorMsg <> "" then
+			response.write("<span class=""error"">" & errorMsg & "</span>")
+		end if%>
+</div> <!-- end mainContent -->
+     <!-- This clearing element should immediately follow the #mainContent div in order to force the #container div to contain all child floats --><br class="clearfloat" />
+<%End Sub%>
+
+<%Sub BuildLoginSuccessContent%>
+<div class="mainContent">
+        
+       
+        <%
+		GetEmail(Request.Form("loginID"))
+		if Session("Email") <> "" Then
+			response.write("<p>The password for " & Session("FirstName") & " " & Session("LastName") & " will be sent to <span class=""textAccent"">" & Session("Email") & "</span></p>")
+			response.write("<p>If this is not your correct email address, please contact Treasury Management at (402) 471-1245.</p>")
+		else
+			response.write("<p>Unable to determine your email address.<br />Please contact Treasury Management at(402) 471-1245.</p>")
+		end if
+		%>
+       	       
+        <p>&nbsp;</p>
+        
+        <form method="post" action="login.asp?mode=ConfirmEmail" id=loginForm name=loginForm onSubmit="validate()">
+        <table>
+             <tr><td><input autocomplete="off" name="sendPassword" type="button" value="Send Password" 
+             		 onClick="location.href='login.asp?mode=EmailPassword'">&nbsp;&nbsp;</td>
+             	 <td><input autocomplete="off" name="cancelEmail" type="button" value="Cancel" 
+                 	 onClick="location.href='login.asp'"></td>
+             </tr>
+        </table>
+        
+      <!-- end mainContent -->
+     <!-- This clearing element should immediately follow the #mainContent div in order to force the #container div to contain all child floats --><br class="clearfloat" />
+<%End Sub%>
+
+
+<%Sub BuildFooter%>
+    <div class="footer">
+        <p>Copyright 1997-<% response.Write (year(date)) %>, Nebraska State Treasurer</p>
+    </div><!-- end footer --><!-- end container -->
+    </body>
+    </html>
+<%End Sub%>
+
+
+
+<script type="text/javascript">
+function  setFocus()
+{
+		if (typeof document.forms[0] != 'undefined')
+		document.forms[0].elements(0).focus();
+}
+</script>
+

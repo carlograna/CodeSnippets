@@ -1,0 +1,10 @@
+.change_opacity {
+  opacity: 0.5;
+  filter: alpha(opacity = 50); /* for IE */
+ zoom: 1 ;
+}
+
+ZOOM
+/*But simply setting the filter/opacity value in IE isn’t enough. Turns out that IE requires an element to be positioned in order for filter/opacity to work. If your element doesn’t have a position you can work around this by adding ‘zoom: 1‘ to your CSS. There are other hacks to deal with this, zoom was the one I picked and it seems to work well enough.
+
+In JavaScript you can find out if an element in IE has a position component by checking element.currentStyle.hasLayout. If hasLayout is false then the element has no CSS positioning.

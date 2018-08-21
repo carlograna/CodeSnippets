@@ -1,0 +1,12 @@
+//custom function.  Sleep does not exit in javascript.
+
+
+function Sleep(milliseconds)
+{
+	startTime = new Date().getTime();
+	currentTime = startTime;
+	while((currentTime - startTime) < milliseconds
+	{
+		currentTime = new Date().getTime();
+	}
+}

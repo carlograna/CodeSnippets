@@ -1,0 +1,56 @@
+public class CustomerViewModel
+{
+  public int ID { set;get;}
+  public string Name { set;get;}
+  public Address Address {set;get;}
+  public IList<Order> Orders {set;get;}
+
+  public CustomerViewModel()
+  {
+     if(Address==null)
+         Address=new Address();
+
+     if(Orders ==null)
+         Orders =new List<Order>();
+  }
+}
+
+public class Address 
+{
+  public string AddressLine1 { set;get;} 
+  //Other properties 
+}
+
+public class Order
+{
+  public int OrderID{ set;get;} 
+  public int ItemID { set;get;}
+  //Other properties 
+}
+
+
+/*=============================================================
+	Now in your Action method
+=============================================================*/
+public ActionResult GetCustomer(int id)
+{
+   CustomerViewModel objVM=repositary.GetCustomerFromId(id);
+   objVm.Address=repositary.GetCustomerAddress(id);
+   objVm.Orders=repositary.GetOrdersForCustomer(id);
+   return View(objVM);
+}
+
+/*=============================================================
+Your View will be typed to CustomerViewModel
+=============================================================*/
+@model CustomerViewModel
+@using(Html.BeginForm())
+{
+  <h2>@Model.Name</h2>
+  <p>@Model.Address.AddressLine1</p>
+  @foreach(var order in Model.Orders)
+  {
+    <p>@order.OrderID.ToString()</p>
+  }
+
+}

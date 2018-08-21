@@ -1,0 +1,7 @@
+RegexOptions options = RegexOptions.None;
+Regex regex = new Regex(@"[ ]{2,}", options);     
+tempo = regex.Replace(tempo, @" ");
+
+or even:
+
+myString = Regex.Replace(myString, @"\s+", " ");

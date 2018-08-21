@@ -1,0 +1,55 @@
+<link rel="stylesheet" type="text/css" href="../css/upSearchDropDown.css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+<style type="text/css">
+    .ui-autocomplete
+    {
+        font-size:11pt;
+    }
+</style>
+
+<script language="javascript" type="text/javascript">
+    //jQuery autocomplete
+    $(document).ready(function() {
+        var myData = new Array();    
+        $("#txtSearchName").css("font-size", "16px");
+
+        $("#txtSearchName").autocomplete({
+        autofocus: true,
+        delay: 200,
+        minLength: 3
+        });
+    });
+
+    function CheckLength() {
+        var minLength = 3;
+        var strSearchName = document.getElementById("txtSearchName").value;
+
+        if (strSearchName.length >= minLength) {
+            //retrive recordset
+            var upSearchClaimsURL = "/up/upSearchClaims.asp?args=" + document.getElementById("txtSearchName").value;
+            //alert("searchName = " + document.getElementById("txtSearchName").value);
+            $.ajax({ url: upSearchClaimsURL, success: function(result) {
+                myData = result.split("|");
+                //  alert(myData + "\ncount " + myData.length);
+                $("#txtSearchName").autocomplete("option", "source", myData);
+                }
+            });
+        }
+    }
+
+    function ValidateForm() {
+        var validForm;
+        var strSearchName = document.getElementById("txtSearchName").value;
+        //alert("strSearchName:" + strSearchName.length);
+        if (strSearchName.length < 1) {
+                alert("Input name cannot be blank");
+                validForm = false
+        }
+        else validForm = true;
+
+        return validForm;       
+    }
+	
+</script>

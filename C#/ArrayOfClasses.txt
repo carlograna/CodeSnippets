@@ -1,0 +1,27 @@
+RecordType05[] rec05 = new RecordType05[table.Rows.Count];
+
+                int i = 0;
+                foreach (DataRow row in table.Rows)
+                {
+
+                    rec05[i] = new RecordType05();
+                    //recordtype set in class
+                    rec05[i].Arp = row["arp"].ToString().Trim();
+                    rec05[i].LastName = row["LastName"].ToString().Trim();
+                    rec05[i].FirstName = row["FirstName"].ToString().Trim();
+                    rec05[i].MiddleName = row["MiddleName"].ToString().Trim();
+
+
+                    //fillersetinclass
+
+                    if (rec05[i].RecordLine().Length != record05Length)
+                    {
+                        string errMsg = String.Format("Error in record: {0}.  Invalid length: {1}", rec05[i].Arp, rec05[i].RecordLine().Length);
+                        LogError(errMsg, ExitCode.InvalidRecordLength);
+                    }
+                    else
+                    {
+                        //sduWriter.Write(rec05.RecordLine());
+                    }
+                    i++;
+                }

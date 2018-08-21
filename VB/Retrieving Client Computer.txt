@@ -1,0 +1,7 @@
+I HAVE A SOLUTION! Thank you so much for the suggestions. I have not tried them yet but I plan to do so to see if they will work for me. For now I wanted let you know that I found something else that finally worked for me:
+
+Dim host As System.Net.IPHostEntry
+host = System.Net.Dns.GetHostByAddress(Request.ServerVariables.Item("REMOTE_HOST"))
+strComputerName = host.HostName 
+
+http://www.visualbasicscript.com/m2393.aspx

@@ -1,0 +1,10 @@
+static string CurrentUser = (System.Threading.Thread.CurrentPrincipal).Identity.Name.Replace("TREASURER\\", "");
+
+
+
+
+
+
+THESE DIDN'T WORK WITH WINDOWS AUTHENTICATION.  I GOT apppool\apppoolname or networservice instead
+    //static string CurrentUser = System.Security.Principal.WindowsIdentity.GetCurrent().Name.Replace("TREASURER\\", "");
+    //static string CurrentUser = Environment.UserName;

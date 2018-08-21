@@ -1,0 +1,17 @@
+                    <%--<asp:ImageButton ID="imgCalendarThumb" ImageUrl="~/images/calendarThumb.gif" 
+                        OnClick="imgCalendarThumb_Click" runat="server" Height="19px" />
+                    <asp:Calendar ID="Calendar1" CssClass="Calendar1"
+                        runat="server" BackColor="White" BorderColor="#0A84C1" ForeColor="White"
+                        DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="7pt"
+                        Height="137px" Width="180px"
+                        onselectionchanged="Calendar1_SelectionChanged">
+                        <SelectedDayStyle CssClass="calSelectedDay"/>
+                        <selectorstyle backcolor="#cccccc" />
+                        <WeekendDayStyle CssClass="calWeekendDay" />
+                        <TodayDayStyle CssClass="calTodayDay"/>
+                        <OtherMonthDayStyle CssClass="calOtherMonthDay" />
+                        <DayStyle ForeColor="Black" />
+                        <NextPrevStyle cssClass="calNexPrev" />
+                        <DayHeaderStyle CssClass="calDayHeader" />
+                        <TitleStyle CssClass="calTitle" BackColor="#0a84c1" />
+                    </asp:Calendar>--%>

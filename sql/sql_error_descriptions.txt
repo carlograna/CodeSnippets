@@ -1,0 +1,10 @@
+ERROR STATE	ERROR DESCRIPTION
+
+2 and 5		Invalid userid
+6		Attempt to use a Windows login name with SQL Authentication
+7		Login disabled and password mismatch
+8		Password mismatch
+9		Invalid password
+11 and 12	Valid login but server access failure
+13		SQL Server service paused
+18		Change password required

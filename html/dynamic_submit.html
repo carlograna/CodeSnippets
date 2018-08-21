@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Dynamic Submit</title>
+</head>
+<body>
+    <script type="text/javascript">
+        my_form = document.createElement('FORM');
+        my_form.name = 'aspnetForm';
+        my_form.method = 'POST';
+        my_form.action = 'http://local.treasurer.org/up/holder-reporting/test-user-control.aspx';
+
+        my_tb = document.createElement('INPUT');
+        my_tb.type = 'HIDDEN';
+        my_tb.name = 'AccountId';
+        my_tb.id = 'AccountId';
+        my_tb.value = 14;
+        my_form.appendChild(my_tb);
+
+        //attach form to body
+        document.body.appendChild(my_form);
+        my_form.submit();
+        alert("hi");
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,2 @@
+	USE intranet;  
+    ALTER AUTHORIZATION ON DATABASE::intranet TO [sa]

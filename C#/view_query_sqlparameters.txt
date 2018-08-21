@@ -1,0 +1,6 @@
+                    //string query = cmd.CommandText;
+
+                    //foreach (SqlParameter p in cmd.Parameters)
+                    //{
+                    //    query = query.Replace(p.ParameterName, p.Value.ToString());
+                    //}

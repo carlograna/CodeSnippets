@@ -1,0 +1,33 @@
+/*
+
+SELECT      
+	bs.name
+	,bf.logical_name
+	,bf.physical_name
+	,mf.physical_device_name
+	,bf.File_type
+	,bs.first_lsn
+	,bs.last_lsn
+	,bs.backup_start_date
+	,bs.backup_finish_date
+FROM        msdb..backupfile bf
+JOIN        msdb..backupset bs ON bf.backup_set_id = bs.backup_set_id
+JOIN		msdb..backupmediafamily mf ON bs.media_set_id = mf.media_set_id
+WHERE      bs.backup_finish_date >= '2015-01-13 22:00:31.000' --bf.File_Type = 'L' --AND Logical_name like ('%upsproduction%') and bs.name = 'upsproduction_backup_2015_01_14_090002_3930906'
+and logical_name like ('%upsproduction%')
+ORDER BY bs.backup_start_date desc
+
+
+
+
+/*****************************************
+	LATEST TRANSACTION LOG BACKUP 		
+******************************************/
+SELECT   d.name,
+         MAX(b.backup_finish_date) AS backup_finish_date
+         ,MAX(b.backup_set_id) as backup_set_id
+FROM     master.sys.sysdatabases d
+         LEFT OUTER JOIN msdb..backupset b
+         ON       b.database_name = d.name
+         AND      b.type          = 'L'
+GROUP BY d.name

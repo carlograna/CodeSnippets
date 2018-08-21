@@ -1,0 +1,8 @@
+dsquery computer [-inactive <NumberOfWeeks>] [-limit <NumberOfObjects>]
+dsquery user [-inactive <NumberOfWeeks>] [-limit <NumberOfObjects>]
+
+dsmod  to modify users/computers
+dsrm to remove users/computers
+
+SOURCE:
+https://community.spiceworks.com/how_to/125704-how-to-find-and-remove-stale-users-and-computers-in-active-directory

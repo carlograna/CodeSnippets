@@ -1,0 +1,29 @@
+
+alter database SampleDB
+set allow_snapshot_isolation off
+
+alter database itemprocessing_test
+set read_committed_snapshot on
+
+-- USES ROW VERSIONING
+alter database SmapleDB
+set read_committed_snapshot on
+
+
+
+***  One of these below
+set transaction isolation level read_committed_snapshot
+set transaction isolation level snapshot
+set transaction isolation level read committed
+
+select *
+from table
+
+
+OR I CAN USE HINTS:
+
+
+select * 
+from KCPerson with (READUNCOMMITTED)  
+where PersonID = 'ar2ch2gs11111'
+and SSN = 123456789

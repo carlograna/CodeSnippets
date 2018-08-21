@@ -1,0 +1,60 @@
+'**********************************************************************
+'  Visual Basic ActiveX Script
+'************************************************************************
+Function Main
+'Delete Backup files for each Server
+		
+	sPath = "\\nstfs01\Backups\KIDDBSERVER\"
+	BackupCleanup(sPath)
+
+	sPath = "\\nstfs01\Backups\KIDDBTEST\"
+	BackupCleanup(sPath)
+
+	sPath = "\\nstfs01\Backups\TMSQLTOO\"
+	BackupCleanup(sPath)	
+
+	sPath = "\\nstfs01\Backups\UPWAGERS\"
+	BackupCleanup(sPath)
+
+	set oFSO = Nothing
+	Main = DTSTaskExecResult_Success
+End Function
+
+Function BackupCleanup(sPath)
+
+	dim oFSO
+	dim oFolder
+	dim oFile
+	dim sExtension
+	dim sFile
+
+
+	set oFSO = Createobject("Scripting.FileSystemObject")
+
+	'Loop through each database folder and delete any backups files that are older than the specified retention days
+	if oFSO.FolderExists(sPath) then
+		set oFolder = oFSO.GetFolder(sPath)
+
+		for each oFolder in oFolder.SubFolders
+			'MsgBox "Folder=" & oFolder.Name
+
+			for each oFile in oFolder.Files
+				'MsgBox "File= " & oFile.Name
+				sExtension = oFSO.GetExtensionName(oFile.Name)
+				sFile = sPath & oFolder.name & "\" & oFile.Name
+				if UCase(sExtension) = "BAK" then
+					if DateDiff("d", oFile.DateLastModified, Now) > cint(DTSGlobalVariables("BAK_Retention").value) then
+					'	MsgBox "Delete file=" & sFile 
+						oFSO.DeleteFile(sFile)
+					end if
+				elseIf UCase(sExtension) = "TRN" then
+					if DateDiff("d", oFile.DateLastModified, Now) >cint( DTSGlobalVariables("TRN_Retention").value) then
+					'	MsgBox "Delete file=" & sFile 
+						oFSO.DeleteFile(sFile)
+					end if
+				end if
+			next
+		next
+	end if
+
+End Function

@@ -1,0 +1,37 @@
+
+Example 1:
+
+<ns2:RtarCredentialRequest xmlns:ns2="http://www.usbank.com/epayments/epaymessage/schemas/rtarmessage">
+  <ns2:requestID>RTAR1479912248155</ns2:requestID>
+  <ns2:epayToken>8ee1443e23b009220784e0c0d1ea0f54</ns2:epayToken>
+  <ns2:credentials>
+    <credential>
+      <name>arpID</name>
+      <value>AR2CH2GT2LD8U</value>
+    </credential>
+  </ns2:credentials>
+</ns2:RtarCredentialRequest>
+
+XmlRequest.value(
+	'declare namespace ns2="http://www.usbank.com/epayments/epaymessage/schemas/rtarmessage";
+	(/ns2:RtarCredentialRequest/ns2:credentials/credential/value)[1]', 'varchar(max)')
+
+
+
+
+
+
+
+Example 2:  (I don't care about the namespace just look for this value)
+
+declare @xml as xml = 
+'<document xmlns="http://www.brokenwire.net/xmldemo">
+<header>Alphabet</header>
+<items>
+<item id="a">a is for apple</item>
+<item id="b">b is for balloon</item>
+</items>
+</document>'
+
+
+select @xml.value('(//*[local-name()="item"])[1]', 'nvarchar(max)')

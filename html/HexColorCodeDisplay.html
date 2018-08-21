@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<title>Color HTML</title>
+		<script type="text/javascript">
+			function displayColor(){
+				alert("display color function is getting called");
+				document.getElementById("colorDisplayDiv").style.backgroundColor = document.getElementById("inputColorHexCodeTextBox").value;
+			}
+		</script>
+		<style type='text/css'>
+		    
+            #gradient
+            {                
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#EBF2FA', endColorstr='#FFFFFF'); /* for IE */
+                background: -webkit-gradient(linear, left top, left bottom, from(#EBF2FA), to(#FFFFFF)); /* for webkit browsers */
+                background: -moz-linear-gradient(top,  #EBF2FA,  #FFFFFF); /* for firefox 3.6+ */ 
+            }   
+
+		</style>
+	</head>
+	<body>
+		<input type="text" id="inputColorHexCodeTextBox" />
+		<input type="button" onclick="displayColor()" value="View Color" />
+		<div id="colorDisplayDiv" style="width:100px; height:100px"></div>
+		
+<div id="gradient" style="width:100px; height:50px;">hola</div>
+	</body>
+</html>

@@ -1,0 +1,655 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../ddincludes/mainstyle.css" />
+
+<title>Dynamic Drive DHTML Scripts- Animated Collapsible DIV v2.2</title>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript" src="animatedcollapse.js">
+
+/***********************************************
+* Animated Collapsible DIV v2.2- (c) Dynamic Drive DHTML code library (www.dynamicdrive.com)
+* This notice MUST stay intact for legal use
+* Visit Dynamic Drive at http://www.dynamicdrive.com/ for this script and 100s more
+***********************************************/
+
+</script>
+
+
+<script type="text/javascript">
+
+animatedcollapse.addDiv('jason', 'fade=1,height=80px')
+animatedcollapse.addDiv('kelly', 'fade=1,height=100px')
+animatedcollapse.addDiv('michael', 'fade=1,height=120px')
+
+animatedcollapse.addDiv('cat', 'fade=0,speed=400,group=pets')
+animatedcollapse.addDiv('dog', 'fade=0,speed=400,group=pets,persist=1,hide=1')
+animatedcollapse.addDiv('rabbit', 'fade=0,speed=400,group=pets,hide=1')
+
+animatedcollapse.init()
+
+</script>
+
+</head>
+
+<body>
+
+<div id="toprightdiv">
+
+<div id="toprightdivbox">
+
+<form id="topform" method="get" action="http://www.dynamicdrive.com/cgi-bin/search/search.cgi">
+<input type="text" name="zoom_query" id="zoom_query" size="20" class="zoom_searchbox topsearchbox" /> 
+<input type="submit" value="Submit" class="zoom_button topformbutton" />
+<input name="zoom_per_page" id="zoom_per_page" type="hidden" value="10" />
+<input name="zoom_and" id="zoom_and" type="hidden" value="1" />
+<input type="hidden" name="zoom_sort" value="0" />
+</form>
+
+<div style="margin-top: 3px"><a href="http://www.dynamicdrive.com/submitscript.htm">Submit</a> <a href="http://www.dynamicdrive.com/faqs.htm">FAQs</a> <a href="http://www.dynamicdrive.com/award/">Awards</a> <a href="http://www.dynamicdrive.com/notice.htm">Usage Terms</a> <a href="http://www.dynamicdrive.com/contact.htm">Contact</a></div>
+
+</div>
+
+</div>
+
+<a href="http://www.dynamicdrive.com" title="Dynamic Drive- Award winning DHTML and JavaScript"><img src="http://www.dynamicdrive.com/ddincludes/logo.gif" border="0" /></a>
+
+	<div id="ddtoptabs">
+		<ul>
+			<li style="margin-left: 1px"><a href="http://www.dynamicdrive.com" title="Home"><span>Home</span></a></li>
+			<li><a href="http://www.dynamicdrive.com/new.htm" title="New"><span>New</span></a></li>
+			<li><a href="http://www.dynamicdrive.com/revised.htm" title="Revised"><span>Revised</span></a></li>
+			<li><a href="http://tools.dynamicdrive.com" title="Tools"><span>Tools</span></a></li>	
+			<li><a href="http://www.dynamicdrive.com/forums/" title="DHTML Forums"><span>Forums</span></a></li>
+			<li id="csslibrarytab"><a href="http://www.dynamicdrive.com/style/" title="CSS Library"><span>CSS Library</span></a></li>	
+		</ul>
+	</div>
+
+
+	<div id="ddtoptabsline"><img src="http://www.dynamicdrive.com/spacer.gif" /></div>
+
+<center><script type="text/javascript" src="http://www.dynamicdrive.com/ddincludes/adbanner.js"></script></center>
+
+<p id="pathlinks"><a href="http://www.dynamicdrive.com/">Home</a> <img border="0" src="../ddincludes/arrow2.gif" width="8" height="10" />                                                        
+<a href="http://www.dynamicdrive.com/dynamicindex17/">Dynamic Content</a> <img border="0" src="../ddincludes/arrow2.gif" width="8" height="10" />                                                        Here</p>
+
+<table id="maintable" border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td id="leftbar" valign="top">
+			<div class="headers">Categories</div>
+			<ul class="categorylinks">
+				<li id="c7"><a href="http://www.dynamicdrive.com/dynamicindex7/" >Calendars</a></li>
+				<li id="c6"><a href="http://www.dynamicdrive.com/dynamicindex6/">Date &amp; Time</a></li>
+				<li id="c3"><a href="http://www.dynamicdrive.com/dynamicindex3/">Document Effects</a></li>
+				<li id="c17"><a href="http://www.dynamicdrive.com/dynamicindex17/">Dynamic Content</a></li>
+				<li id="c16"><a href="http://www.dynamicdrive.com/dynamicindex16/">Form Effects</a></li>
+				<li id="c12"><a href="http://www.dynamicdrive.com/dynamicindex12/">Games</a></li>
+				<li id="c4"><a href="http://www.dynamicdrive.com/dynamicindex4/">Image Effects</a></li>		
+				<li id="c5"><a href="http://www.dynamicdrive.com/dynamicindex5/">Links &amp; Tooltips</a></li>			
+				<li id="c1"><a href="http://www.dynamicdrive.com/dynamicindex1/">Menus &amp; Navigation</a></li>
+				<li id="c13"><a href="http://www.dynamicdrive.com/dynamicindex13/">Mouse and Cursor</a></li>			
+				<li id="c2"><a href="http://www.dynamicdrive.com/dynamicindex2/">Scrollers</a></li>
+				<li id="c10"><a href="http://www.dynamicdrive.com/dynamicindex10/">Text Animations</a></li>
+				<li id="c9"><a href="http://www.dynamicdrive.com/dynamicindex9/">User/System Preference</a></li>
+				<li id="c8"><a href="http://www.dynamicdrive.com/dynamicindex8/">Window and Frames</a></li>
+				<li id="c11"><a href="http://www.dynamicdrive.com/dynamicindex11/">Other</a></li>
+				<li id="c18"><a href="http://www.dynamicdrive.com/dynamicindex18/">XML and RSS</a></li>
+			</ul>
+
+
+
+			<div class="headers">Partners</div>
+			<div style="margin: 8px 0 0 2px">
+			<div><a href="http://www.daniweb.com/forums/forum31.html" target="_partner" style="color: #449805; font-weight:bold">DaniWeb Web Dev Community</a></div>
+			<div>DaniWeb is an exciting community for web developers, Internet marketers, and technology enthusiasts.</div>
+			<div style="margin: 10px 0; text-align: center"><a href="http://www.daniweb.com/forums/forum31.html" target="_partner"><img src="http://www.dynamicdrive.com/daniweb.gif" style="width:125px; height:24px; border:0;" title="Daniweb" /></a></div>
+			</div>
+
+
+			<div class="headers" style="clear:both">Other Sections</div>
+			<ul class="categorylinks diffpointer">
+				<li><a href="http://www.dynamicdrive.com/forums/">Script Forums</a></li>
+				<li><a href="http://www.dynamicdrive.com/recommendit/">Recommend Us</a></li>
+				<li><a href="http://www.dynamicdrive.com/notice.htm">Usage Terms</a></li>
+				<li><a href="http://www.javascriptkit.com">Free JavaScripts</a></li>		
+			</ul>
+
+<div class="headers" style="margin: 8px 0;">Sweet Ads</div>
+
+<div style="text-align:center">
+
+<script type="text/javascript">
+Vertical1437 = false;
+ShowAdHereBanner1437 = false;
+RepeatAll1437 = false;
+NoFollowAll1437 = false;
+BannerStyles1437 = new Array(
+	"a{display:block;font-size:11px;color:#888;font-family:verdana,sans-serif;margin:0 4px 10px 0;text-align:center;text-decoration:none;overflow:hidden;}",
+	"img{border:0;clear:right;}",
+	"a.adhere{color:#666;font-weight:bold;font-size:12px;border:1px solid #ccc;background:#e7e7e7;text-align:center;}",
+	"a.adhere:hover{border:1px solid #999;background:#ddd;color:#333;}"
+);
+
+document.write(unescape("%3Cscript src='"+document.location.protocol+"//s3.buysellads.com/1437/1437.js?v="+Date.parse(new Date())+"' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+</div>
+	
+		
+    <div class="headers">Compatibility</div>
+<ul class="menuitems">
+<li style="border-bottom: 1px solid #ececec;"><b>IE5+:</b> IE 5 and above</li>
+<li style="border-bottom: 1px solid #ececec;"><b>FF1+:</b> Firefox 1.0+. NS6+ and FF beta are 
+  assumed as well.</li>
+<li style="border-bottom: 1px solid #ececec;"><b>Opr7+:</b> Opera 7 and above.</li>
+
+</ul>
+
+<div>
+
+Bookmark <b style="color:navy"><script type="text/javascript">document.write(ddscripttitle)</script></b> online:<br />
+<ul style="margin-top: 5px; font-size: 90%; margin-left: 0; padding-left: 18px"><li><a href="http://www.dynamicdrive.com/bookmark.php?site=deli" onClick="return jsenabledmark('deli')" rel="nofollow">Bookmark</a> to del.icio.us</li>
+<li><a href="http://www.dynamicdrive.com/bookmark.php?site=furl" onClick="return jsenabledmark('furl')" rel="nofollow">Bookmark</a> to Furl.net</li>
+</ul>
+
+</div>
+
+
+<p align="center">
+<!-- AddThis Button BEGIN -->
+<script type="text/javascript">addthis_pub  = 'georgeuser';</script>
+<a href="http://www.addthis.com/bookmark.php" onmouseover="return addthis_open(this, '', '[URL]', '[TITLE]')" onmouseout="addthis_close()" onclick="return addthis_sendto()"><img src="http://s9.addthis.com/button2-bm.png" width="160" height="24" border="0" alt="" /></a><script type="text/javascript" src="http://s7.addthis.com/js/152/addthis_widget.js"></script>
+<!-- AddThis Button END -->
+</p>
+
+
+
+    </td>
+    <td id="spacertd">
+<img src="../spacer.gif" id="spacergif">
+    </td>
+    <td valign="top" id="contentarea">
+    
+<script type="text/javascript">
+if (showincontentheader)
+document.write('<div id="topbanner" align="left">'+revised_ranban[ran_num]+'</div>')
+</script>
+
+<div id="scriptheader"><span class="compatlist">FF1+ IE6+ Opera 9+</span> 
+  <h3>Animated Collapsible DIV v2.2</h3></div> 
+<div id="scriptheaderFoot"><span class="rightit"></span> <b><!--webbot bot="HTMLMarkup" startspan --><form class="navselectform">
+<select name="example" size="1" onChange="pagenavselect_dd(this)">
+<option value="animatedcollapse.htm">Index Page</option>
+<option value="animatedcollapse_suppliment.htm">Using the onToggle event handler</option>
+<option value="animatedcollapse_suppliment2.htm">Expanding a DIV using the URL parameter string</option>
+
+
+</select>
+</form>
+<!--webbot bot="HTMLMarkup" endspan i-checksum="21337" -->Author:</b>  
+  <span id="ddauthor">Dynamic Drive</span></div>
+
+<ul>
+	<li>March 5th 09': Updated to v2.2, which adds a ontoggle event handler, 
+	plus ability to expand DIV(s) via a URL parameter string.</li>
+</ul>
+<p align="left"><strong>Description: </strong>This script collapses any DIV on 
+the page and lets users manually toggle its appearance via a smooth &quot;Web 2.0 
+style&quot; animation. It's a popular effect on many social networking/ comment 
+sites. Three distinguishing features 
+of this script are:</p>
+<ol>
+	<li>
+	Ability for the script to work on both DIVs that have an explicit CSS height 
+	attribute defined, and without.</li>
+	<li>
+	Ability to &quot;<b>group</b>&quot; multiple collapsible content instances to act as a 
+	single unit, so opening one closes the others.</li>
+	<li>
+	Persistence can be enabled on each collapsible content individually that will remember if 
+	the DIV 
+	has been expanded, and upon the user's return to the page within the same 
+	browser session, keep it expanded.</li>
+	<li>Individually toggle various attributes of each collapsible content, 
+	whether a fade effect should be applied, the duration of the animation, an explicit height, plus whether the content should be hidden via 
+	scripting by default when the page loads.</li>
+	<li><a href="animatedcollapse_suppliment.htm">An <code>ontoggle</code> event handler that lets you react whenever a 
+	DIV is expanded or collapsed.</a> <font color="#FF0000">new in v2.2</font></li>
+	<li><a href="animatedcollapse_suppliment2.htm">Ability to expand the DIVs via a URL parameter string that overrides any 
+	default settings/persistence.</a> <font color="#FF0000">new in v2.2</font></li>
+</ol>
+<p align="left">Have fun sliding content up and down!</p>
+<p align="left"><b>Demos:</b></p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+	<tr>
+		<td width="50%" valign="top"><!--webbot bot="HTMLMarkup" startspan --><b><a href="javascript:animatedcollapse.show(['jason', 'kelly', 'michael'])">Show Examples 1, 2, 3</a> | <a href="javascript:animatedcollapse.hide(['jason', 'kelly', 'michael'])">Hide Examples 1, 2, 3</a></b>
+
+<p><b>Example 1 (individual):</b></p>
+
+<a href="javascript:animatedcollapse.toggle('jason')"><img src="toggle.jpg" border="0" /></a> <a href="javascript:animatedcollapse.show('jason')">Slide Down</a> || <a href="javascript:animatedcollapse.hide('jason')">Slide Up</a>
+
+<div id="jason" style="width: 300px; background: #FFFFCC; display:none">
+<b>Content inside DIV!</b><br />
+<b>Note: Fade effect enabled. Height programmically defined. DIV hidden using inline CSS.</b><br />
+</div>
+
+
+<p><b>Example 2 (individual):</b></p>
+
+<a href="javascript:animatedcollapse.toggle('kelly')"><img src="toggle.jpg" border="0" /></a> <a href="javascript:animatedcollapse.show('kelly')">Slide Down</a> || <a href="javascript:animatedcollapse.hide('kelly')">Slide Up</a>
+
+<div id="kelly" style="width: 300px; background: #D2FBFF; display:none">
+<b>Content inside DIV!</b><br />
+<b>Note: Fade effect enabled. Height programmically defined. DIV hidden using inline CSS.</b><br />
+</div>
+
+
+
+<p><b>Example 3 (individual):</b></p>
+
+<a href="javascript:animatedcollapse.toggle('michael')"><img src="toggle.jpg" border="0" /></a> <a href="javascript:animatedcollapse.show('michael')">Slide Down</a> || <a href="javascript:animatedcollapse.hide('michael')">Slide Up</a>
+
+<div id="michael" style="width: 300px; background: #E7FFCC; display:none">
+<b>Content inside DIV!</b><br />
+<b>Note: Fade effect enabled. Height programmically defined. DIV hidden using inline CSS.</b><br />
+</div><!--webbot bot="HTMLMarkup" endspan i-checksum="59944" --></td>
+		<td width="50%" valign="top"><!--webbot bot="HTMLMarkup" startspan --><p><b>Example 4 (part of group "pets"):</b></p>
+
+<a href="javascript:animatedcollapse.toggle('cat')"><img src="toggle.jpg" border="0" /></a> <a href="javascript:animatedcollapse.show('cat')">Slide Down</a> || <a href="javascript:animatedcollapse.hide('cat')">Slide Up</a>
+
+<div id="cat" style="width: 400px; background: #BDF381;">
+The cat (Felis catus), also known as the domestic cat or house cat to distinguish it from other felines, is a small carnivorous species of crepuscular mammal that is often valued by humans for its companionship and its ability to hunt vermin. It has been associated with humans for at least 9,500 years. A skilled predator, the cat is known to hunt over 1,000 species for food. It can be trained to obey simple commands.
+</div>
+
+
+
+<p><b>Example 5 (part of group "pets"):</b></p>
+
+<a href="javascript:animatedcollapse.toggle('dog')"><img src="toggle.jpg" border="0" /></a> <a href="javascript:animatedcollapse.show('dog')">Slide Down</a> || <a href="javascript:animatedcollapse.hide('dog')">Slide Up</a>
+
+<div id="dog" style="width: 400px; background: #BDF381;">
+The dog (Canis lupus familiaris) is a domesticated subspecies of the wolf, a mammal of the Canidae family of the order Carnivora. The term encompasses both feral and pet varieties and is also sometimes used to describe wild canids of other subspecies or species. The domestic dog has been one of the most widely kept working and companion animals in human history, as well as being a food source in some cultures.
+</div>
+
+
+
+<p><b>Example 6 (part of group "pets"):</b></p>
+
+<a href="javascript:animatedcollapse.toggle('rabbit')"><img src="toggle.jpg" border="0" /></a> <a href="javascript:animatedcollapse.show('rabbit')">Slide Down</a> || <a href="javascript:animatedcollapse.hide('rabbit')">Slide Up</a>
+
+<div id="rabbit" style="width: 400px; background: #BDF381">
+Rabbits are ground dwellers that live in environments ranging from desert to tropical forest and wetland. Their natural geographic range encompasses the middle latitudes of the Western Hemisphere. In the Eastern Hemisphere rabbits are found in Europe, portions of Central and Southern Africa, the Indian subcontinent, Sumatra, and Japan.
+</div><!--webbot bot="HTMLMarkup" endspan i-checksum="38203" --></td>
+	</tr>
+</table>
+    <hr size="1" align="center">
+    <p><strong>Directions: </strong>
+    <a target="win2" href="animatedcollapse_dev.htm"><img src="../dview.gif" width="115" height="19"
+    alt="Developer's View" border="0"></a> </p>
+      <p align="left"><strong>Step 1:</strong> Insert the following
+      code in the HEAD section of your page</p>
+    <form><p>
+<a class="selectall" href="javascript:highlight(1)">Select All</a><br>
+      <textarea class="codecontainer" rows="8" name="S1" cols="45" wrap="virtual"><script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript" src="animatedcollapse.js">
+
+/***********************************************
+* Animated Collapsible DIV v2.2- (c) Dynamic Drive DHTML code library (www.dynamicdrive.com)
+* This notice MUST stay intact for legal use
+* Visit Dynamic Drive at http://www.dynamicdrive.com/ for this script and 100s more
+***********************************************/
+
+</script>
+
+
+<script type="text/javascript">
+
+animatedcollapse.addDiv('jason', 'fade=1,height=80px')
+animatedcollapse.addDiv('kelly', 'fade=1,height=100px')
+animatedcollapse.addDiv('michael', 'fade=1,height=120px')
+
+animatedcollapse.addDiv('cat', 'fade=0,speed=400,group=pets')
+animatedcollapse.addDiv('dog', 'fade=0,speed=400,group=pets,persist=1,hide=1')
+animatedcollapse.addDiv('rabbit', 'fade=0,speed=400,group=pets,hide=1')
+
+animatedcollapse.ontoggle=function($, divobj, state){ //fires each time a DIV is expanded/contracted
+	//$: Access to jQuery
+	//divobj: DOM reference to DIV being expanded/ collapsed. Use "divobj.id" to get its ID
+	//state: "block" or "none", depending on state
+}
+
+animatedcollapse.init()
+
+</script></textarea></p>
+    </form>
+      <p align="left">Notice the code at the very top- a doctype declaration. 
+		Your page <font color="#FF0000"><b>must</b></font> contain one of the
+		<a target="_blank" href="http://www.javascriptkit.com/howto/doctype.shtml">
+		valid doctypes</a> in order for this script to work correctly! The code above 
+		references an external .js files, which you 
+      can download below (right click/ select &quot;Save As&quot;):</p>
+<ul>
+	<li><a href="animatedcollapse.js">animatedcollapse.js</a></li>
+</ul>
+<p align="left"><b>Step 2:</b> Insert the below sample code into the BODY 
+      section of your page:</p>
+    <form><p>
+<a class="selectall" href="javascript:highlight(2)">Select All</a><br>
+      <textarea class="codecontainer" rows="8" name="S2" cols="45" wrap="virtual"><b><a href="javascript:animatedcollapse.show(['jason', 'kelly', 'michael'])">Show Examples 1, 2, 3</a> | <a href="javascript:animatedcollapse.hide(['jason', 'kelly', 'michael'])">Hide Examples 1, 2, 3</a></b>
+
+<p><b>Example 1 (individual):</b></p>
+
+<a href="javascript:animatedcollapse.toggle('jason')"><img src="http://i25.tinypic.com/wa0img.jpg" border="0" /></a> <a href="javascript:animatedcollapse.show('jason')">Slide Down</a> || <a href="javascript:animatedcollapse.hide('jason')">Slide Up</a>
+
+<div id="jason" style="width: 300px; background: #FFFFCC; display:none">
+<b>Content inside DIV!</b><br />
+<b>Note: Fade effect enabled. Height programmically defined. DIV hidden using inline CSS.</b><br />
+</div>
+
+
+<p><b>Example 2 (individual):</b></p>
+
+<a href="javascript:animatedcollapse.toggle('kelly')"><img src="http://i25.tinypic.com/wa0img.jpg" border="0" /></a> <a href="javascript:animatedcollapse.show('kelly')">Slide Down</a> || <a href="javascript:animatedcollapse.hide('kelly')">Slide Up</a>
+
+<div id="kelly" style="width: 300px; background: #D2FBFF; display:none">
+<b>Content inside DIV!</b><br />
+<b>Note: Fade effect enabled. Height programmically defined. DIV hidden using inline CSS.</b><br />
+</div>
+
+
+
+<p><b>Example 3 (individual):</b></p>
+
+<a href="javascript:animatedcollapse.toggle('michael')"><img src="http://i25.tinypic.com/wa0img.jpg" border="0" /></a> <a href="javascript:animatedcollapse.show('michael')">Slide Down</a> || <a href="javascript:animatedcollapse.hide('michael')">Slide Up</a>
+
+<div id="michael" style="width: 300px; background: #E7FFCC; display:none">
+<b>Content inside DIV!</b><br />
+<b>Note: Fade effect enabled. Height programmically defined. DIV hidden using inline CSS.</b><br />
+</div>
+
+
+<hr style="margin: 1em 0" />
+
+
+
+<p><b>Example 4 (part of group "pets"):</b></p>
+
+<a href="javascript:animatedcollapse.toggle('cat')"><img src="http://i25.tinypic.com/wa0img.jpg" border="0" /></a> <a href="javascript:animatedcollapse.show('cat')">Slide Down</a> || <a href="javascript:animatedcollapse.hide('cat')">Slide Up</a>
+
+<div id="cat" style="width: 400px; background: #BDF381;">
+The cat (Felis catus), also known as the domestic cat or house cat to distinguish it from other felines, is a small carnivorous species of crepuscular mammal that is often valued by humans for its companionship and its ability to hunt vermin. It has been associated with humans for at least 9,500 years. A skilled predator, the cat is known to hunt over 1,000 species for food. It can be trained to obey simple commands.
+</div>
+
+
+
+<p><b>Example 5 (part of group "pets"):</b></p>
+
+<a href="javascript:animatedcollapse.toggle('dog')"><img src="http://i25.tinypic.com/wa0img.jpg" border="0" /></a> <a href="javascript:animatedcollapse.show('dog')">Slide Down</a> || <a href="javascript:animatedcollapse.hide('dog')">Slide Up</a>
+
+<div id="dog" style="width: 400px; background: #BDF381;">
+The dog (Canis lupus familiaris) is a domesticated subspecies of the wolf, a mammal of the Canidae family of the order Carnivora. The term encompasses both feral and pet varieties and is also sometimes used to describe wild canids of other subspecies or species. The domestic dog has been one of the most widely kept working and companion animals in human history, as well as being a food source in some cultures.
+</div>
+
+
+
+<p><b>Example 6 (part of group "pets"):</b></p>
+
+<a href="javascript:animatedcollapse.toggle('rabbit')"><img src="http://i25.tinypic.com/wa0img.jpg" border="0" /></a> <a href="javascript:animatedcollapse.show('rabbit')">Slide Down</a> || <a href="javascript:animatedcollapse.hide('rabbit')">Slide Up</a>
+
+<div id="rabbit" style="width: 400px; background: #BDF381">
+Rabbits are ground dwellers that live in environments ranging from desert to tropical forest and wetland. Their natural geographic range encompasses the middle latitudes of the Western Hemisphere. In the Eastern Hemisphere rabbits are found in Europe, portions of Central and Southern Africa, the Indian subcontinent, Sumatra, and Japan.
+</div></textarea></p>
+    </form>
+      <p>And there you have it. Read on for more detailed instructions. </p>
+<h3 align="left">Setup Information</h3>
+      <p align="left">The links to expand and contract the DIV, plus the 
+		arbitrary DIV itself, look like this:</p>
+<p class="codehighlight" align="left">&lt;a 
+href=&quot;javascript:animatedcollapse.toggle('<font color="#FF0000">jason</font>')&quot;&gt;Toggle 
+Display&lt;/a&gt; | &lt;a href=&quot;javascript:animatedcollapse.show('<font color="#FF0000">jason</font>')&quot;&gt;Slide 
+Down&lt;/a&gt; | &lt;a href=&quot;javascript:animatedcollapse.hide('<font color="#FF0000">jason</font>')&quot;&gt;Slide 
+Up&lt;/a&gt;<br>
+<br>
+&lt;div id=&quot;<font color="#FF0000">jason</font>&quot; style=&quot;width: 300px; background: 
+#FFFFCC; display:none&quot;&gt;<br>
+&lt;b&gt;Content inside DIV!&lt;/b&gt;&lt;br /&gt;<br>
+&lt;b&gt;Note: Fade effect enabled. Height programmically defined. DIV hidden using 
+inline CSS.&lt;/b&gt;&lt;br /&gt;<br>
+&lt;/div&gt;</p>
+      <p align="left">In the <b>HEAD</b> section of your page, call <code>
+		animatedcollapse.addDiv()</code> to add this DIV to be animated before 
+		finally calling <code>animatedcollapse.init()</code></p>
+<p class="codehighlight" align="left">&lt;script type=&quot;text/javascript&quot;&gt;<br>
+animatedcollapse.addDiv('<font color="#FF0000">jason</font>', 
+'optional_attribute_string')<br>
+//additional addDiv() call...<br>
+//additional addDiv() call...<br>
+<b>animatedcollapse.init()</b><br>
+&lt;/script&gt;</p>
+<p align="left">The first parameter in <code>addDiv()</code> is the ID 
+of the DIV to expand/collapse, and the second parameter, an optional string that 
+adds or disables additional effects on the DIV. For each collapsible content on 
+your page, you need to call <code>addDIv()</code> again with the pertinent info. After all your 
+collapsible DIVs have been accounted for, call <code>animatedcollapse.init()</code> 
+at the <b>very end</b> and just <b>once</b>!</p>
+<h4 align="left">
+<img border="0" src="../ddincludes/orangecircle.gif" width="20" height="19"> 
+Feature attributes String</h4>
+<p align="left">The second parameter in <code>animatedcollapse.addDiv()</code> is optional, and 
+accepts a string that enables/ disables certain effects on the DIV. 
+Separate each attribute with a comma (,). Each attribute within the string is optional as 
+well:</p>
+  <table border="1" width="95%" cellspacing="0" cellpadding="2">
+    <tr>
+      <td width="25%" bgcolor="#D8EA99" valign="top"><b>Attribute</b></td>
+      <td width="75%" bgcolor="#D8EA99" valign="top"><b>Description</b></td>
+    </tr>
+    <tr>
+      <td width="25%" valign="top"><code>fade=1/0</code><p><i>Defaults to 0.</i></td>
+      <td width="75%" valign="top">Set to 0 to disable fade 
+		effect. Set to 1 to enable. </td>
+    </tr>
+    <tr>
+      <td width="25%" valign="top"><code>speed=milliseconds</code><p><i>Defaults 
+		to 500.</i></td>
+      <td width="75%" valign="top">Set to an integer in milliseconds to control 
+		the duration of the sliding effect (ie: 1000=1 second).</td>
+    </tr>
+    <tr>
+      <td width="25%" valign="top"><code>hide=1/0</code><p><i>Defaults to 
+		undefined.</i></td>
+      <td width="75%" valign="top">Set to 0 to explicitly show this DIV when the 
+		page first loads. Set to 1 to 
+		hide. Typically you would <font color="#FF0000"> <b>leave out</b></font> 
+		this attribute altogether (so it's undefined) to let the DIV default to 
+		its default visibility based on the relevant inline or global CSS on 
+		your page.<p>This attribute is meant to provide an alternate way for you 
+		to define the DIV's visibility programmically when you can't or don't 
+		wish to do so via CSS.</td>
+    </tr>
+    <tr>
+      <td width="25%" valign="top"><code>persist=1/0</code><p><i>Defaults to 0.</i></td>
+      <td width="75%" valign="top">Set to 0 to disable persistence of this DIV's 
+		state within browser session. Set to 1 to enable.<p>In grouped contents, 
+		enabling <code>persist</code> on one of the contents automatically 
+		enables it on the other contents within the group as well. See the <code>
+		group</code> attribute below for more info.</td>
+    </tr>
+    <tr>
+      <td width="25%" valign="top"><code>height=400px</code><p><i>Defaults to 
+		undefined.</i></td>
+      <td width="75%" valign="top">Set to an integer plus &quot;<b>px</b>&quot; to explicitly define 
+		the height of the DIV using the script. Typically you would 
+		<font color="#FF0000"> <b>leave out</b></font> 
+		this attribute altogether (so it's undefined) to let the DIV default to its natural height, 
+		or that specified in either your inline or global CSS.<p>This attribute 
+		is meant to provide an alternate way for you to define the DIV's height 
+		programmically when you can't or don't wish to do so via CSS.</td>
+    </tr>
+    <tr>
+      <td width="25%" valign="top"><code>group=groupname</code><p><i>Defaults to 
+		undefined.</i></td>
+      <td width="75%" valign="top">Specifies the group this content belongs to 
+		(if any). Contents sharing the same group name are tied together in that 
+		only <b>one</b> content will be/ can be open at any time.<p>If you wish 
+		to enable persistence or a group of contents, you only need to enable
+		<code>persist</code> on any one of them. For example:</p>
+		<p class="codehighlight">animatedcollapse.addDiv('cat', 
+		'speed=400,group=pets,hide=1')<br>
+		animatedcollapse.addDiv('dog', 'speed=400,group=pets<font color="#FF0000">,persist=1</font>,hide=1')<br>
+		animatedcollapse.addDiv('rabbit', 'speed=400,group=pets')</p>
+		<p>The above has the same effect as enabling <code>persist</code> on all 
+		3 of the contents above, since all 3 belong to the same group &quot;pets&quot;.</td>
+    </tr>
+    </table>
+<p>As mentioned, all attributes above are optional when calling <code>
+animatedcollapse.addDiv()</code>. While setting some attributes to 0 usually has 
+the same effect as not defining it at all, the exception are &quot;<code>hide</code>&quot; 
+and &quot;<code>height</code>&quot;. Not setting these two attributes means the script 
+will not modify the DIV's natural visibility and height, respectively, which is 
+different from setting them. Take for example:</p>
+<p class="codehighlight">animatedcollapse.addDiv('cat')<br>
+animatedcollapse.addDiv('dog', 'height=300px')<br>
+animatedcollapse.addDiv('rabbit', 'hide=1')</p>
+<ul>
+	<li>The &quot;<code>cat</code>&quot; DIV's visibility will be based on whether any 
+	global or inline CSS on your page hides the DIV (using <code>&quot;display:none&quot;</code>). 
+	The DIV's height will be based on either the content's natural height, or if 
+	CSS is defined, the CSS &quot;<code>height</code>&quot; property.</li>
+	<li>The &quot;<code>dog</code>&quot; DIV's visibility will be based on whether any 
+	global or inline CSS on your page hides the DIV (using <code>&quot;display:none&quot;</code>). 
+	The DIV's height will be set to 300px.</li>
+	<li>The &quot;<code>rabbit</code>&quot; DIV's visibility will be hidden. The DIV's 
+	height will be based on either the content's natural height, or if CSS is 
+	defined, the CSS &quot;<code>height</code>&quot; property.</li>
+</ul>
+<h3 align="left">
+<img border="0" src="../ddincludes/orangecircle.gif" width="20" height="19"> 
+<code>ontoggle($, divobj, state)</code> event handler</h3>
+<p align="left">The optional ontoggle event fires whenever a DIV is expanded or 
+collapsed, including when the page first loads. It allows you to do some 
+interesting things, such as change the &quot;<code>src</code>&quot; property of an image 
+that's acting as the toggler for a DIV depending on the later's state. See the
+<a href="animatedcollapse_suppliment.htm">following supplimentary page</a> for more info on taking advantage 
+of this event.</p>
+<h3 align="left">
+<img border="0" src="../ddincludes/orangecircle.gif" width="20" height="19"> Available functions</h3>
+<p align="left">The script supports 3 functions you can invoke inside your links 
+or elsewhere to toggle the display of each collapsible DIV:</p>
+  <table border="1" width="95%" cellspacing="0" cellpadding="2">
+    <tr>
+      <td width="25%" bgcolor="#D8EA99" valign="top"><b>Attribute</b></td>
+      <td width="75%" bgcolor="#D8EA99" valign="top"><b>Description</b></td>
+    </tr>
+    <tr>
+      <td width="25%" valign="top"><code>animatedcollapse.show(divids)</code></td>
+      <td width="75%" valign="top">Expands and reveals a collapsible DIV or 
+		multiple DIVs. Enter either the ID of a single DIV (string), or an array 
+		of multiple collapsible DIVs ids <code>['divid1','divid2',etc]</code>. 
+		For example:<p class="codehighlight">&lt;a 
+		href=&quot;javascript:animatedcollapse.show('<b>jason</b>')&quot;&gt;Show Jason 
+		DIV&lt;/a&gt;</p>
+		<p class="codehighlight">&lt;a href=&quot;javascript:animatedcollapse.show(<b>['jason', 
+		'kelly']</b>)&quot;&gt;Show Jason and Kelly DIVs&lt;/a&gt;</p>
+		<p>&nbsp;</td>
+    </tr>
+    <tr>
+      <td width="25%" valign="top"><code>animatedcollapse.hide(divids)</code></td>
+      <td width="75%" valign="top">Contracts and hides a collapsible DIV or 
+		multiple DIVs. Either enter the ID of a single DIV (string), or an array 
+		of multiple collapsible DIVs ids. For example:<p class="codehighlight">
+		&lt;a href=&quot;javascript:animatedcollapse.hide('<b>jason</b>')&quot;&gt;Show Jason 
+		DIV&lt;/a&gt;</p>
+		<p class="codehighlight">&lt;a href=&quot;javascript:animatedcollapse.hide(<b>['jason', 
+		'kelly']</b>)&quot;&gt;Show Jason and Kelly DIVs&lt;/a&gt;</p>
+		<p>&nbsp;</td>
+    </tr>
+    <tr>
+      <td width="25%" valign="top"><code>animatedcollapse.toggle(divid)</code></td>
+      <td width="75%" valign="top">Expand or contracts a collapsible DIV 
+		automatically based on its inverse state. Enter the ID of a single DIV 
+		to toggle its state. For example:<p class="codehighlight">&lt;a 
+		href=&quot;javascript:animatedcollapse.toggle('<b>jason</b>')&quot;&gt;Show/ Hide 
+		Jason DIV&lt;/a&gt;</p>
+		<p>&nbsp;</td>
+    </tr>
+    </table>
+<h3 align="left">Two very different ways of hiding your collapsible DIVs when 
+the page loads</h3>
+<p align="left">When the page first loads, there are two ways to initially hide 
+those collapsible DIVs that you want hidden by default: either via normal CSS, 
+or via the script. An example of the former first:</p>
+<p class="codehighlight" align="left">&lt;div id=&quot;jason&quot; style=&quot;width: 300px; background: 
+#FFFFCC; <font color="#FF0000">display:none</font>&quot;&gt;<br>
+&lt;b&gt;Content inside DIV!&lt;/b&gt;&lt;br /&gt;<br>
+&lt;b&gt;Note: Fade effect enabled. Height programmically defined. DIV hidden using 
+inline CSS.&lt;/b&gt;&lt;br /&gt;<br>
+&lt;/div&gt;</p>
+<p align="left">The advantage of using regular CSS is that the DIV will be 
+hidden from the very start, even before the script is initialized. The 
+disadvantage is the accessibility issue for people with JavaScript disabled.</p>
+<p align="left">The other way to hide your DIVs is by defining the attribute &quot;<code>hide=1</code>&quot; 
+inside <code>animatedcollapse.addDiv()</code> when initializing the script:</p>
+<p class="codehighlight" align="left">animatedcollapse.addDiv('rabbit', '<font color="#FF0000">hide=1</font>')</p>
+<p align="left">The advantages with this are arguably ease of maintenance and 
+increased accessibility. The disadvantage is that the DIV will be temporarily 
+visible before the script is initialized and run.</p>
+<h3 align="left">
+<img border="0" src="../ddincludes/orangecircle.gif" width="20" height="19"> 
+Expanding a DIV using the URL parameter string</h3>
+<p align="left">You can define a link on another page that causes the desired 
+collapsible DIVs on the target page to expand when the later is loaded. See the
+<a href="animatedcollapse_suppliment2.htm">following supplimentary page</a> for 
+more info.</p>
+    <h1 class="navselectheader">Table Of Contents</h1>
+<p>This script consists of an index page plus one supplementary page:</p>
+<ul class="navselectlist">
+	<li>Script Index Page</li>
+	<li><a href="animatedcollapse_suppliment.htm">Using the onToggle event 
+	handler</a></li>
+	<li><a href="animatedcollapse_suppliment2.htm">Expanding a DIV 
+using the URL parameter string</a></li>
+	</ul>
+<p align="left">
+    <script type="text/javascript"><!--
+google_ad_client = "pub-3356683755662088";
+google_alternate_color = "FFFFCC";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "text";
+google_ad_channel = "";
+google_color_border = "FFFFFF";
+google_color_bg = "FFFFFF";
+google_color_link = "0000CC";
+google_color_text = "000033";
+google_color_url = "999999";
+//-->
+</script>
+<script type="text/javascript"
+  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></p></td>
+  </tr>
+</table>
+
+
+<p id="footer">Copyright © 1998-2008 <a href="http://www.dynamicdrive.com">
+Dynamic Drive.</a> Please read <a href="http://dynamicdrive.com/notice.htm">Terms Of Use here</a> before using any of the scripts.</p>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-55377-2");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
+
+
+</body>
+
+</html>

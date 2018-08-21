@@ -1,0 +1,13 @@
+How to determine the version and edition of SQL Server and its components
+
+http://support.microsoft.com/kb/321185
+
+
+SERVER PROPERTIES:
+
+SELECT
+SERVERPROPERTY('ProductVersion') AS ProductVersion,
+SERVERPROPERTY('ProductLevel') AS ProductLevel,
+SERVERPROPERTY('Edition') AS Edition,
+SERVERPROPERTY('EngineEdition') AS EngineEdition;
+GO

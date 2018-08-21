@@ -1,0 +1,214 @@
+$(document).ready(function () {
+    //onload
+    var objDate1 = asp$('date1TextBox', 'input');
+    var objDate2 = asp$('date2TextBox', 'input');
+    var objRouting = asp$('routingTextBox', 'input');
+    var objAccount = asp$('accountTextBox', 'input');
+    var objAmount = asp$('amountTextBox', 'input');
+    var objBatchNumber = asp$('batchNumberTextBox', 'input');
+    var objBankID = asp$('bankidTextBox', 'input');
+
+    // On Empty input fields set default text and css
+    if ($(objDate1).val() == '') {
+        $(objDate1).val('Date(From)');
+        $(objDate1).addClass('defaultText');
+    }
+    if ($(objDate2).val() == '') {
+        $(objDate2).val('Date(To)');
+        $(objDate2).addClass('defaultText');
+    }
+    if ($(objRouting).val() == '') {
+        $(objRouting).val('Routing Number');
+        $(objRouting).addClass('defaultText');
+    }
+    if ($(objAccount).val() == '') {
+        $(objAccount).val('Account Number');
+        $(objAccount).addClass('defaultText');
+    }
+    if ($(objAmount).val() == '') {
+        $(objAmount).val('Check Amount');
+        $(objAmount).addClass('defaultText');
+    }
+    if ($(objBatchNumber).val() == '') {
+        $(objBatchNumber).val('Batch Number');
+        $(objBatchNumber).addClass('defaultText');
+    }
+    if ($(objBankID).val() == '') {
+        $(objBankID).val('Bank ID');
+        $(objBankID).addClass('defaultText');
+    }
+
+    // Set css on post back when input values are not empty
+    if ($(objDate1).val() == 'Date(From)') {
+        $(objDate1).addClass('defaultText');
+    }
+    if ($(objDate2).val() == 'Date(To)') {
+        $(objDate2).addClass('defaultText');
+    }
+    if ($(objRouting).val() == 'Routing Number') {
+        $(objRouting).addClass('defaultText');
+    }
+    if ($(objAccount).val() == 'Account Number') {
+        $(objAccount).addClass('defaultText');
+    }
+    if ($(objAmount).val() == 'Check Amount') {
+        $(objAmount).addClass('defaultText');
+    }
+    if ($(objBatchNumber).val() == 'Batch Number') {
+        $(objBatchNumber).addClass('defaultText');
+    }
+    if ($(objBankID).val() == 'Bank ID') {
+        $(objBankID).addClass('defaultText');
+    }
+
+    /*   Toggle hide/show default text inside textboxes
+    /*---------------------------------------------------*/
+
+    //Date(From)
+    $(objDate1).focus(function () {
+        if ($(this).val() == 'Date(From)') {
+            $(this).val('');
+            $(this).removeClass('defaultText');
+        }
+    });
+    $(objDate1).blur(
+        function () {
+            var strInput = $(this).val();
+            strInput = strInput.replace(/\s/g, "");
+            if (strInput == '') {
+                $(this).val('Date(From)');
+                $(this).addClass('defaultText');
+            }
+        });
+    //Date(To)
+    $(objDate2).focus(function () {
+        if ($(this).val() == 'Date(To)') {
+            $(this).val('');
+            $(this).removeClass('defaultText');
+        }
+    });
+    $(objDate2).blur(function () {
+        var strInput = $(this).val();
+        strInput = strInput.replace(/\s/g, "");
+        if (strInput == '') {
+            $(this).val('Date(To)');
+            $(this).addClass('defaultText');
+        }
+    });
+    //Routing
+    $(objRouting).focus(function () {
+        if ($(this).val() == 'Routing Number') {
+            $(this).val('');
+            $(this).removeClass('defaultText');
+        }
+    });
+    $(objRouting).blur(function () {
+        var strInput = $(this).val();
+        strInput = strInput.replace(/\s/g, "");
+        if (strInput == '') {
+            $(this).val('Routing Number');
+            $(this).addClass('defaultText');
+        }
+    });
+    //Account
+    $(objAccount).focus(function () {
+        if ($(this).val() == 'Account Number') {
+            $(this).val('');
+            $(this).removeClass('defaultText');
+        }
+    });
+    $(objAccount).blur(function () {
+        var strInput = $(this).val();
+        strInput = strInput.replace(/\s/g, "");
+        if (strInput == '') {
+            $(this).val('Account Number');
+            $(this).addClass('defaultText');
+        }
+    });
+    //Amount
+    $(objAmount).focus(function () {
+        if ($(this).val() == 'Check Amount') {
+            $(this).val('');
+            $(this).removeClass('defaultText');
+        }
+    });
+    $(objAmount).blur(function () {
+        var strInput = $(this).val();
+        strInput = strInput.replace(/\s/g, "");
+        if (strInput == '') {
+            $(this).val('Check Amount');
+            $(this).addClass('defaultText');
+        }
+    });
+    //Batch #
+    $(objBatchNumber).focus(function () {
+        if ($(this).val() == 'Batch Number') {
+            $(this).val('');
+            $(this).removeClass('defaultText');
+        }
+    });
+    $(objBatchNumber).blur(function () {
+        var strInput = $(this).val();
+        strInput = strInput.replace(/\s/g, "");
+        if (strInput == '') {
+            $(this).val('Batch Number');
+            $(this).addClass('defaultText');
+        }
+    });
+    //Bank ID
+    $(objBankID).focus(function () {
+        if ($(this).val() == 'Bank ID') {
+            $(this).val('');
+            $(this).removeClass('defaultText');
+        }
+    });
+    $(objBankID).blur(function () {
+        var strInput = $(this).val();
+        strInput = strInput.replace(/\s/g, "");
+        if (strInput == '') {
+            $(this).val('Bank ID');
+            $(this).addClass('defaultText');
+        }
+    });
+    /*  Show calendar
+    /*---------------------------------------------------*/
+    $(objDate1).datepicker({
+        onSelect: function () {
+            $(objDate1).removeClass('defaultText');
+        }
+    });
+
+    $(objDate2).datepicker({
+        onSelect: function() {
+            $(objDate2).removeClass('defaultText');
+        }
+    });
+
+});
+
+function asp$(id, tagName) {
+    var idRegexp = new RegExp(id, 'i');
+    var tags = new Array();
+    if (tagName) {
+        tags = document.getElementsByTagName(tagName);
+    }
+    else {
+        tags = document.getElementsByName(id);
+    }
+    var control = null;
+    for (var i = 0; i < tags.length; ++i) {
+        var ctl = tags[i];
+        if (idRegexp.test(ctl.id)) {
+            control = ctl;
+            break;
+        }
+    }
+
+    if (control) {
+        return $('#' + control.id);
+    }
+    else {
+        alert(id + ' not found');
+        return null;
+    }
+}

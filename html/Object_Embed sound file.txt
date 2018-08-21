@@ -1,0 +1,5 @@
+    <object classid="clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95">
+        <param name="FileName" value="StenbergActuality.mp3" />
+        <param name="AutoStart" value="0" />
+        <embed src="StenbergActuality.mp3" autostart="false" loop="false" width="10%"></embed>
+    </object> 

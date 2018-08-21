@@ -1,0 +1,10 @@
+<document>
+  <header>Alphabet</header>
+  <items>
+    <item id="a">a is for apple</item>
+    <item id="b">b is for balloon</item>
+  </items>
+</document>
+
+
+select field1.query('/document/items/item[@id="a"]') from #demo

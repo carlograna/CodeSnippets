@@ -1,0 +1,40 @@
+Function Main()
+
+dim iYear
+dim iMonth
+dim iDay
+dim sPath
+dim sDestPath
+dim oFSO
+dim oFolder
+
+	'set myDate = Createobject("Date")
+	set oFSO = Createobject("Scripting.FileSystemObject")
+	sPath = "\\sdufs\w$\Img\"
+	sDestPath = "\\sdufs\w$\ImgArchive\"
+	if oFSO.FolderExists(sPath) then
+		set oFolder = oFSO.GetFolder(sPath)
+		MsgBox oFolder
+		for each oFolder in oFolder.SubFolders
+			MsgBox oFolder.Name
+			iYear = Left(oFolder.Name, 4)
+			iMonth = Mid(oFolder.Name, 5, 2)
+			iDay = Right(oFolder.Name, 2)
+			
+			IF iYear = 2003 Then
+			'if DateDiff("d" , DateSerial(iYear, iMonth, iDay) , Date) >  1458 then			
+				oFSO.MoveFolder sPath & oFolder.Name, sDestPath & oFolder.Name
+			end if
+		next
+	end if
+	set oFSO = Nothing
+	Main = DTSTaskExecResult_Success
+End Function
+
+
+
+
+
+
+
+

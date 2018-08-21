@@ -1,0 +1,19 @@
+$ git clean -f -d
+Removing CaseManagement/CaseManagement.UnitTests/Tests/BCBS/Inputs/
+Removing CycleService/CycleReports/Exports/
+Removing CycleService/CycleServiceTests/Assemblies/
+Removing CycleService/CycleServiceTests/Resources/
+Removing ElectronicEnrollmentTests/ElectronicEnrollmentTestsCopy.ruleset
+Removing LifeProLibrary2.0/LifeProLibrary2.UnitTests/TestFiles/BCBS/ExpectedOutput/
+Removing LifeProLibrary2.0/LifeProLibrary2.UnitTests/TestFiles/Expected/
+Removing LifeProLibrary2.0/LifeProLibrary2.UnitTests/TestFiles/Generated/
+Removing VendorFileMapper/VendorMapper.UnitTests/TestFiles/834/BCBS/Inputs/Error/
+Removing VendorFileMapper/VendorMapper.UnitTests/TestFiles/834/ISEBA/Inputs/Error/
+Removing VendorFileMapper/VendorMapper.UnitTests/TestFiles/834/ONR/Inputs/Error/
+Removing VendorFileMapper/VendorMapper.UnitTests/TestFiles/834/Standard/Inputs/ChangeProcessing/
+Removing VendorFileMapper/VendorMapper.UnitTests/TestFiles/ACORD/NonMedTerm/Inputs/Error/
+Removing VendorFileMapper/VendorMapper.UnitTests/TestFiles/Census/GlobalDiscovery/ExpectedResults/
+Removing VendorFileMapper/VendorMapper.UnitTests/TestFiles/ChangeProcessing/Generated/Temp/
+Removing VendorFileMapper/VendorMapper.UnitTests/TestFiles/RelationshipJSON/outputs/
+Removing VendorFileMapper/VendorMapper.VendorMapper/Service References/
+

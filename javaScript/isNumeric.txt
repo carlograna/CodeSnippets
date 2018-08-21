@@ -1,0 +1,43 @@
+Numeric validation becomes important if multiple numeric fields are required on a page, especially if their values are to be summed or used in some mathematical function. If non numeric values are added, multiplied, etc, then the answer becomes nonsense. ASP can perform numeric validation, but only once all the data has been submitted to the server, then the user must correct any invalid fields and resubmit the page. A better solution is to use JavaScript to validate each field on the client browser as the user enters data and if necessary carry out any mathematical calculation, without the need to submit the page, thereby speeding up the data entry process. Here is an example of a numeric validation function, which only permits the entry of characters 0 to 9, a decimal point and a negative sign:
+
+
+
+
+
+<SCRIPT language="JavaScript">
+  <!--
+
+function IsNumeric(strString)
+   //  check for valid numeric strings	
+   {
+   var strValidChars = "0123456789.-";
+   var strChar;
+   var blnResult = true;
+
+   if (strString.length == 0) return false;
+
+   //  test strString consists of valid characters listed above
+   for (i = 0; i < strString.length && blnResult == true; i++)
+      {
+      strChar = strString.charAt(i);
+      if (strValidChars.indexOf(strChar) == -1)
+         {
+         blnResult = false;
+         }
+      }
+   return blnResult;
+   }
+
+  // -->
+</SCRIPT>
+
+Such a function can be used as follows to check a field and return an error message if the contents are not numeric:
+
+   if (document.frmUser.afield.value.length == 0) 
+      {
+      alert("Please enter a value.");
+      } 
+   else if (isNumeric(document.frmUser.afield.value) == false) 
+      {
+      alert("Please check - non numeric value!");
+      }

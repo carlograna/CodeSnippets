@@ -1,0 +1,6 @@
+execute as user = 'testuser'
+
+select CURRENT_USER
+
+revert; -- set's it back to your own user
+select CURRENT_USER

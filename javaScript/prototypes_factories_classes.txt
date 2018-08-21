@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<head>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+ <title>playing :)</title>
+</head>
+<body>
+
+<script>
+
+	//class
+	class Dog{
+
+		talk(){
+			console.log(this.sound);
+		}
+		eat(){
+			console.log("eating cat");
+		}
+		init(_name, _sound){
+			this.name = _name;
+			this.sound = _sound;
+		}
+		getName(){
+			console.log("my name is " + this.name);
+		}
+	}
+		
+	//factory function()	
+	const cat = () => {
+		return{
+			talk: () => console.log(this.sound)
+			,eat: () => console.log("eating mouse")
+			//,init: function(_name, _sound) { this.name = _name; this.sound = _sound} // here this.name and this.sound are undefined
+			,init: (_name, _sound) => {this.name = _name; this.sound = _sound;} // I can do this or declare variables instead of using this
+			,getName: () => console.log("My name is " + this.name)
+		}
+	}
+	
+	//prototype
+	const mouse = {
+		eat : () => console.log("eating cheese")
+		,talk : () => console.log(this.sound)
+		,init : (_name, _sound) => {this.name = _name; this.sound = _sound;}
+		,getName : () => console.log("My name is " + this.name)
+	}
+
+	
+	//using class
+	 {
+		 const dog = new Dog();
+		 dog.init("jack", "woooooooooooooooooooooooooooooooooooooof");
+		 dog.talk();
+		 dog.eat();
+		 dog.getName();
+	}
+
+	//using factory function
+	{
+		const cat1 = cat();
+		cat1.init("tom", "meeeooooooooooooooooooooooooooooooooooooow");
+		cat1.talk();		
+		cat1.eat();	
+		cat1.getName();
+	}
+	
+	//using a prototype
+	 {
+		 var mouse1 = mouse;
+		 mouse1.init("Jerry", "squeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeaaak");	
+		 mouse1.talk();
+		 mouse1.eat();
+		 mouse1.getName();
+	 }
+	
+	
+	
+</script>
+
+
+Look at the CONSOLE!!!
+</body>
+</html>

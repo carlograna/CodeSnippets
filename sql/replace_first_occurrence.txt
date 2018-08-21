@@ -1,0 +1,3 @@
+
+DECLARE @text VARCHAR(100) = 'the stupid fox'
+SELECT STUFF(@text, CHARINDEX('fox', @text), 3, 'boy')

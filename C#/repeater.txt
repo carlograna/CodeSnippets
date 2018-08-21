@@ -1,0 +1,209 @@
+<style>
+        
+        /*---- from /recovery/default.aspx ---------------*/
+
+        .recDiv { float: left; padding: 22px 26px 62px; border-radius: 10px; background-color: #f5f5f5; box-shadow: 0 0 3px 3px rgba(0,0,0,.1); position: relative; background-color: #f7f8f9; color: #4c6c84; }
+
+        .recDiv { width: 400px; }
+
+        .recDiv .title { font-size: 21px; }
+
+        .recDiv .subTitle { margin: 6px 0 0 4px; }
+
+        .txtbxDiv { margin-top: 18px; }
+
+        .txtArp { height: 30px; width: 100%; }
+        
+        .txtAmt { float: left; height: 30px; width: 129px; text-align: right; }
+
+        .pymtBtn { height: 40px; line-height: 40px; text-align: center; font-weight: bold; }
+
+        .pymtBtn, .pymtBtnBg, .pymtBtn a { position: absolute; bottom: 0; left: 0; right: 0; border-radius: 0 0 10px 10px; transition: all .16s ease; }
+
+        .pymtBtnBg { top: 0; background-color: #000; opacity: .1; }
+        .pymtBtn:hover .pymtBtnBg { opacity: .13; }
+
+        .pymtBtn a { color: #4c6c84; }
+        .pymtBtn a:hover { color: #4c6c84; }
+
+        .desc, .attn { text-align: center; box-shadow: 0 0 2px 2px rgba(0,0,0,.1); padding: 20px 30px; font-weight: bold; font-size: 15px; }
+        .desc { background-color: #f8fcff; color: #4c6c84; }
+        .attn { background-color: #fffcfc; color: #a71a1d; }
+
+        /*---- from /recovery/default.aspx end -----------*/
+
+        /*---- checkbox ----------------------------------*/
+
+        .checkbox:after { content: ""; display: table; clear: both; }
+
+        span.checkbox { display: inline-block; }
+
+        .checkbox input { width: 13px; height: 13px; float: left; margin: 2px 0 0 0; cursor: pointer; }
+
+        .checkbox label { float: left; padding-left: 5px; white-space: nowrap; cursor: pointer; }
+
+        .checkbox:hover label { color: #4eb0dc; }
+
+        .checkboxDiv td { position: relative; }
+
+        .checkboxDiv td:after { content: ""; display: table; clear: both; }
+
+        .checkboxDiv input { float: left; margin: 0 0 0;/*was margin: 2px 0 0;*/ }
+
+        .checkboxDiv label { float: left; padding-left: 5px; margin-right: 20px; }
+
+        .checkboxDiv:hover, .checkboxDiv:hover input, .checkboxDiv:hover label { cursor: pointer; }
+
+        .checkboxDiv td:hover label { color: #4eb0dc; }
+
+        /*---- checkbox end ------------------------------*/
+
+        .lbl { color: #959595; margin-right: .33em; }
+
+        .headerRow div, .recItemRow div, .grandTotalRow div { float: left; min-height: 10px; margin-left: 18px; }
+        .headerRow div.chkNum, .recItemRow div.chkNum, .grandTotalRow div.chkNum { margin-left: 0; }
+
+        .headerRow { margin-bottom: 20px; }
+
+        .grandTotalRow, .grandTotalRow2 { margin-top: 20px; }
+
+        .makePymtLnkbtnDiv { height: 40px; position: relative; margin-top: 30px; }
+
+        .makePymtLnkbtn { position: absolute; top: 0; right: 0; }
+
+        .recItemRow { background-color: #f5f5f5; border-bottom: 1px solid #ccc; /*transition: all .1s linear;*/ }
+        .recItemRow:hover { background-color: #f9f9f9; }
+        .recItemRow.first { border-top: 1px solid #ccc; }
+
+        .recItemRow, .recItemRow div { height: 40px; }
+
+        .recItemRow div { padding-top: 11px; }
+        .recItemRow div.pymtAmt { height: 34px; padding-top: 5px; }
+
+        .chkNum { width: 66px; text-align: center; padding-left: 10px; }
+        .dateCreated { width: 76px; text-align: center; }
+        .recPymtType { width: 120px; text-align: center; }
+        .totalOwed { width: 70px; text-align: right; }
+        .pymtAmt { width: 110px; text-align: center; }
+        .txtbx { width: 110px; text-align: right; }
+        .collFee { width: 83px; text-align: center; }
+        .incFeeChkbx { width: 68px; text-align: center; }
+        .total { width: 80px; text-align: right; padding-right: 10px; }
+        .payFullAmt { width: 105px; text-align: center; }
+
+        .grandTotalRow .incFeeChkbx { position: relative; }
+        .grandTotalRow .incFeeChkbx span { position: absolute; top: 0; right: 0; white-space: nowrap; }
+
+        .grandTotalRow2 { height: 14px; }
+
+        .grandTotalRow2 .total2 { height: 14px; position: absolute; top: 0; right: 0; white-space: nowrap; }
+        
+        .grandTotalRow2 .total2 .grandTotalAmt, .grandTotalRow2 .total .grandTotalSpan { float: right; }
+
+        .grandTotalRow2 .total2 .grandTotalSpan { margin-right: 18px; }
+
+        .grandTotalRow2 .total2 .grandTotalAmt { margin-right: 18px; }
+
+        #HybridMockupDiv .total { width: 88px; padding-right: 18px; }
+
+        .makePymtLnkbtn2 { position: absolute; top: 0; right: 5px; width: 86px; }
+
+        #PaymentAmtDiv { height: 28px; }
+
+        #PaymentAmtDiv .pymtAmt1 { position: absolute; top: 0; right: 5px; }
+
+        #PaymentAmtDiv .pymtAmt1 .txtbx, #PaymentAmtDiv .pymtAmt1 .pymtAmtSpan { float: right; }
+
+        #PaymentAmtDiv .pymtAmt1 .txtbx { width: 124px; }
+
+        #PaymentAmtDiv .pymtAmt1 .pymtAmtSpan { margin: 8px 18px 0 0; }
+
+        .bmptop { border-top: 1px solid #ccc; margin-top: 40px; padding-top: 40px; }
+
+    </style>
+	
+	
+	
+	<asp:Repeater runat="server" ID="rptPaymentList">
+            <HeaderTemplate>
+                <div id="HeaderRow" class="headerRow clearfix">
+                    <div class="dateCreated">Date Created</div>
+                    <div class="chkNum">Check #</div>
+                    <div class="recPymtType">Recovery Pymt Type</div>
+                    <div class="totalOwed">Total Owed</div>
+                    <div class="pymtAmt">Payment Amount</div>
+                    <div class="collFee">Collection Fee</div>
+                    <div class="incFeeChkbx">Include Fee</div>
+                    <div class="total">Total</div>
+                </div>
+            </HeaderTemplate>
+            <ItemTemplate>
+                <div id="RecItemRow" class="recItemRow clearfix first">
+
+                    <asp:HiddenField ID="hfGlobalCheckID" runat="server" Value='<%# Eval("GlobalCheckID") %>' />
+
+                    <div class="dateCreated">
+                        <asp:Label ID="LblDateCreated" runat="server" Text='<%# Eval("PostedDate") %>' />
+                    </div>
+
+                    <div class="chkNum">
+                        <asp:Label ID="LblChkNum" runat="server" Text='<%# Eval("SerialNumber") %>' />
+                    </div>
+
+                    <div class="recPymtType">
+                        <asp:Label ID="LblRecPymtType" runat="server" Text='<%# Eval("RecoveryType") %>' />
+                    </div>
+
+                    <div class="totalOwed">
+                        <asp:Label ID="LblTotalOwed" runat="server" Text='<%# Eval("AmountDue") %>'/>
+                    </div>
+
+                    <div class="pymtAmt">
+                        <%--<asp:TextBox ID="TboxPymtAmt1" runat="server" CssClass="txtbx" onfocus="if (this.value=='$10,000.00') {this.value = ''; style.color= '#707070';}" value="$10,000.00" onblur="if (this.value=='') {this.value = '$10,000.00'; style.color = '#B7B7B7';} else style.color = '#707070';" />--%>
+                        <asp:TextBox ID="TboxPymtAmt" runat="server" Text='<%# Eval("AmountDue") %>' CssClass="txtbx"  />
+                    </div>
+
+                    <div class="collFee">
+                        <asp:Label ID="LblCollFee" runat="server" Text='<%#Eval("CollectionFee") %>' />
+                    </div>
+
+                    <div class="incFeeChkbx">
+                        <asp:CheckBox ID="ChkIncFeeChkbx" runat="server" CssClass="checkbox" OnCheckedChanged="ChkIncFeeChkbx_CheckedChanged" />
+                    </div>
+
+                    <div class="total">
+                        <asp:Label ID="LblTotal" runat="server" OnPreRender="LblTotal_PreRender" />
+                    </div>
+
+                    <%--<div class="payFullAmt">
+                        <asp:CheckBox ID="ChkPayFullAmtChkbx" runat="server" CssClass="checkbox" /><!--AutoPostBack="true"-->
+                    </div>--%>
+
+                </div><!--/RecItemRow-->
+            </ItemTemplate>
+            <FooterTemplate>
+                <div id="GrandTotalRow" class="grandTotalRow clearfix">
+
+                    <div class="chkNum"></div>
+                    <div class="dateCreated"></div>
+                    <div class="recPymtType"></div>
+                    <div class="totalOwed"></div>
+                    <div class="pymtAmt"></div>
+                    <div class="collFee"></div>
+                    <div class="incFeeChkbx"><span>Grand Total:</span></div>
+
+                    <div class="total">
+                        <asp:Label ID="LblGrandTotal" runat="server" />
+                    </div>
+
+                    <%--<div class="payFullAmt"></div>--%>
+
+                </div><!--/TotalDiv-->
+
+                <div id="MakePymtLnkbtnDiv1" class="makePymtLnkbtnDiv">
+
+                    <asp:LinkButton ID="MakePymtLnkbtn" runat="server" CssClass="makePymtLnkbtn bluBtn" Text="Make Payment" />
+
+                </div><!--/MakePymtBtnDiv-->
+            </FooterTemplate>
+        </asp:Repeater>   

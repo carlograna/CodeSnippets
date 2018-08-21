@@ -1,0 +1,49 @@
+Command Line 	Console Name
+AdRmsAdmin.msc 	Active Directory Rights Management Services
+Adsiedit.msc 	ADSI Edit
+Azman.msc 	Authorization Manager
+Certmgr.msc 	Certmgr (Certificates)
+Certtmpl.msc 	Certificates Template Console
+CluAdmin.msc 	Failover Cluster Management
+Comexp.msc 	Component Services
+Compmgmt.msc 	Computer Management
+Devmgmt.msc 	Device Manager
+Dfsmgmt.msc 	DFS Management
+Dhcpmgmt.msc 	DHCP Manager
+Diskmgmt.msc 	Disk Management
+Dnsmgmt.msc 	DNS Manager
+Domain.msc 	Active Directory Domains And Trusts
+Dsa.msc 	Active Directory Users And Computers
+Dssite.msc 	Active Directory Sites And Services
+Eventvwr.msc 	Event Viewer
+Fsmgmt.msc 	Shared Folders
+Fsrm.msc 	File Server Resource Manager
+Fxsadmin.msc 	Microsoft Fax Service Manager
+Gpedit.msc 	Local Group Policy Editor
+Lusrmgr.msc 	Local Users And Groups
+Napclcfg.msc 	NAP Client Configuration
+Nfsmgmt.msc 	Services For Network File System
+Nps.msc 	Network Policy Server
+Ocsp.msc 	Online Responder
+Perfmon.msc 	Reliability And Performance Monitor
+Pkiview.msc 	Enterprise PKI
+Printmanagement.msc 	Print Management
+Remoteprograms.msc 	TS RemoteApp Management
+Rsop.msc 	Resultant Set of Policy
+Secpol.msc 	Local Security Policy
+ServerManager.msc 	Server Manager
+StorageMgmt.msc 	Share And Storage Management
+Services.msc 	Services
+StorExpl.msc 	Storage Explorer
+Tapimgmt.msc 	Telephony
+Taskschd.msc 	Task Scheduler
+Tmp.msc 	Trusted Platform Module (TPM) Management
+Tsadmin.msc 	Terminal Services Management
+Tsconfig.msc 	Terminal Services Configuration
+Tsgateway.msc 	TS Gateway Manager
+Tsmmc.msc 	Remote Desktops
+Uddi.msc 	UDDI Services Console
+Wbadmin.msc 	Windows Server Backup
+Wdsmgmt.msc 	Windows Deployment Services
+Winsmgmt.msc 	WINS Manager
+WmiMgmt.msc 	WMI Control

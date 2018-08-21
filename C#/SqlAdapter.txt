@@ -1,0 +1,28 @@
+            using(SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = "Persist Security Info=False;User ID=cswebuser;Password=slemn#fmsl#48*s3$kLk3L;Initial Catalog=ChildSupport;Data Source=kiddbtest;Workstation ID=workstation;";
+                SqlCommand cmd = new SqlCommand("select username, password, EncryptedPassword from tblusr00", conn);
+                conn.Open();
+
+
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                DataTable table = new DataTable();
+                adapter.SelectCommand = cmd;
+
+                adapter.Fill(table);
+
+                
+		//UPDATE TABLE BEFORE RUNNING ADAPTER UPDATE COMMAND
+                foreach(DataRow row in table.Rows)
+                {            
+                    string encryptedPassword = Encrypt.MD5(row["password"].ToString());
+                    row.SetField("EncryptedPassword", encryptedPassword);
+                }
+
+		adapter.UpdateCommand = new SqlCommand("UPDATE TBLUSR00 SET EncryptedPassword = @EncryptedPassword WHERE username = @username and Password = @password", conn);
+                adapter.UpdateCommand.Parameters.Add("@EncryptedPassword", SqlDbType.VarChar, 50, "EncryptedPassword");
+                adapter.UpdateCommand.Parameters.Add("@username", SqlDbType.VarChar, 50, "username");
+                adapter.UpdateCommand.Parameters.Add("@password", SqlDbType.VarChar, 50, "password");
+
+                adapter.Update(table);
+            

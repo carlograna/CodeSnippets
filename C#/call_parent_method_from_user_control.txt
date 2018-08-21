@@ -1,0 +1,45 @@
+Calling a method in parent page from user control
+
+	
+
+Here is the classic example using events as suggested by Freddy Rios (C# from a web application project). This assumes that you want to use an existing delegate rather than make your own and you aren't passing anything specific to the parent page by event args.
+
+In the user control's code-behind (adapt as necessary if not using code-behind or C#):
+
+public partial class MyUserControl : System.Web.UI.UserControl
+{
+    public event EventHandler UserControlButtonClicked;
+
+    private void OnUserControlButtonClick()
+    {
+        if (UserControlButtonClicked != null)
+        {
+            UserControlButtonClicked(this, EventArgs.Empty);
+        }
+    }
+
+    protected void TheButton_Click(object sender, EventArgs e)
+    {
+        // .... do stuff then fire off the event
+        OnUserControlButtonClick();
+    }
+
+    // .... other code for the user control beyond this point
+}
+
+In the page itself you subscribe to the event with something like this:
+
+public partial class _Default : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        // hook up event handler for exposed user control event
+        MyUserControl.UserControlButtonClicked += new  
+                    EventHandler(MyUserControl_UserControlButtonClicked);
+    }
+    private void MyUserControl_UserControlButtonClicked(object sender, EventArgs e)
+    {
+        // ... do something when event is fired
+    }
+
+}

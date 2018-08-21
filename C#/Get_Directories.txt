@@ -1,0 +1,8 @@
+
+// Create all directories
+foreach (string dirPath in Directory.GetDirectories(srcFolderPath, "*", SearchOption.AllDirectories))
+                        Directory.CreateDirectory(dirPath.Replace(srcFolderPath, destFolderPath));
+
+//Copy all the files & Replaces any files with the same name
+foreach (string newPath in Directory.GetFiles(srcFolderPath, "*.*", SearchOption.AllDirectories))
+File.Copy(newPath, newPath.Replace(srcFolderPath, destFolderPath), true);

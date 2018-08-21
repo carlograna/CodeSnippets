@@ -1,0 +1,18 @@
+I want to iterate over the name nodes with Linq
+
+<row>
+  <field name="Id">1</field>
+  <field name="AreaId">1</field>
+  <field name="Name">ת&quot;א</field>
+</row>
+<row>
+  <field name="Id">2</field>
+  <field name="AreaId">4</field>
+  <field name="Name">אבטליון</field>
+</row>
+
+
+var items = doc.Descendants("field")
+               .Where(node => (string)node.Attribute("name") == "Name")
+               .Select(node => node.Value.ToString())
+               .ToList();

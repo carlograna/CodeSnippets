@@ -1,0 +1,36 @@
+
+Here is a very efficient solution for removing multiple spaces from a string. I mean replacing multiple spaces between words in a string with a single space, without using a loop. The technique is very simple, I will just run a small script to show how it works.
+DECLARE @str AS VARCHAR(50)
+SET @str = 'Lets   jot some  code'
+PRINT @str
+ 
+SET @str = REPLACE(@str,' ','{}')
+PRINT @str
+SET @str = REPLACE(@str,'}{','')
+PRINT @str
+SET @str = REPLACE(@str,'{}',' ')
+PRINT @str
+
+And here is the output.
+Lets   jot some  code
+Lets{}{}{}jot{}some{}{}code
+Lets{}jot{}some{}code
+Lets jot some code
+
+Below is a function based on this technique.
+CREATE FUNCTION RemoveSpaces
+(
+-- =============================================
+-- Author:      Amit Singh
+-- Description: Remove extra spaces from string
+-- Usage:       SELECT dbo.RemoveSpaces('Code  Jotter')
+-- =============================================
+    @str AS VARCHAR(MAX)
+)
+RETURNS VARCHAR(MAX)
+AS
+BEGIN
+    RETURN
+    REPLACE(REPLACE(REPLACE(@str,' ','{}'),'}{',''),'{}',' ')
+END
+GO

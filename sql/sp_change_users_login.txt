@@ -1,0 +1,5 @@
+use <databasename>
+exec sp_change_users_login 'AUTO_FIX', '<login name>'
+
+use <databasename>
+exec sp_change_users_login 'report'

@@ -1,0 +1,41 @@
+<style type="text/css">
+#NTV_Container
+{
+    width:310px;
+}
+.NTV_header
+{
+    background-color:#022B59;color:White;font-weight:bold;padding:5px 10px;
+}
+.NTV_row
+{
+    position:relative;border:solid 1px #DEDEDE;
+}
+.NTV_col1
+{
+    width:58px;
+}
+.NTV_col2
+{
+    height:30px;position:absolute;top:50%;margin-top:-15px;margin-left:58px;padding:0 5px;
+}
+.NTV_col2 a:hover
+{
+    text-decoration:underline;
+}
+</style>
+
+    <div id="NTV_Container">
+            <div class="NTV_header">
+                State Treasury Giving Back Unclaimed Properties
+            </div>
+            <div class="NTV_row">
+                <div class="NTV_col1"><img src="../images/up/NTV_ABC_station_logo.jpg" alt="NTV logo" /></div>            
+                <div class="NTV_col2">
+                    <a href="http://www.nebraska.tv/story/17086501/nebraska-state-treasury-giving-back-over-100-million-in-unclaimed-properties" target="_blank">
+                        Nebraska State Treasury giving back<br /> over 100 million in unclaimed properties
+                    </a>
+                </div>
+                <div style="clear:both"></div>
+            </div>
+    </div>

@@ -1,0 +1,9 @@
+/*
+	Outputs the file with the date YYYYMMDD for SSIS packages
+*/
+
+"\\\\nstfs01\\common\\customer service\\StopPay_"
++ (DT_STR,4,1252)DATEPART( "yyyy" , getdate() ) 
++ RIGHT("0" + (DT_STR,4,1252)DATEPART( "mm" , getdate() ), 2)
++ RIGHT("0" + (DT_STR,4,1252)DATEPART( "dd" , getdate() ), 2)
++ ".xls"

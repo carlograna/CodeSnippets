@@ -1,0 +1,35 @@
+WEB API 2
+JSonP and CORS
+[EnableCors]
+[DisableCors]
+
+Piggybacking on ASP.NET Authentication can simplify user Auth.
+Authentication vs Autherization
+
+AppKey/Secret Pair
+[Authorize] --> 401 if not logged in
+
+
+Forms Authentication
+\
+Basic Authentication
+
+***Token Authentication
+Request api key 
+supplies api key and shared secret
+request token
+validates and returns token
+uses api with access  token until timeout
+
+** Oauth Authentication  // http://dotnetopenauth.net/
+Request api key 
+supplies api key and shared secret
+request token
+validates and returns token
+Redirects to API's Auth URI
+Displays Authorization UI
+User Confirms Authorization
+Redirets Back to DEveloper
+Request Access Token via oatuh & request token
+Returns Access Token (with Timeout)
+Uses API with Access Token until Time out

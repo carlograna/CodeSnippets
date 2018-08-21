@@ -1,0 +1,2 @@
+git checkout branchName^  <-- go back to the parent of HEAD.  Back in time 1 version
+git checkout 

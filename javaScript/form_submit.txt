@@ -1,0 +1,211 @@
+
+
+
+
+function doSvpPost(amount, reference, description, additionalData, returnUrl, cancelUrl, notifyUrl) {
+	var merchantId = "100000047";
+	// validate data
+	if("10000.00" == "0") {
+		displayError("Cannot get details for merchantId:" + merchantId);
+		return;
+	}
+	if(!amount.match(/^\d{0,5}\.\d{2}$/)) {
+		displayError("Invalid amount " + amount);
+		return;
+	}
+	if(amount > 10000.00) {
+		displayError("Amount " + amount + " is too large");
+		return;
+	}
+	if(amount < 0.99) {
+		displayError("Amount " + amount + " is too small");
+		return;
+	}
+	if(reference.match(/\^|!|\||&|;|<|>|~|\?|`/) != null || reference.length > 22 || reference == "") {
+		displayError("Invalid reference:" + reference);
+		return;
+	}
+	if(!merchantId.match(/^\d{9}$/)) {
+		displayError("Invalid merchant ID:" + merchantId);
+		return;
+	}
+	if(description.match(/\^|!|\||;|<|>|~|\?|`/) != null || description.length > 40 || description == "") {
+		displayError("Invalid description:" + description);
+		return;
+	}
+	if(additionalData.match(/\^|!|\||&|;|<|>|~|\?|`/) != null || additionalData > 1024) {
+		displayError("Invalid additional data:" + additionalData);
+		return;	
+	}
+	 
+	if(!returnUrl.match(/^(http|ftp|https):\/\//) || escape(returnUrl).match(/\^|!|\||&|;|<|>|~|\?|`/) != null || escape(returnUrl).length > 150 || returnUrl == "") {
+		displayError("Invalid return URL:" + returnUrl);
+		return;
+	}
+	if(!cancelUrl.match(/^(http|ftp|https):\/\//) || escape(cancelUrl).match(/\^|!|\||&|;|<|>|~|\?|`/) != null || escape(cancelUrl).length > 150 || cancelUrl == "") {
+		displayError("Invalid cancel URL:" + cancelUrl);
+		return;
+	}
+	if(notifyUrl.length > 0) {
+		if(!notifyUrl.match(/^(http|ftp|https):\/\//) || escape(notifyUrl).match(/\^|!|\||&|;|<|>|~|\?|`/) != null || escape(notifyUrl).length > 150) {
+			displayError("Invalid notify URL:" + notifyUrl);
+			return;
+		}	
+	}
+
+	var body = document.getElementsByTagName("body")[0];
+	
+	
+	var form = document.createElement("form");
+	form.method = "POST";
+	form.action = "https://us.ewisesystems.com/svpGatewayUAT/merchant/fiSelect.htm";
+	
+	
+
+	body.appendChild(form);
+	
+	var inp = document.createElement("input");
+	inp.name = "amount";
+	inp.value = amount;
+    inp.type = "hidden";
+	form.appendChild(inp);
+
+	var inp = document.createElement("input");
+	inp.name = "merchantId";
+	inp.value = merchantId;
+    inp.type = "hidden";
+	form.appendChild(inp);
+
+	var inp = document.createElement("input");
+	inp.name = "reference";
+	inp.value = reference;
+    inp.type = "hidden";
+	form.appendChild(inp);
+
+	var inp = document.createElement("input");
+	inp.name = "description";
+	inp.id = "description";
+	inp.value = description;
+    inp.type = "hidden";
+	form.appendChild(inp);
+
+	var inp = document.createElement("input");
+	inp.name = "additionalData";
+	inp.value = additionalData;
+    inp.type = "hidden";
+	form.appendChild(inp);
+
+	var inp = document.createElement("input");
+	inp.name = "returnUrl";
+	inp.value = returnUrl;
+    inp.type = "hidden";
+	form.appendChild(inp);
+
+	var inp = document.createElement("input");
+	inp.name = "cancelUrl";
+	inp.value = cancelUrl;
+    inp.type = "hidden";
+	form.appendChild(inp);
+
+	var inp = document.createElement("input");
+	inp.name = "notifyUrl";
+	inp.value = notifyUrl;
+    inp.type = "hidden";
+	form.appendChild(inp);
+	
+	var inp = document.createElement("input");
+	inp.name = "iFrameFlag";
+	inp.value = "false";
+    inp.type = "hidden";
+	form.appendChild(inp);	
+
+    form.submit();
+}
+
+function displayError(msg) {
+	alert("Cannot complete your transaction: " + msg);
+	return;
+}
+
+function openOverlay() {
+  var body = document.getElementsByTagName("body")[0];
+
+  var cover = document.createElement("div");
+  cover.id = "payo_cover";
+  cover.style.backgroundColor = "black";
+  cover.style.opacity = 0.25;               // for Non-IE browsers
+  cover.style.filter = "alpha(opacity=25)"; // for IE browsers
+  cover.style.position = "absolute";
+  cover.style.zIndex = 9001;
+  cover.style.left = "0px";
+  cover.style.top = "0px";
+  cover.style.width = Math.max(body.scrollWidth, body.clientWidth) + "px";
+  cover.style.height = Math.max(body.scrollHeight, body.clientHeight) + "px";
+  cover.style.display = "block";
+  body.appendChild(cover);
+
+/*
+  var overlay = (/MSIE (6|7|8|9)/).test(navigator.userAgent) ? 
+    document.createElement("<iframe name='svpFrame'>") : // bug in IE: this is the only way to set a name for iframe
+    document.createElement("iframe");
+*/
+  var overlay = makeIframe();    
+  overlay.name = "svpFrame";
+  overlay.id = "svpFrame";
+  overlay.style.backgroundColor = "white";
+  overlay.style.left = (body.clientWidth - 400) + "px";
+  overlay.style.top = (body.clientHeight - 500) + "px";
+  overlay.style.width = "350px";
+  overlay.style.height = "460px";
+  overlay.style.lineHeight = "1px";
+  overlay.style.zIndex = "9002";
+  overlay.style.position = "absolute";
+  overlay.style.boxShadow = "2px 2px 8px rgba(0, 0, 0, .65)";
+  overlay.style.padding = "10px 10px 10px 10px";
+  overlay.style.display = "block";
+  body.appendChild(overlay);
+
+}
+
+function makeIframe() { 
+	if (!IsMSIE()) { 
+		var elem = document.createElement("iframe");	
+		return elem; 
+	} 
+	var mode = getDocMode(); 
+	if (mode>=8) { 
+		var elem = document.createElement("iframe");	
+		return elem; 
+	} 
+
+    var elem = document.createElement("<iframe name='svpFrame'>"); // bug in IE 6,7: this is the only way to set a name for iframe 
+    return elem; 
+} 
+
+function getDocMode(){ 
+	// This is an IE browser. What mode is the engine in? 
+	engine=null; 
+	if (document.documentMode) { // IE8 or later 
+		engine = document.documentMode; 
+		return engine; 
+	} 
+
+	// This is IE 5-7 
+	engine = 5; // Assume quirks mode unless proven otherwise 
+    if (document.compatMode) { 
+    	if (document.compatMode == "CSS1Compat") { 
+    		engine = 7; // standards mode 
+    	 	return engine; 
+    	} 
+    	// There is no test for IE6 standards mode because that mode 
+    	// was replaced by IE7 standards mode; there is no emulation. 
+    } 
+} 
+
+function IsMSIE(){ 
+	return (/MSIE (6|7|8|9)/).test(navigator.userAgent); 
+}
+
+function getGatewayVersion() {
+	return "1.0-UAT:111109_1041";
+}

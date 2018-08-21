@@ -1,0 +1,69 @@
+*** Attribute Tags
+
+Grouping
+	Owner
+	Priority
+	Test Category
+	
+Action
+	Deployment
+	Ignore
+	timout
+INformation
+	Description
+Data Driven
+	Data Source
+	
+[Test]
+[ExpectedException(typeof(CustomerCreationException))]
+	
+*** Assert Commands	
+Assert
+	.IsTrue
+	.IsFalse
+	.AreEqual("Paul", "paul", false) //case insensitive
+	.AreSame(x, y)
+	.AreNotSame(x,y)
+	.IsIntanceOfType(per, typeof(<classname>))
+	
+	
+StringAssert
+	RegEx
+	Contains
+	StartsWith
+	EndWith
+	
+CollectionAssert
+	AllItemsAreInstancesOfType
+	AllItemsAreNotNull
+	AllItemsAreUnique
+	Contains
+	DoesNotContain
+	IsSubsetOf
+	AreEqual (same order)
+	AreNotEqual
+	AreEquivalent (any order)
+	AreNotEquivalent
+	
+
+*** Data-Driven Testing
+[DataSource("System.Data.SqlClient", "Server=Localhost;Database=Sandbox;Integrated Security=yes", "tests.FileProcessTest", DataAccessMethod.Sequential)]
+// I can put the connection string in the .config file
+
+
+*** Automate Test
+On command prompt:
+VSTest.Console.exe	<testassemblyname.ddl>	--> located in the bin\debug folder
+
+VSTest.Console.exe /ListLoggers
+VSTest.Console.exe MyClassTest.dll /Logger:trx
+
+Run 1 specific test
+VSTest.Console.exe MyClassTest.dll /TestCaseFilter:"Name=MethodName"
+
+Matching
+VSTest.Console.exe MyClassTest.dll /Test:FileName
+VSTest.Console.exe MyClassTest.dll /Test:Exists,LowerCase
+
+Filter on Attributes
+VSTest.Console.exe MyClassTest.dll /TestCaseFilter:"TestCategory=NoException"
