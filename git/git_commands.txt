@@ -13,14 +13,14 @@ git pull origin <remotebranch>
 
 git status
 
-git add <filename>  <-- 'stages' a change
-git add .  <-- adds all the files in the directory
+git add <filename>  	<-- 'stages' a change
+git add .  		<-- adds all the files in the directory
 
 git diff <filename>
 git diff --color-words		<-- view word differences
 git diff --word-diff		<-- view word differences
-git diff --stat				<-- file that have changed
-git diff --staged			<-- staged changes
+git diff --stat			<-- file that have changed
+git diff --staged		<-- staged changes
 
 git commit	<-- then type I + ESC + :wq
 git commit -m 'new update'
@@ -29,8 +29,8 @@ git checkout branchName
 git checkout -b branchName	<-- creates and checkout branch
 git checkout master
 
-git merge branchName master  						<-- merge the branch into master or viceversa
-git branch -d branch_name  							<-- Delete branch locally
+git merge branchName master  				<-- merge the branch into master or viceversa
+git branch -d branch_name  				<-- Delete branch locally
 git push <remote_name> --delete <branch_name>		<-- Delete branch remotely
 
 ------CAREFUL----------------------------
@@ -53,21 +53,21 @@ git log --pretty=oneline | head -n 10		<-- last 10 logs
 
 
 
-				ADD REMOTE LOCATION
-git remote add origin https://github.com/carlograna/JsonWebService.git
+				ADD/CHANGE REMOTE LOCATION
 
-git push -u origin master			<-- pushes the master copy to the remote on github
-
-git remote set-url origin https://github.com/carlograna/
+git remote add origin https://github.com/carlograna/JsonWebService.git		<-- add new remote
+git remote set-url origin https://github.com/carlograna/			<-- change new remote
 
 git remote -v 						<-- find out the current value of origin
 
-git reset <file>					<-- undo git add
+git push -u origin master			<-- pushes the master copy to the remote on github
+
 
 
 			UNDO CHANGES
 git reset									<-- Unstage changes
 git checkout <file> or . (All files)		<-- Removes changes from file/s
+
 
 				MOVE BRANCH TO MASTER (no merge)
 git checkout master
