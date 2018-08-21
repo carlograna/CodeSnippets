@@ -1,0 +1,4 @@
+// move branch to a different commit relative from the HEAD
+
+git branch -f bugFix HEAD~3	<-- Move branch bugFix 3 parents above HEAD
+git branch -f bugFix HEAD^^	<-- Move branch bugFix 2 parents above HEAD
