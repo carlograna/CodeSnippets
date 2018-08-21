@@ -4,7 +4,6 @@ git clone --mirror https://site/user/folder_name	<--download exact git repo(hook
 
 git init   <-- START TRACKING current folder
 
-
 git fetch https://github.com/carlograna/git_demo	<-- download updates into a branch
 
 git merge FETCH_HEAD	<-- update what just got downloaded with the fetch
